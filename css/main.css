@@ -12716,6 +12716,7 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6, .font-serif {
   display: flex;
   gap: 1.5rem;
   justify-content: flex-end;
+  flex-wrap: wrap;
 }
 .custom-footer .footer-bottom-bar .bottom-links a {
   color: rgba(255, 255, 255, 0.6);
@@ -12724,6 +12725,27 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6, .font-serif {
 }
 .custom-footer .footer-bottom-bar .bottom-links a:hover {
   color: #D4AF37;
+}
+
+@media (max-width: 991.98px) {
+  .custom-footer .footer-bottom-bar .row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+  .custom-footer .footer-bottom-bar .bottom-links {
+    justify-content: center;
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .custom-footer .footer-bottom-bar .bottom-links {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+  }
 }
 
 /* Elegant Enclave Maps Section */

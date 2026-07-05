@@ -361,18 +361,18 @@
   </section>
 
   <!-- FOOTER -->
-  <footer class="custom-footer">
-    <div class="row g-5">
-      <!-- Brand column -->
-      <div class="col-lg-3 col-md-6">
+  <footer class="custom-footer" style="padding: 5rem 3rem 2rem;">
+    <div class="row g-4 text-start align-items-start">
+      <!-- Brand column (26%) -->
+      <div class="col-xl-3 col-lg-3 col-md-6 col-12 mb-4 mb-lg-0">
         <h2 class="footer-brand-title">
           <img src="assets/images/logo.png" alt="Elegant Enclave logo" class="brand-logo-img me-2">
           Elegant<span>Enclave</span>
         </h2>
         <p class="footer-desc">Experience timeless luxury where every stay is crafted with comfort, elegance, and exceptional hospitality. From seamless bookings to memorable experiences, we're with you throughout your journey.</p>
-        <div>
+        <div class="mt-4">
           <p class="text-white fw-bold mb-2 small text-uppercase">Social Links</p>
-          <div class="social-links">
+          <div class="social-links d-flex align-items-center">
             <a href="#" class="social-icon" aria-label="LinkedIn profile link"><i class="bi bi-linkedin"></i></a>
             <a href="#" class="social-icon" aria-label="Instagram profile link"><i class="bi bi-instagram"></i></a>
             <a href="#" class="social-icon" aria-label="Facebook profile link"><i class="bi bi-facebook"></i></a>
@@ -381,8 +381,8 @@
         </div>
       </div>
 
-      <!-- Links column 1 -->
-      <div class="col-lg-2 col-md-6 col-6">
+      <!-- Links column 1 (16%) -->
+      <div class="col-xl-2 col-lg-2 col-md-6 col-6 mb-4 mb-lg-0">
         <h3 class="footer-heading">Information</h3>
         <ul class="footer-links">
           <li><a href="#">Home</a></li>
@@ -394,39 +394,37 @@
         </ul>
       </div>
 
-      <!-- Links column 2 -->
-      <div class="col-lg-2 col-md-6 col-6">
+      <!-- Links column 2 (18%) -->
+      <div class="col-xl-2 col-lg-2 col-md-6 col-6 mb-4 mb-lg-0">
         <h3 class="footer-heading">Services</h3>
-        <ul class="contact-info-list" style="font-size: 0.85rem;">
-          <li id="customerFooterEmail"><i class="bi bi-envelope"></i> support@elegantenclave.com</li>
-          <li id="customerFooterPhone"><i class="bi bi-telephone"></i> +91 98765 43210</li>
-          <li id="customerFooterBranches"><i class="bi bi-geo-alt"></i> Chennai - Coimbatore - Salem</li>
-          <li><i class="bi bi-clock"></i> Available 24/7</li>
+        <ul class="contact-info-list d-flex flex-column gap-3">
+          <li id="customerFooterEmail" class="d-flex align-items-start gap-2"><i class="bi bi-envelope text-warning"></i> support@elegantenclave.com</li>
+          <li id="customerFooterPhone" class="d-flex align-items-start gap-2"><i class="bi bi-telephone text-warning"></i> +91 98765 43210</li>
+          <li id="customerFooterBranches" class="d-flex align-items-start gap-2"><i class="bi bi-geo-alt text-warning"></i> Chennai - Coimbatore - Salem</li>
+          <li class="d-flex align-items-start gap-2"><i class="bi bi-clock text-warning"></i> Available 24/7</li>
         </ul>
       </div>
 
-      <!-- Our Locations column -->
-      <div class="col-lg-2 col-md-6 col-12">
+      <!-- Our Locations column (20%) -->
+      <div class="col-xl-2 col-lg-3 col-md-6 col-12 mb-4 mb-lg-0">
         <h3 class="footer-heading">Our Locations</h3>
-        <div id="footerMapWrapper" class="map-container-wrapper mb-2" style="cursor: pointer;" title="Click to view all locations on Google Maps">
+        <div id="footerMapWrapper" class="map-container-wrapper mb-3" style="cursor: pointer; width: 100%; max-width: 300px; margin: 0 auto;" title="Click to view all locations on Google Maps">
           <div id="footerMap" style="width: 100%; height: 180px; z-index: 1;" aria-label="Interactive map showing Elegant Enclave branches"></div>
         </div>
-        <div class="small mt-2">
-          <span class="text-white-50 d-block mb-1 small fw-semibold text-uppercase">📍 Our Branches</span>
-          <div class="d-flex flex-wrap gap-2">
-            <a href="https://maps.google.com/?q=Elegant+Enclave+Salem" target="_blank" class="map-branch-link small text-decoration-none text-warning"><i class="bi bi-geo-alt-fill me-1"></i>Salem</a>
-            <span class="text-white-50">|</span>
-            <a href="https://maps.google.com/?q=Elegant+Enclave+Coimbatore" target="_blank" class="map-branch-link small text-decoration-none text-warning"><i class="bi bi-geo-alt-fill me-1"></i>Coimbatore</a>
-            <span class="text-white-50">|</span>
-            <a href="https://maps.google.com/?q=Elegant+Enclave+Chennai+Central" target="_blank" class="map-branch-link small text-decoration-none text-warning"><i class="bi bi-geo-alt-fill me-1"></i>Chennai</a>
+        <div class="small mt-2" style="max-width: 300px; margin: 0 auto;">
+          <span class="text-white-50 d-block mb-2 small fw-semibold text-uppercase">📍 Our Branches</span>
+          <div class="d-flex flex-column gap-2 text-start">
+            <a href="https://maps.google.com/?q=Elegant+Enclave+Salem" target="_blank" class="map-branch-link text-warning d-inline-flex align-items-center gap-1 small text-decoration-none"><i class="bi bi-geo-alt-fill"></i> Salem</a>
+            <a href="https://maps.google.com/?q=Elegant+Enclave+Coimbatore" target="_blank" class="map-branch-link text-warning d-inline-flex align-items-center gap-1 small text-decoration-none"><i class="bi bi-geo-alt-fill"></i> Coimbatore</a>
+            <a href="https://maps.google.com/?q=Elegant+Enclave+Chennai+Central" target="_blank" class="map-branch-link text-warning d-inline-flex align-items-center gap-1 small text-decoration-none"><i class="bi bi-geo-alt-fill"></i> Chennai</a>
           </div>
         </div>
       </div>
 
-      <!-- Quick Help column -->
-      <div class="col-lg-3 col-md-6 col-12">
+      <!-- Quick Help column (20%) -->
+      <div class="col-xl-3 col-lg-2 col-md-6 col-12">
         <h3 class="footer-heading">Quick Help</h3>
-        <div class="help-widget-card">
+        <div class="help-widget-card" style="width: 100%; max-width: 330px;">
           <div class="help-img-wrapper">
             <img src="assets/images/footer_help.png" alt="Luxury Hotel lobby seating">
           </div>
