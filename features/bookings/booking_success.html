@@ -1,0 +1,273 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Booking Success | Elegant Enclave</title>
+  <link rel='icon' type='image/png' href='../../assets/images/logo.png'>
+  <meta name="description" content="Reservation successfully confirmed. Thank you for choosing Elegant Enclave.">
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="../../css/main.css">
+  <link rel="stylesheet" href="booking_success.css">
+</head>
+<body class="booking-success-page">
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-xl custom-navbar sticky-top">
+    <div class="container-fluid px-xl-5">
+      <!-- Logo Section -->
+      <a class="navbar-brand d-flex align-items-center" href="../../index.html">
+        <img src="../../assets/images/logo.png" alt="Elegant Enclave logo" class="brand-logo-img me-2">
+        Elegant<span>Enclave</span>
+      </a>
+      
+      <!-- Hamburger Menu Toggler (Mobile/Tablet) -->
+      <button class="navbar-toggler border-0 text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon" style="filter: invert(1);"></span>
+      </button>
+
+      <!-- Collapse Container -->
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <!-- Navigation Menu (Centered) -->
+        <ul class="navbar-nav mx-auto mb-2 mb-xl-0 align-items-center gap-1 gap-xxl-3">
+          <li class="nav-item">
+            <a class="nav-link" href="../../index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="../hotels/search_results.html">Hotels</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-nowrap" href="#">My Bookings</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Notifications</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Profile</a>
+          </li>
+        </ul>
+
+        <!-- Right Side Controls (Search, Auth) -->
+        <div class="d-flex align-items-center gap-3 align-middle flex-wrap justify-content-center justify-content-xl-end">
+          <!-- Search Bar with Integrated Action Button -->
+          
+          
+          <!-- Auth States Container -->
+          <div id="authHeaderContainer" class="d-flex align-items-center gap-2">
+            <!-- Logged Out View (Default Hidden in Demo, Toggleable) -->
+            <div class="auth-logged-out d-none align-items-center gap-2">
+              <a href="#" onclick="triggerConfirmLogout(event)" class="btn btn-auth-outline btn-sm text-nowrap d-flex align-items-center justify-content-center">Login</a>
+              <a href="../authentication/register.html" class="btn btn-auth-gold btn-sm text-nowrap d-flex align-items-center justify-content-center">Register</a>
+            </div>
+
+            <!-- Logged In View -->
+            <div class="auth-logged-in d-flex align-items-center gap-3 cursor-pointer" id="headerProfileBadge">
+              <div class="user-info d-none d-md-block text-end"><p class="user-name text-white"></p><p class="user-role"></p><p class="user-email"></p></div>
+              <div class="profile-avatar"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- TOP HEADER SUCCESS ANIMATION BLOCK -->
+  <header class="container text-center py-5 mt-2">
+    <!-- Centered Gold Success Badge Sparkle Circle -->
+    <div class="success-icon-badge mx-auto mb-4 d-flex align-items-center justify-content-center">
+      <i class="bi bi-check-lg"></i>
+    </div>
+    <h1 class="success-heading">Stay Booked Successfully!</h1>
+    <p class="success-sub text-muted">Your reservation record is verified on system servers.</p>
+  </header>
+
+  <!-- MAIN COLUMN WORKSPACE CONTAINER -->
+  <main class="container px-xl-5 pb-5">
+    <div class="d-flex flex-column gap-4">
+      
+      <!-- Card 1: Booking Reference Details -->
+      <article class="success-panel-card p-4 d-flex justify-content-between align-items-center flex-wrap gap-3">
+        <div class="d-flex align-items-center gap-3 text-start">
+          <span class="icon-circle"><i class="bi bi-file-earmark-text"></i></span>
+          <div>
+            <strong class="small text-muted text-uppercase d-block mb-1">Booking Transaction Reference</strong>
+            <span class="fw-bold text-dark fs-5" id="bookingRefText">HBS-2026-9901</span>
+          </div>
+        </div>
+        <span class="badge-status-confirmed"><i class="bi bi-check-circle-fill me-1"></i> Booking Confirmed</span>
+      </article>
+
+      <!-- Card 2: Stay Confirmed Alert Row Banner -->
+      <article class="success-alert-banner p-4 d-flex justify-content-between align-items-center flex-wrap gap-4 text-start">
+        <div class="d-flex align-items-center gap-3 col-lg-8">
+          <span class="alert-icon-check"><i class="bi bi-check-circle"></i></span>
+          <div>
+            <strong class="d-block text-success-dark">Confirmed stay record at Coimbatore Suites branch for June 25th, 2026.</strong>
+            <span class="small text-muted">An invoice confirmation receipt has been dispatched to your email.</span>
+          </div>
+        </div>
+        <div class="col-lg-3 text-end d-none d-lg-block">
+          <img src="../../assets/images/envelope_success.png" alt="Success receipt dispatch banner" class="envelope-graphic">
+        </div>
+      </article>
+
+      <!-- Card 3: Booking Summary Details -->
+      <section class="booking-summary-panel p-4 p-md-5">
+        <div class="d-flex align-items-center gap-2 mb-4 text-start">
+          <span class="summary-badge-circle"><i class="bi bi-building"></i></span>
+          <h2 class="summary-title m-0">Booking Summary</h2>
+        </div>
+
+        <div class="row g-0 border-bottom pb-4 mb-4 text-start">
+          <div class="col-md-3 col-lg-2">
+            <img src="../../assets/images/hotel_cbe.png" alt="The Elegant Suites Coimbatore resort facade" class="summary-hotel-img rounded mb-3 mb-md-0">
+          </div>
+          <div class="col-md-9 col-lg-10 ps-md-4 d-flex flex-column justify-content-center">
+            <h3 class="hotel-display-name m-0">The Elegant Suites Coimbatore</h3>
+            <p class="hotel-display-branch text-muted mb-0">Coimbatore Branch - Executive Studio Room</p>
+          </div>
+        </div>
+
+        <!-- Checkin Check-out grid -->
+        <div class="row g-3 border-bottom pb-4 mb-4 text-start">
+          <div class="col-md-6 col-lg-3">
+            <strong class="small text-muted text-uppercase d-block mb-1"><i class="bi bi-calendar-check text-warning me-1"></i>Check-In</strong>
+            <span class="fw-bold d-block text-dark">25 Jun 2026</span>
+            <span class="small text-muted">Thursday</span>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <strong class="small text-muted text-uppercase d-block mb-1"><i class="bi bi-calendar-x text-warning me-1"></i>Check-Out</strong>
+            <span class="fw-bold d-block text-dark">28 Jun 2026</span>
+            <span class="small text-muted">Sunday</span>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <strong class="small text-muted text-uppercase d-block mb-1"><i class="bi bi-moon text-warning me-1"></i>Duration</strong>
+            <span class="fw-bold d-block text-dark">3 Nights</span>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <strong class="small text-muted text-uppercase d-block mb-1"><i class="bi bi-people text-warning me-1"></i>Guests</strong>
+            <span class="fw-bold d-block text-dark">2 Adults</span>
+            <span class="small text-muted">1 Room</span>
+          </div>
+        </div>
+
+        <!-- Payment Details & What's next row -->
+        <div class="row g-4 text-start">
+          <!-- Payment Block -->
+          <div class="col-md-6">
+            <div class="payment-summary-block p-4 rounded h-100">
+              <h4 class="block-title mb-4"><i class="bi bi-credit-card me-2 text-warning"></i>Payment Details</h4>
+              <ul class="payment-list ps-0 mb-0">
+                <li class="d-flex justify-content-between py-2 border-bottom border-light">
+                  <span class="text-secondary small">Payment Method</span>
+                  <span class="fw-bold text-dark" id="payMethodText">Debit / Credit Card</span>
+                </li>
+                <li class="d-flex justify-content-between py-2 border-bottom border-light">
+                  <span class="text-secondary small">Total Amount Paid</span>
+                  <span class="fw-bold text-success font-serif">Rs. 23,010.00</span>
+                </li>
+                <li class="d-flex justify-content-between py-2 border-bottom border-light">
+                  <span class="text-secondary small">Payment Status</span>
+                  <span class="badge bg-success-light text-success fw-bold py-1 px-3 rounded-pill">Paid Successfully</span>
+                </li>
+                <li class="d-flex justify-content-between py-2 mb-0">
+                  <span class="text-secondary small">Transaction ID</span>
+                  <span class="fw-semibold text-dark" id="txnIdText">TXN7894561230</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <!-- What's Next Block -->
+          <div class="col-md-6">
+            <div class="whats-next-block p-4 rounded h-100">
+              <h4 class="block-title mb-4"><i class="bi bi-bell me-2 text-warning"></i>What's Next?</h4>
+              <ul class="next-steps-list ps-0 mb-0 d-flex flex-column gap-3">
+                <li class="d-flex gap-3 align-items-start">
+                  <i class="bi bi-envelope text-warning fs-5"></i>
+                  <span class="small text-secondary">A booking confirmation email has been sent to <strong class="text-dark">customer@elegantenclave.com</strong></span>
+                </li>
+                <li class="d-flex gap-3 align-items-start">
+                  <i class="bi bi-journal-text text-warning fs-5"></i>
+                  <span class="small text-secondary">You will receive property details and guidelines <strong class="text-dark">48 hours before your check-in.</strong></span>
+                </li>
+                <li class="d-flex gap-3 align-items-start">
+                  <i class="bi bi-telephone text-warning fs-5"></i>
+                  <span class="small text-secondary">For any queries, contact our <strong class="text-dark">24/7 support team.</strong></span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- NAVIGATION CTA ACTIONS BAR -->
+      <section class="d-flex justify-content-between align-items-center flex-wrap gap-3 my-2 justify-content-center">
+        <button class="btn btn-action-dark py-3 px-4 d-flex align-items-center gap-2 text-nowrap" id="btnViewLog">
+          <i class="bi bi-journals"></i> View Bookings Log
+        </button>
+        <a href="../../assets/images/Ticket.pdf" download="ElegantEnclave_Ticket.pdf" class="btn btn-action-outline py-3 px-4 d-flex align-items-center gap-2 text-nowrap" id="btnDownloadTicket">
+          <i class="bi bi-download text-warning"></i> Download Ticket (PDF)
+        </a>
+        <button class="btn btn-action-outline py-3 px-4 d-flex align-items-center gap-2 text-nowrap" id="btnReturnDashboard">
+          <i class="bi bi-house-door"></i> Return to Dashboard
+        </button>
+      </section>
+
+      <!-- BOTTOM BENEFITS INFO CARD -->
+      <article class="bottom-hosting-card p-4 d-flex justify-content-between align-items-center flex-wrap gap-4 text-start">
+        <div class="col-lg-4">
+          <h4 class="hosting-title m-0 text-dark">We look forward to hosting you!</h4>
+          <span class="small text-muted">Thank you for choosing Elegant Enclave.</span>
+        </div>
+        <div class="col-lg-8 d-flex justify-content-between flex-wrap gap-3">
+          <div class="d-flex align-items-center gap-2">
+            <span class="badge-icon"><i class="bi bi-shield-check"></i></span>
+            <span class="small text-dark fw-bold uppercase">Best Price Guarantee</span>
+          </div>
+          <div class="d-flex align-items-center gap-2">
+            <span class="badge-icon"><i class="bi bi-lock"></i></span>
+            <span class="small text-dark fw-bold uppercase">Secure Payments</span>
+          </div>
+          <div class="d-flex align-items-center gap-2">
+            <span class="badge-icon"><i class="bi bi-telephone-inbound"></i></span>
+            <span class="small text-dark fw-bold uppercase">24/7 Guest Support</span>
+          </div>
+          <div class="d-flex align-items-center gap-2">
+            <span class="badge-icon"><i class="bi bi-calendar-event"></i></span>
+            <span class="small text-dark fw-bold uppercase">Flexible Cancellation</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Help Desk contact details row -->
+      <footer class="footer-help-bar p-4 d-flex justify-content-between align-items-center flex-wrap gap-3 rounded border text-start">
+        <div class="d-flex align-items-center gap-3">
+          <span class="help-badge-circle"><i class="bi bi-telephone"></i></span>
+          <div>
+            <strong class="d-block text-dark fs-6">Need Help?</strong>
+            <span class="small text-muted">Our support team is available 24/7 to assist you.</span>
+          </div>
+        </div>
+        <div class="d-flex align-items-center gap-4 flex-wrap text-secondary small">
+          <span><i class="bi bi-telephone-outbound me-2 text-warning"></i>+91 422 990 000</span>
+          <span><i class="bi bi-envelope me-2 text-warning"></i>support@elegantenclave.com</span>
+          <span><i class="bi bi-chat-left-dots me-2 text-warning"></i>Live Chat</span>
+        </div>
+      </footer>
+
+    </div>
+  </main>
+
+  <!-- Bootstrap and JS bundle -->
+  <script src="../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../../js/session.js"></script>
+  <script src="../../js/back_nav.js"></script>
+  <script src="booking_success.js"></script>
+  <script src="../../js/session.js"></script>
+</body>
+</html>
+

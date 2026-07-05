@@ -1,0 +1,208 @@
+.room-selection-page {
+  background-color: #F8F6F2;
+  font-family: "Outfit", "Inter", system-ui, -apple-system, sans-serif;
+  color: #1A0A2E;
+}
+
+.room-selection-title {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #1A0A2E;
+}
+
+.room-selection-sub {
+  font-size: 0.95rem;
+}
+
+.btn-back-to-hotel {
+  background-color: #FFFFFF;
+  color: #1A0A2E;
+  border: 1px solid rgba(26, 10, 46, 0.2);
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  padding: 0.6rem 1.25rem;
+  transition: all 0.3s ease;
+}
+.btn-back-to-hotel:hover {
+  border-color: #D4AF37;
+  color: #D4AF37;
+}
+
+.table-category-header {
+  background-color: #1A0A2E;
+  color: #FFFFFF;
+  border-radius: 12px;
+  height: 52px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.room-card {
+  background-color: #FFFFFF;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(26, 10, 46, 0.03);
+  border: 1px solid rgba(212, 175, 55, 0.1);
+  transition: all 0.3s ease;
+}
+.room-card .room-icon-badge {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: rgba(212, 175, 55, 0.1);
+  color: #D4AF37;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem;
+}
+.room-card .room-card-title {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1A0A2E;
+}
+.room-card .btn-select-room {
+  background-color: #1A0A2E;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 8px;
+  height: 44px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  transition: all 0.3s ease;
+}
+.room-card .btn-select-room:hover {
+  background-color: #2E1560;
+  color: #FFFFFF;
+}
+.room-card .btn-select-room.selected {
+  background-color: #D4AF37;
+  color: #1A0A2E;
+  box-shadow: 0 4px 20px rgba(212, 175, 55, 0.25);
+}
+.room-card.active-selected {
+  border-color: #D4AF37;
+  box-shadow: 0 0 0 2px #D4AF37, 0 15px 35px rgba(26, 10, 46, 0.08);
+}
+
+.gallery-img-card {
+  height: 280px;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+}
+.gallery-img-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.gallery-img-card .gallery-tag {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  background-color: #1A0A2E;
+  color: #FFFFFF;
+  padding: 0.4rem 1rem;
+  border-radius: 8px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border: 1px solid rgba(212, 175, 55, 0.3);
+}
+
+.gallery-slide-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: rgba(26, 10, 46, 0.85);
+  color: #FFFFFF;
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 5;
+  transition: all 0.3s ease;
+}
+.gallery-slide-btn:hover {
+  background-color: #D4AF37;
+  color: #1A0A2E;
+}
+.gallery-slide-btn.left-slide {
+  left: -18px;
+}
+.gallery-slide-btn.right-slide {
+  right: -18px;
+}
+
+.info-badges-card {
+  background-color: #FFFFFF;
+  border-radius: 16px;
+  border: 1px solid rgba(212, 175, 55, 0.15);
+}
+.info-badges-card .badge-icon-circular {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: rgba(212, 175, 55, 0.12);
+  color: #D4AF37;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+}
+
+.bottom-cta-banner {
+  background-color: #1A0A2E;
+  border-radius: 16px;
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+.bottom-cta-banner .cta-banner-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  color: #D4AF37;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.35rem;
+}
+.bottom-cta-banner .cta-banner-title {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 1.45rem;
+}
+.bottom-cta-banner .cta-banner-sub {
+  font-size: 0.9rem;
+}
+.bottom-cta-banner .btn-book-now {
+  background-color: #D4AF37;
+  color: #1A0A2E;
+  border: none;
+  border-radius: 12px;
+  padding: 0.9rem 2rem;
+  font-weight: 700;
+  font-size: 0.95rem;
+  box-shadow: 0 4px 20px rgba(212, 175, 55, 0.25);
+  transition: all 0.3s ease;
+}
+.bottom-cta-banner .btn-book-now:disabled {
+  background-color: #4A3E56;
+  color: rgba(255, 255, 255, 0.3);
+  cursor: not-allowed;
+  box-shadow: none;
+}
+.bottom-cta-banner .btn-book-now:hover:not(:disabled) {
+  background-color: #EFD98C;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+  color: #1A0A2E;
+}

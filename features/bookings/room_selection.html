@@ -1,0 +1,242 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Room Selection | Elegant Enclave</title>
+  <link rel='icon' type='image/png' href='../../assets/images/logo.png'>
+  <meta name="description" content="Select available rooms and view rates for Coimbatore Enclave branch accommodation options.">
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="../../css/main.css">
+  <link rel="stylesheet" href="room_selection.css">
+</head>
+<body class="room-selection-page">
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-xl custom-navbar sticky-top">
+    <div class="container-fluid px-xl-5">
+      <!-- Logo Section -->
+      <a class="navbar-brand d-flex align-items-center" href="../../index.html">
+        <img src="../../assets/images/logo.png" alt="Elegant Enclave logo" class="brand-logo-img me-2">
+        Elegant<span>Enclave</span>
+      </a>
+      
+      <!-- Hamburger Menu Toggler (Mobile/Tablet) -->
+      <button class="navbar-toggler border-0 text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon" style="filter: invert(1);"></span>
+      </button>
+
+      <!-- Collapse Container -->
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <!-- Navigation Menu (Centered) -->
+        <ul class="navbar-nav mx-auto mb-2 mb-xl-0 align-items-center gap-1 gap-xxl-3">
+          <li class="nav-item">
+            <a class="nav-link" href="../../index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="../hotels/search_results.html">Hotels</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-nowrap" href="#">My Bookings</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Notifications</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Profile</a>
+          </li>
+        </ul>
+
+        <!-- Right Side Controls (Search, Auth) -->
+        <div class="d-flex align-items-center gap-3 align-middle flex-wrap justify-content-center justify-content-xl-end">
+          <!-- Search Bar with Integrated Action Button -->
+          
+          
+          <!-- Auth States Container -->
+          <div id="authHeaderContainer" class="d-flex align-items-center gap-2">
+            <!-- Logged Out View (Default Hidden in Demo, Toggleable) -->
+            <div class="auth-logged-out d-none align-items-center gap-2">
+              <a href="#" onclick="triggerConfirmLogout(event)" class="btn btn-auth-outline btn-sm text-nowrap d-flex align-items-center justify-content-center">Login</a>
+              <a href="../authentication/register.html" class="btn btn-auth-gold btn-sm text-nowrap d-flex align-items-center justify-content-center">Register</a>
+            </div>
+
+            <!-- Logged In View -->
+            <div class="auth-logged-in d-flex align-items-center gap-3 cursor-pointer" id="headerProfileBadge">
+              <div class="user-info d-none d-md-block text-end"><p class="user-name text-white"></p><p class="user-role"></p><p class="user-email"></p></div>
+              <div class="profile-avatar"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- TOP HEADER SECTION -->
+  <header class="container px-xl-5 py-4 mt-2">
+    <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
+      <div>
+        <h1 class="room-selection-title m-0">Select Room Type</h1>
+        <p class="room-selection-sub text-muted m-0">Choose available packages in Coimbatore Enclave branch</p>
+      </div>
+      <a href="../hotels/hotel_details.html" class="btn btn-back-to-hotel d-flex align-items-center gap-2">
+        <i class="bi bi-arrow-left"></i> Back to Hotel
+      </a>
+    </div>
+  </header>
+
+  <!-- ROOM TABLES LAYOUT CONTAINER -->
+  <main class="container px-xl-5 pb-5">
+    
+    <!-- Dark Table Category Header Row (Desktop only) -->
+    <div class="table-category-header d-none d-md-flex align-items-center mb-3">
+      <div class="col-4 ps-4"><i class="bi bi-building me-2 text-warning"></i>Room Category</div>
+      <div class="col-2 text-center"><i class="bi bi-people me-2 text-warning"></i>Capacity</div>
+      <div class="col-2 text-center"><i class="bi bi-tag me-2 text-warning"></i>Rate / Night</div>
+      <div class="col-2 text-center"><i class="bi bi-house-check me-2 text-warning"></i>Rooms Left</div>
+      <div class="col-2 text-center"><i class="bi bi-gear me-2 text-warning"></i>Action</div>
+    </div>
+
+    <!-- Room Card Listings Container -->
+    <div class="d-flex flex-column gap-4">
+
+      <!-- Room Card 1 (Executive Studio) -->
+      <article class="room-card" id="roomCardStudio">
+        <!-- Details row -->
+        <div class="row align-items-center p-3 border-bottom g-3">
+          <div class="col-md-4 d-flex align-items-center gap-3">
+            <span class="room-icon-badge"><i class="bi bi-door-closed"></i></span>
+            <h3 class="room-card-title m-0">Executive Studio Room</h3>
+          </div>
+          <div class="col-6 col-md-2 text-md-center">
+            <span class="d-inline-block d-md-none small text-muted text-uppercase me-2">Capacity:</span>
+            <span class="fw-semibold text-dark"><i class="bi bi-people me-1"></i> 2 Adults</span>
+          </div>
+          <div class="col-6 col-md-2 text-md-center">
+            <span class="d-inline-block d-md-none small text-muted text-uppercase me-2">Rate:</span>
+            <span class="fw-bold text-dark">Rs. 6,500.00</span>
+          </div>
+          <div class="col-6 col-md-2 text-md-center">
+            <span class="d-inline-block d-md-none small text-muted text-uppercase me-2">Left:</span>
+            <span class="text-success fw-bold">5 Rooms Available</span>
+          </div>
+          <div class="col-6 col-md-2 text-md-center">
+            <button class="btn btn-select-room w-100" data-room-id="studio" data-price="6500" data-name="Executive Studio Room">Select Room <i class="bi bi-arrow-right ms-1"></i></button>
+          </div>
+        </div>
+
+        <!-- Static double gallery image layout matching design -->
+        <div class="p-3 bg-light">
+          <div class="position-relative">
+            <div class="row g-3">
+              <div class="col-md-6 position-relative">
+                <div class="gallery-img-card">
+                  <img src="../../assets/images/exec_studio_room.png" alt="Executive Studio Bedroom view">
+                  <span class="gallery-tag">Bedroom</span>
+                </div>
+              </div>
+              <div class="col-md-6 position-relative">
+                <div class="gallery-img-card">
+                  <img src="../../assets/images/exec_studio_balcony.png" alt="Executive Studio Balcony View view">
+                  <span class="gallery-tag">Balcony View</span>
+                </div>
+              </div>
+            </div>
+            <!-- Slider navigation buttons overlaid -->
+            <button class="gallery-slide-btn left-slide" aria-label="Previous image"><i class="bi bi-chevron-left"></i></button>
+            <button class="gallery-slide-btn right-slide" aria-label="Next image"><i class="bi bi-chevron-right"></i></button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Room Card 2 (Penthouse Ocean) -->
+      <article class="room-card" id="roomCardPenthouse">
+        <!-- Details row -->
+        <div class="row align-items-center p-3 border-bottom g-3">
+          <div class="col-md-4 d-flex align-items-center gap-3">
+            <span class="room-icon-badge"><i class="bi bi-gem"></i></span>
+            <h3 class="room-card-title m-0">Penthouse Ocean Suite</h3>
+          </div>
+          <div class="col-6 col-md-2 text-md-center">
+            <span class="d-inline-block d-md-none small text-muted text-uppercase me-2">Capacity:</span>
+            <span class="fw-semibold text-dark"><i class="bi bi-people me-1"></i> 4 Adults</span>
+          </div>
+          <div class="col-6 col-md-2 text-md-center">
+            <span class="d-inline-block d-md-none small text-muted text-uppercase me-2">Rate:</span>
+            <span class="fw-bold text-dark">Rs. 12,500.00</span>
+          </div>
+          <div class="col-6 col-md-2 text-md-center">
+            <span class="d-inline-block d-md-none small text-muted text-uppercase me-2">Left:</span>
+            <span class="text-success fw-bold">2 Rooms Available</span>
+          </div>
+          <div class="col-6 col-md-2 text-md-center">
+            <button class="btn btn-select-room w-100" data-room-id="penthouse" data-price="12500" data-name="Penthouse Ocean Suite">Select Room <i class="bi bi-arrow-right ms-1"></i></button>
+          </div>
+        </div>
+
+        <!-- Static double gallery image layout matching design -->
+        <div class="p-3 bg-light">
+          <div class="position-relative">
+            <div class="row g-3">
+              <div class="col-md-6 position-relative">
+                <div class="gallery-img-card">
+                  <img src="../../assets/images/Penthouse_room.png" alt="Penthouse Ocean Suite Suite Interior view">
+                  <span class="gallery-tag">Bedroom</span>
+                </div>
+              </div>
+              <div class="col-md-6 position-relative">
+                <div class="gallery-img-card">
+                  <img src="../../assets/images/Penthouse_balcony.png" alt="Penthouse Ocean Suite Private Terrace view">
+                  <span class="gallery-tag">Private balcony</span>
+                </div>
+              </div>
+            </div>
+            <!-- Slider navigation buttons overlaid -->
+            <button class="gallery-slide-btn left-slide" aria-label="Previous image"><i class="bi bi-chevron-left"></i></button>
+            <button class="gallery-slide-btn right-slide" aria-label="Next image"><i class="bi bi-chevron-right"></i></button>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+    <!-- BOTTOM INFORMATION INFORMATIONAL ICONS ROW -->
+    <div class="info-badges-card p-4 mt-5 d-flex justify-content-between align-items-center flex-wrap gap-4 text-start">
+      <div class="d-flex align-items-center gap-3">
+        <span class="badge-icon-circular"><i class="bi bi-info-circle"></i></span>
+        <div>
+          <strong class="d-block text-dark">All our rooms are designed for your comfort and luxury</strong>
+          <span class="small text-muted">Enjoy premium amenities, elegant interiors, and world-class hospitality.</span>
+        </div>
+      </div>
+      <div class="d-flex align-items-center gap-4 text-nowrap">
+        <div class="d-flex align-items-center gap-2">
+          <i class="bi bi-shield-check text-warning fs-5"></i>
+          <span class="small fw-semibold text-secondary">Best Rate<br>Guarantee</span>
+        </div>
+        <div class="d-flex align-items-center gap-2">
+          <i class="bi bi-wifi text-warning fs-5"></i>
+          <span class="small fw-semibold text-secondary">Complimentary<br>WiFi</span>
+        </div>
+        <div class="d-flex align-items-center gap-2">
+          <i class="bi bi-telephone-inbound text-warning fs-5"></i>
+          <span class="small fw-semibold text-secondary">24/7 Guest<br>Support</span>
+        </div>
+      </div>
+    </div>
+
+
+
+  </main>
+
+  <!-- Bootstrap and JS bundle -->
+  <script src="../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../../js/session.js"></script>
+  <script src="room_selection.js"></script>
+  <script src="../../js/session.js"></script>
+</body>
+</html>
+

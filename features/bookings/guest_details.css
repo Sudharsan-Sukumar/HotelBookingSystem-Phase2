@@ -1,0 +1,163 @@
+.guest-details-page {
+  background-color: #F8F6F2;
+  font-family: "Outfit", "Inter", system-ui, -apple-system, sans-serif;
+  color: #1A0A2E;
+}
+
+.guest-details-title {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #1A0A2E;
+}
+
+.guest-details-sub {
+  font-size: 0.95rem;
+}
+
+.btn-back-to-previous {
+  background-color: #FFFFFF;
+  color: #1A0A2E;
+  border: 1px solid rgba(26, 10, 46, 0.2);
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  padding: 0.6rem 1.25rem;
+  transition: all 0.3s ease;
+}
+.btn-back-to-previous:hover {
+  border-color: #D4AF37;
+  color: #D4AF37;
+}
+
+.guest-details-card {
+  background-color: #FFFFFF;
+  border-radius: 24px;
+  box-shadow: 0 15px 45px rgba(26, 10, 46, 0.04);
+  border: 1px solid rgba(212, 175, 55, 0.1);
+}
+.guest-details-card .card-icon-badge {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background-color: rgba(212, 175, 55, 0.1);
+  color: #D4AF37;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+}
+.guest-details-card .card-section-title {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 1.45rem;
+  color: #1A0A2E;
+}
+
+.custom-input-group {
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid #D0CCD5;
+  transition: all 0.3s ease;
+}
+.custom-input-group:focus-within {
+  border-color: #D4AF37;
+  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.15);
+}
+.custom-input-group .form-control {
+  border: none;
+  height: 52px;
+  font-size: 0.95rem;
+  color: #1A0A2E;
+  box-shadow: none !important;
+}
+.custom-input-group textarea.form-control {
+  height: auto;
+}
+.custom-input-group .input-group-text {
+  border: none;
+  height: 52px;
+}
+
+.dates-divider-arrow {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: #F8F6F2;
+  color: #D4AF37;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+}
+
+.info-alert-card {
+  background-color: #F8F6F2;
+  border-radius: 16px;
+  border: 1px solid rgba(212, 175, 55, 0.15);
+}
+.info-alert-card .alert-icon-circular {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: rgba(212, 175, 55, 0.12);
+  color: #D4AF37;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+}
+.info-alert-card .info-banner-img {
+  height: 64px;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid rgba(212, 175, 55, 0.25);
+}
+
+.bottom-cta-banner {
+  background-color: #1A0A2E;
+  border-radius: 16px;
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+.bottom-cta-banner .cta-banner-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  color: #D4AF37;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.35rem;
+}
+.bottom-cta-banner .cta-banner-title {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 1.45rem;
+}
+.bottom-cta-banner .cta-banner-sub {
+  font-size: 0.9rem;
+}
+.bottom-cta-banner .btn-book-now {
+  background-color: #D4AF37;
+  color: #1A0A2E;
+  border: none;
+  border-radius: 12px;
+  padding: 0.9rem 2rem;
+  font-weight: 700;
+  font-size: 0.95rem;
+  box-shadow: 0 4px 20px rgba(212, 175, 55, 0.25);
+  transition: all 0.3s ease;
+}
+.bottom-cta-banner .btn-book-now:disabled {
+  background-color: #4A3E56;
+  color: rgba(255, 255, 255, 0.3);
+  cursor: not-allowed;
+  box-shadow: none;
+}
+.bottom-cta-banner .btn-book-now:hover:not(:disabled) {
+  background-color: #EFD98C;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+  color: #1A0A2E;
+}

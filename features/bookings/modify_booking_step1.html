@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modify Booking - Step 1 | Elegant Enclave</title>
+  <link rel='icon' type='image/png' href='../../assets/images/logo.png'>
+  <meta name="description" content="Update your stay details, check availability and compare pricing variations.">
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="../../css/main.css">
+  <link rel="stylesheet" href="modify_booking_step1.css">
+</head>
+<body class="modify-booking-page">
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-xl custom-navbar sticky-top">
+    <div class="container-fluid px-xl-5">
+      <!-- Logo Section -->
+      <a class="navbar-brand d-flex align-items-center" href="../../index.html">
+        <img src="../../assets/images/logo.png" alt="Elegant Enclave logo" class="brand-logo-img me-2">
+        Elegant<span>Enclave</span>
+      </a>
+      
+      <!-- Hamburger Toggler (Mobile/Tablet) -->
+      <button class="navbar-toggler border-0 text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon" style="filter: invert(1);"></span>
+      </button>
+
+      <!-- Collapse Container -->
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <!-- Navigation Menu -->
+        <ul class="navbar-nav mx-auto mb-2 mb-xl-0 align-items-center gap-1 gap-xxl-3">
+          <li class="nav-item">
+            <a class="nav-link" href="../../index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../hotels/search_results.html">Hotels</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active text-nowrap" href="my_bookings.html">My Bookings</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Notifications</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Profile</a>
+          </li>
+        </ul>
+
+        <!-- Right Side Controls (Search, Auth) -->
+        <div class="d-flex align-items-center gap-3 align-middle flex-wrap justify-content-center justify-content-xl-end">
+          
+          
+          <div id="authHeaderContainer" class="d-flex align-items-center gap-2">
+            <div class="auth-logged-in d-flex align-items-center gap-3 cursor-pointer" id="headerProfileBadge">
+              <div class="user-info d-none d-md-block text-end"><p class="user-name text-white"></p><p class="user-role"></p><p class="user-email"></p></div>
+              <div class="profile-avatar"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- TOP HEADER SECTION -->
+  <header class="container px-xl-5 py-4 mt-2 text-start">
+    <h1 class="modify-title m-0">Modify Booking</h1>
+    <p class="modify-sub text-muted m-0">Update your stay details in just a few simple steps.</p>
+  </header>
+
+  <!-- WORKSPACE CONTAINER -->
+  <main class="container px-xl-5 pb-5">
+    <div class="d-flex flex-column gap-4">
+      
+      <!-- CARD 1: Progress stepper horizontal progress row -->
+      <section class="progress-stepper-card bg-white p-4 text-start">
+        <div class="row align-items-center justify-content-between text-start">
+          <!-- Step 1 -->
+          <div class="col-md-3 d-flex align-items-center gap-3">
+            <span class="step-num active">1</span>
+            <div>
+              <strong class="step-title d-block text-dark small uppercase">Update Stay</strong>
+              <span class="step-sub text-muted small">Dates, Guests & Room</span>
+            </div>
+          </div>
+          <div class="col-md-1 d-none d-md-block px-0">
+            <div class="step-line active"></div>
+          </div>
+          <!-- Step 2 -->
+          <div class="col-md-3 d-flex align-items-center gap-3">
+            <span class="step-num">2</span>
+            <div>
+              <strong class="step-title d-block text-dark small uppercase">Review Changes</strong>
+              <span class="step-sub text-muted small">Check new prices & details</span>
+            </div>
+          </div>
+          <div class="col-md-1 d-none d-md-block px-0">
+            <div class="step-line"></div>
+          </div>
+          <!-- Step 3 -->
+          <div class="col-md-3 d-flex align-items-center gap-3">
+            <span class="step-num">3</span>
+            <div>
+              <strong class="step-title d-block text-dark small uppercase">Confirm</strong>
+              <span class="step-sub text-muted small">Pay difference (if any)</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CARD 2: Current Booking Summary details display card -->
+      <section class="current-summary-card bg-white p-4">
+        <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 border-bottom pb-3 mb-4">
+          <div class="d-flex align-items-center gap-2">
+            <span class="summary-badge-icon"><i class="bi bi-briefcase"></i></span>
+            <h2 class="summary-title m-0">Current Booking Summary</h2>
+          </div>
+          <span class="ref-badge small py-1 px-3 rounded">Booking Reference: HBS-2026-9901</span>
+        </div>
+
+        <div class="row g-3 text-start">
+          <div class="col-md-3">
+            <div class="info-block p-3 d-flex align-items-center gap-3">
+              <span class="block-icon"><i class="bi bi-calendar-check"></i></span>
+              <div>
+                <strong class="small text-muted text-uppercase d-block mb-1">Check-in</strong>
+                <span class="fw-bold d-block text-dark">25 Jun 2026</span>
+                <span class="small text-muted">Thursday</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="info-block p-3 d-flex align-items-center gap-3">
+              <span class="block-icon"><i class="bi bi-calendar-x"></i></span>
+              <div>
+                <strong class="small text-muted text-uppercase d-block mb-1">Check-out</strong>
+                <span class="fw-bold d-block text-dark">28 Jun 2026</span>
+                <span class="small text-muted">Sunday</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="info-block p-3 d-flex align-items-center gap-3">
+              <span class="block-icon"><i class="bi bi-people"></i></span>
+              <div>
+                <strong class="small text-muted text-uppercase d-block mb-1">Guests</strong>
+                <span class="fw-bold d-block text-dark">2 Adults</span>
+                <span class="small text-muted">1 Room</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="info-block p-3 d-flex align-items-center gap-3">
+              <span class="block-icon"><i class="bi bi-door-open"></i></span>
+              <div>
+                <strong class="small text-muted text-uppercase d-block mb-1">Room Type</strong>
+                <span class="fw-bold d-block text-dark">Deluxe King</span>
+                <span class="small text-muted">The Elegant Suites Coimbatore</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CARD 3: Update Stay Details Inputs Grid Form -->
+      <section class="update-form-card bg-white p-4 p-md-5 text-start">
+        <div class="d-flex align-items-center gap-3 mb-4">
+          <span class="form-badge-icon"><i class="bi bi-calendar-range"></i></span>
+          <div>
+            <h2 class="form-section-title m-0">Update Your Stay Details</h2>
+            <p class="small text-muted m-0">Make the changes you want for your upcoming stay.</p>
+          </div>
+        </div>
+
+        <form id="modifyStayForm" novalidate>
+          <div class="row g-4 mb-4">
+            <div class="col-md-4">
+              <label for="checkinDate" class="form-label text-dark fw-bold">Check-in Date</label>
+              <div class="input-group custom-input-group">
+                <input type="date" id="checkinDate" class="form-control" value="2026-06-25" placeholder="dd-mm-yyyy" required>
+              </div>
+              <span class="small mt-1 d-none" id="checkinError"></span>
+            </div>
+            <div class="col-md-4">
+              <label for="checkoutDate" class="form-label text-dark fw-bold">Check-out Date</label>
+              <div class="input-group custom-input-group">
+                <input type="date" id="checkoutDate" class="form-control" value="2026-06-30" placeholder="dd-mm-yyyy" required>
+              </div>
+              <span class="small mt-1 d-none" id="checkoutError"></span>
+            </div>
+            <div class="col-md-4">
+              <label for="selectGuests" class="form-label text-dark fw-bold">Guests</label>
+              <select id="selectGuests" class="form-select custom-select">
+                <option value="2">2 Guests, 1 Room</option>
+                <option value="4" selected>4 Guests, 1 Room</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="mb-5 col-md-6">
+            <label for="selectRoomType" class="form-label text-dark fw-bold">Room Type</label>
+            <select id="selectRoomType" class="form-select custom-select">
+              <option value="deluxe">Deluxe King</option>
+              <option value="family" selected>Family Suite</option>
+            </select>
+          </div>
+
+          <!-- Purple informational alert warning card notice block -->
+          <div class="info-alert-notice p-3 mb-5 d-flex align-items-center gap-3 rounded">
+            <span class="notice-icon-circle"><i class="bi bi-info-circle"></i></span>
+            <div>
+              <strong class="text-primary-dark d-block">Important</strong>
+              <span class="small text-secondary">Updating dates, guests or room type may change availability, pricing and taxes.</span>
+            </div>
+          </div>
+
+          <!-- Form submit & reset action buttons row -->
+          <div class="d-flex justify-content-end gap-3 align-items-center flex-wrap">
+            <button type="button" class="btn btn-action-reset py-3 px-5" id="btnReset">Reset</button>
+            <button type="submit" class="btn btn-action-check py-3 px-5 d-flex align-items-center gap-2" id="btnCheckAvailability">
+              Check Availability <i class="bi bi-arrow-right"></i>
+            </button>
+          </div>
+        </form>
+      </section>
+
+      <!-- SECTION 5: Bottom Horizontal Features Strip Cards -->
+      <section class="row g-3 justify-content-between text-start my-2">
+        <div class="col-md-6 col-lg-3">
+          <div class="feature-strip-card p-3 d-flex align-items-center gap-3">
+            <span class="strip-icon"><i class="bi bi-check2-circle"></i></span>
+            <div>
+              <strong class="d-block text-dark small uppercase">Best Available Options</strong>
+              <span class="small text-muted">We'll show you the best available options.</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="feature-strip-card p-3 d-flex align-items-center gap-3">
+            <span class="strip-icon"><i class="bi bi-calculator"></i></span>
+            <div>
+              <strong class="d-block text-dark small uppercase">Price Recalculation</strong>
+              <span class="small text-muted">Get updated pricing with taxes and discounts.</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="feature-strip-card p-3 d-flex align-items-center gap-3">
+            <span class="strip-icon"><i class="bi bi-arrow-left-right"></i></span>
+            <div>
+              <strong class="d-block text-dark small uppercase">Instant Comparison</strong>
+              <span class="small text-muted">Compare old and new booking details.</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="feature-strip-card p-3 d-flex align-items-center gap-3">
+            <span class="strip-icon"><i class="bi bi-shield-check"></i></span>
+            <div>
+              <strong class="d-block text-dark small uppercase">Safe & Secure</strong>
+              <span class="small text-muted">Your payment and data are fully protected.</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 6: Bottom Help Contacts desk bar -->
+      <footer class="footer-help-bar p-4 d-flex justify-content-between align-items-center flex-wrap gap-3 rounded border text-start">
+        <div class="d-flex align-items-center gap-3">
+          <span class="help-badge-circle"><i class="bi bi-telephone"></i></span>
+          <div>
+            <strong class="d-block text-dark fs-6">Need Help?</strong>
+            <span class="small text-muted">Our support team is here to help you with your modification.</span>
+          </div>
+        </div>
+        <button class="btn btn-contact-support py-2 px-4" id="btnContactSupport">Contact Support</button>
+      </footer>
+
+    </div>
+  </main>
+
+  <!-- Bootstrap and JS bundle -->
+  <script src="../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../../js/session.js"></script>
+  <script src="../../js/policy_modal.js"></script>
+  <script src="modify_booking_step1.js"></script>
+</body>
+</html>
+

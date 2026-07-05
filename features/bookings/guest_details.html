@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guest Details & Stay Information | Elegant Enclave</title>
+  <link rel='icon' type='image/png' href='../../assets/images/logo.png'>
+  <meta name="description" content="Provide guest count, check-in, check-out dates and request forms to confirm your stay details.">
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="../../css/main.css">
+  <link rel="stylesheet" href="guest_details.css">
+</head>
+<body class="guest-details-page">
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-xl custom-navbar sticky-top">
+    <div class="container-fluid px-xl-5">
+      <!-- Logo Section -->
+      <a class="navbar-brand d-flex align-items-center" href="../../index.html">
+        <img src="../../assets/images/logo.png" alt="Elegant Enclave logo" class="brand-logo-img me-2">
+        Elegant<span>Enclave</span>
+      </a>
+      
+      <!-- Hamburger Menu Toggler (Mobile/Tablet) -->
+      <button class="navbar-toggler border-0 text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon" style="filter: invert(1);"></span>
+      </button>
+
+      <!-- Collapse Container -->
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <!-- Navigation Menu (Centered) -->
+        <ul class="navbar-nav mx-auto mb-2 mb-xl-0 align-items-center gap-1 gap-xxl-3">
+          <li class="nav-item">
+            <a class="nav-link" href="../../index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="../hotels/search_results.html">Hotels</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-nowrap" href="#">My Bookings</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Notifications</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Profile</a>
+          </li>
+        </ul>
+
+        <!-- Right Side Controls (Search, Auth) -->
+        <div class="d-flex align-items-center gap-3 align-middle flex-wrap justify-content-center justify-content-xl-end">
+          <!-- Search Bar with Integrated Action Button -->
+          
+          
+          <!-- Auth States Container -->
+          <div id="authHeaderContainer" class="d-flex align-items-center gap-2">
+            <!-- Logged Out View (Default Hidden in Demo, Toggleable) -->
+            <div class="auth-logged-out d-none align-items-center gap-2">
+              <a href="#" onclick="triggerConfirmLogout(event)" class="btn btn-auth-outline btn-sm text-nowrap d-flex align-items-center justify-content-center">Login</a>
+              <a href="../authentication/register.html" class="btn btn-auth-gold btn-sm text-nowrap d-flex align-items-center justify-content-center">Register</a>
+            </div>
+
+            <!-- Logged In View -->
+            <div class="auth-logged-in d-flex align-items-center gap-3 cursor-pointer" id="headerProfileBadge">
+              <div class="user-info d-none d-md-block text-end"><p class="user-name text-white"></p><p class="user-role"></p><p class="user-email"></p></div>
+              <div class="profile-avatar"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- TOP HEADER SECTION -->
+  <header class="container px-xl-5 py-4 mt-2">
+    <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
+      <div>
+        <h1 class="guest-details-title m-0">Confirm Registration Stay Details</h1>
+        <p class="guest-details-sub text-muted m-0">Provide check-in/check-out logs and request forms. Fields marked with <span class="text-danger">*</span> are mandatory.</p>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN DETAILS FORM PANEL CONTAINER -->
+  <main class="container px-xl-5 pb-5">
+    <div class="guest-details-card p-4 p-md-5">
+
+      <form id="stayDetailsForm" novalidate>
+        
+        <!-- SECTION 1: Guest Details -->
+        <div class="form-section-block mb-5">
+          <div class="d-flex align-items-center gap-3 mb-4 text-start">
+            <span class="card-icon-badge"><i class="bi bi-people"></i></span>
+            <div>
+              <h2 class="card-section-title m-0">Guest Details</h2>
+              <p class="small text-muted m-0">Enter the total number of guests for this booking.</p>
+            </div>
+          </div>
+
+          <div class="mb-3 text-start">
+            <label for="guestCount" class="form-label">Guest Count <span class="text-danger">*</span></label>
+            <div class="input-group d-flex flex-nowrap align-items-center custom-input-group">
+              <span class="input-group-text bg-white border-end-0"><i class="bi bi-people text-muted"></i></span>
+              <input type="number" id="guestCount" class="form-control border-start-0" placeholder="Total guests count" required min="1" max="4" aria-required="true">
+              <span class="input-group-text bg-light-ivory text-muted small fw-semibold" id="capacityBadge">Max 4 Guests</span>
+            </div>
+            <div class="text-danger small mt-1 d-none" id="guestErrorMsg">Guest count exceeds room capacity.</div>
+          </div>
+        </div>
+
+        <!-- SECTION 2: Stay Dates -->
+        <div class="form-section-block mb-5">
+          <div class="d-flex align-items-center gap-3 mb-4 text-start">
+            <span class="card-icon-badge"><i class="bi bi-calendar3"></i></span>
+            <div>
+              <h2 class="card-section-title m-0">Stay Dates</h2>
+              <p class="small text-muted m-0">Select your preferred check-in and check-out dates.</p>
+            </div>
+          </div>
+
+          <div class="row g-4 text-start">
+            <div class="col-md-5">
+              <label for="checkinDate" class="form-label">Stay Check-In Date <span class="text-danger">*</span></label>
+              <div class="input-group d-flex flex-nowrap align-items-center custom-input-group">
+                <span class="input-group-text bg-white border-end-0"><i class="bi bi-calendar-check text-muted"></i></span>
+                <input type="date" id="checkinDate" class="form-control border-start-0" required aria-required="true">
+              </div>
+            </div>
+            <div class="col-md-2 d-none d-md-flex align-items-center justify-content-center pt-4">
+              <span class="dates-divider-arrow"><i class="bi bi-arrow-right"></i></span>
+            </div>
+            <div class="col-md-5">
+              <label for="checkoutDate" class="form-label">Stay Check-Out Date <span class="text-danger">*</span></label>
+              <div class="input-group d-flex flex-nowrap align-items-center custom-input-group">
+                <span class="input-group-text bg-white border-end-0"><i class="bi bi-calendar-x text-muted"></i></span>
+                <input type="date" id="checkoutDate" class="form-control border-start-0" required aria-required="true">
+              </div>
+            </div>
+          </div>
+          <div class="text-danger small mt-2 d-none text-start" id="dateErrorMsg">Check-out date must be after check-in date.</div>
+        </div>
+
+        <!-- SECTION 3: Special Requests (Optional) -->
+        <div class="form-section-block mb-5">
+          <div class="d-flex align-items-center gap-3 mb-4 text-start">
+            <span class="card-icon-badge"><i class="bi bi-bell"></i></span>
+            <div>
+              <h2 class="card-section-title m-0">Special Requests (Optional)</h2>
+              <p class="small text-muted m-0">Let us know if you have any special requests or preferences.</p>
+            </div>
+          </div>
+
+          <div class="mb-3 text-start position-relative">
+            <div class="input-group d-flex flex-nowrap align-items-start custom-input-group pt-1">
+              <span class="input-group-text bg-white border-end-0 pt-2"><i class="bi bi-pencil text-muted"></i></span>
+              <textarea id="specialRequests" class="form-control border-start-0 pt-2" rows="4" placeholder="Specify room location, extra bedding, early check-in, etc. (Max 300 characters)"></textarea>
+            </div>
+            <div class="text-end text-muted small mt-1" id="charCounter">0 / 300</div>
+          </div>
+        </div>
+
+        <!-- Informational We're here alert row -->
+        <div class="info-alert-card p-4 d-flex justify-content-between align-items-center flex-wrap gap-4 text-start mb-5">
+          <div class="d-flex align-items-center gap-3 col-lg-8">
+            <span class="alert-icon-circular"><i class="bi bi-info-circle"></i></span>
+            <div>
+              <strong class="d-block text-dark">We're here to make your stay perfect</strong>
+              <span class="small text-muted">Our team will do our best to accommodate your requests and ensure a memorable experience.</span>
+            </div>
+          </div>
+          <div class="col-lg-3 text-end d-none d-lg-block">
+            <img src="../../assets/images/stay_info_banner.jpg" alt="Luxury stay banner" class="info-banner-img">
+          </div>
+        </div>
+
+        <!-- BOTTOM CTA SUBMIT BAR -->
+        <div class="bottom-cta-banner p-4 d-flex justify-content-between align-items-center flex-wrap gap-3">
+          <div class="d-flex align-items-center gap-3 text-start">
+            <span class="cta-banner-icon"><i class="bi bi-calendar-check"></i></span>
+            <div>
+              <h3 class="cta-banner-title text-white m-0">Ready to confirm your stay?</h3>
+              <p class="cta-banner-sub text-white-50 m-0">Review your details and proceed to view booking summary.</p>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-book-now d-flex align-items-center gap-2" id="btnConfirmBooking" disabled>
+            Confirm Booking & View Summary <i class="bi bi-arrow-right"></i>
+          </button>
+        </div>
+
+      </form>
+    </div>
+  </main>
+
+  <!-- Bootstrap and JS bundle -->
+  <script src="../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../../js/session.js"></script>
+  <script src="../../js/back_nav.js"></script>
+  <script src="guest_details.js"></script>
+  <script src="../../js/session.js"></script>
+</body>
+</html>
+

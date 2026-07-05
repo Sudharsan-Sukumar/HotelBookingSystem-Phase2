@@ -1,0 +1,265 @@
+@import "../../scss/abstracts/variables";
+
+// Auth brand-specific coloring
+$brand-dark-purple: #1A0A2E;
+$brand-surface: #120820;
+$brand-hover: #2E1560;
+$brand-gold: #D4AF37;
+$brand-soft-gold: #EFD98C;
+$bg-ivory: #F8F6F2;
+
+.hotel-details-page {
+  background-color: $bg-ivory;
+  font-family: $font-family-sans-serif;
+  color: $text-primary;
+}
+
+// -------------------------------------------------------------
+// Top Header Spacing
+// -------------------------------------------------------------
+.hotel-details-title {
+  font-family: $font-family-serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: $brand-dark-purple;
+}
+
+.hotel-details-sub {
+  font-size: 0.95rem;
+}
+
+.btn-back-to-hotels {
+  background-color: #FFFFFF;
+  color: $text-primary;
+  border: 1px solid rgba($text-primary, 0.2);
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  padding: 0.6rem 1.25rem;
+  transition: all 0.3s ease;
+
+  &:hover {
+    border-color: $brand-gold;
+    color: $brand-gold;
+  }
+}
+
+// -------------------------------------------------------------
+// Gallery Section Layout (Salem Facade Aspect-ratio)
+// -------------------------------------------------------------
+.hero-gallery-container {
+  height: 480px;
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+
+  .main-gallery-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.4s ease;
+  }
+
+  .gallery-arrow-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background-color: rgba($brand-dark-purple, 0.85);
+    color: #FFFFFF;
+    border: 1px solid rgba($brand-gold, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    z-index: 5;
+
+    &:hover {
+      background-color: $brand-gold;
+      color: $brand-dark-purple;
+      box-shadow: $gold-glow;
+    }
+
+    &.left-arrow { left: 1.5rem; }
+    &.right-arrow { right: 1.5rem; }
+  }
+}
+
+.thumbnail-gallery-row {
+  .thumbnail-card {
+    height: 90px;
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    border: 2px solid transparent;
+    opacity: 0.7;
+    transition: all 0.3s ease;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    &:hover, &.active {
+      opacity: 1;
+      border-color: $brand-gold;
+      transform: scale(1.02);
+    }
+  }
+}
+
+// -------------------------------------------------------------
+// Details Cards Section
+// -------------------------------------------------------------
+.details-card {
+  background-color: #FFFFFF;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(26,10,46,0.03);
+  border: 1px solid rgba($brand-gold, 0.1);
+
+  .card-icon-badge {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background-color: $brand-dark-purple;
+    color: $brand-gold;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    box-shadow: $gold-glow;
+  }
+
+  .card-section-title {
+    font-family: $font-family-serif;
+    font-size: 1.45rem;
+    color: $brand-dark-purple;
+  }
+}
+
+// List parameters overview alignment
+.overview-list {
+  list-style: none;
+  margin: 0;
+
+  li {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+    font-size: 0.95rem;
+
+    i {
+      font-size: 1.2rem;
+      margin-top: 0.1rem;
+    }
+
+    div {
+      line-height: 1.4;
+      strong {
+        display: block;
+        color: $text-secondary;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-bottom: 0.15rem;
+      }
+      span {
+        font-weight: 500;
+        color: $brand-dark-purple;
+      }
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+// Amenities styling
+.amenity-mini-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: rgba($brand-gold, 0.1);
+  color: $brand-gold;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95rem;
+}
+
+.amenity-text {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: $text-secondary;
+}
+
+// Policies alignment helper
+.border-start-md {
+  @media (min-width: 768px) {
+    border-left: 1px dashed rgba(212,175,55,0.25);
+    padding-left: 3rem;
+  }
+}
+
+// -------------------------------------------------------------
+// Bottom Call-To-Action Banner & Booking Button
+// -------------------------------------------------------------
+.bottom-cta-banner {
+  background-color: $brand-dark-purple;
+  border-radius: 16px;
+  border: 1px solid rgba($brand-gold, 0.2);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+
+  .cta-banner-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 1px solid rgba($brand-gold, 0.3);
+    color: $brand-gold;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.35rem;
+  }
+
+  .cta-banner-title {
+    font-family: $font-family-serif;
+    font-size: 1.45rem;
+  }
+
+  .cta-banner-sub {
+    font-size: 0.9rem;
+  }
+
+  .btn-book-now {
+    background-color: $brand-gold;
+    color: $brand-dark-purple;
+    border: none;
+    border-radius: 12px;
+    padding: 0.9rem 2rem;
+    font-weight: 700;
+    font-size: 0.95rem;
+    box-shadow: $gold-glow;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background-color: $brand-soft-gold;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+      color: $brand-dark-purple;
+    }
+  }
+}
+
+// Responsive column margins
+@media (max-width: 991.98px) {
+  .hero-gallery-container {
+    height: 320px;
+  }
+}

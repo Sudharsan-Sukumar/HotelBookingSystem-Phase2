@@ -1,0 +1,169 @@
+@import "../../scss/abstracts/variables";
+
+// Auth brand-specific coloring
+$brand-dark-purple: #1A0A2E;
+$brand-surface: #120820;
+$brand-hover: #2E1560;
+$brand-gold: #D4AF37;
+$brand-soft-gold: #EFD98C;
+$bg-ivory: #FAF8F4;
+
+.profile-page {
+  background-color: $bg-ivory;
+  font-family: $font-family-sans-serif;
+  color: $text-primary;
+}
+
+// -------------------------------------------------------------
+// Top Header Spacing
+// -------------------------------------------------------------
+.profile-title {
+  font-family: $font-family-serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: $brand-dark-purple;
+}
+
+.profile-sub {
+  font-size: 0.95rem;
+}
+
+// -------------------------------------------------------------
+// Mandatory info banner
+// -------------------------------------------------------------
+.mandatory-info-banner {
+  background-color: rgba($brand-dark-purple, 0.04);
+  border: 1px solid rgba($brand-dark-purple, 0.08);
+
+  .notice-icon-circle {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: rgba($brand-dark-purple, 0.08);
+    color: $brand-dark-purple;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+  }
+}
+
+// -------------------------------------------------------------
+// Profile Cards
+// -------------------------------------------------------------
+.profile-card {
+  border-radius: 20px;
+  border: 1px solid rgba($brand-gold, 0.12);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.02);
+
+  .badge-icon-circle {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background-color: $brand-dark-purple;
+    color: $brand-gold;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.15rem;
+  }
+
+  .section-title {
+    font-family: $font-family-serif;
+    font-size: 1.35rem;
+    color: $brand-dark-purple;
+  }
+
+  .custom-input-group {
+    height: 52px;
+    border: 1px solid #D0CCD5;
+    border-radius: 10px;
+    overflow: hidden;
+
+    input.form-control {
+      border: none;
+      height: 52px;
+      font-size: 0.95rem;
+      color: $brand-dark-purple;
+      box-shadow: none !important;
+    }
+    
+    .input-group-text {
+      font-size: 1.1rem;
+    }
+  }
+
+  .invalid-feedback {
+    font-size: 0.8rem;
+    color: #E02424;
+    margin-top: 0.4rem;
+  }
+
+  // Password strength meter
+  .strength-meter-container {
+    .strength-bar {
+      height: 6px;
+      width: 45px;
+      border-radius: 3px;
+      display: inline-block;
+
+      &.weak { background-color: #E02424; }
+      &.medium { background-color: #E3A008; }
+      &.strong { background-color: #31C48D; }
+    }
+  }
+}
+
+// Save Settings CTA Button
+.btn-action-save {
+  background-color: $brand-dark-purple;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  width: 100%;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: $brand-hover;
+    color: #FFFFFF;
+  }
+}
+
+// -------------------------------------------------------------
+// Bottom security protection card banner
+// -------------------------------------------------------------
+.bottom-security-banner-card {
+  background-color: rgba($brand-gold, 0.08);
+  border-radius: 16px;
+  border: 1px solid rgba($brand-gold, 0.2);
+  overflow: hidden;
+  padding: 1.5rem 2rem !important;
+
+  .badge-icon-circle-shield {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background-color: rgba($brand-gold, 0.12);
+    color: $brand-gold;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.35rem;
+    flex-shrink: 0;
+  }
+
+  .card-title {
+    font-family: $font-family-serif;
+    font-size: 1.35rem;
+  }
+
+  .security-illustration {
+    max-height: 120px;
+    width: auto;
+    object-fit: contain;
+    display: block;
+    margin-left: auto;
+  }
+}

@@ -1,0 +1,359 @@
+@import "../../scss/abstracts/variables";
+
+// Auth brand-specific coloring
+$brand-dark-purple: #1A0A2E;
+$brand-surface: #120820;
+$brand-hover: #2E1560;
+$brand-gold: #D4AF37;
+$brand-soft-gold: #EFD98C;
+$bg-ivory: #FAF8F4;
+
+.my-bookings-page {
+    background-color: $bg-ivory;
+    font-family: $font-family-sans-serif;
+    color: $text-primary;
+}
+
+// -------------------------------------------------------------
+// Top Header Spacing
+// -------------------------------------------------------------
+.my-bookings-title {
+    font-family: $font-family-serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: $brand-dark-purple;
+}
+
+.my-bookings-sub {
+    font-size: 0.95rem;
+}
+
+// -------------------------------------------------------------
+// Statistics Cards row
+// -------------------------------------------------------------
+.stat-card {
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.01);
+    height: 80px;
+    display: flex;
+    align-items: center;
+
+    .stat-icon-circle {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background-color: rgba($brand-gold, 0.12);
+        color: $brand-gold;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.25rem;
+
+        &.purple {
+            background-color: rgba($brand-dark-purple, 0.08);
+            color: $brand-dark-purple;
+        }
+
+        &.green {
+            background-color: #E2F6EA;
+            color: #1F8B4C;
+        }
+
+        &.red {
+            background-color: #FDE8E8;
+            color: #F05252;
+        }
+    }
+
+    .stat-count {
+        font-size: 0.95rem;
+        font-weight: 700;
+    }
+
+    &.active-stat-upcoming {
+        background-color: $brand-dark-purple;
+        border: 1px solid $brand-dark-purple;
+    }
+}
+
+// -------------------------------------------------------------
+// Dropdown Filters Row
+// -------------------------------------------------------------
+.filter-row-container {
+    box-shadow: 0 4px 15px rgba(0,0,0,0.01);
+    border-color: rgba($brand-gold, 0.1) !important;
+}
+
+.custom-select-filter {
+    height: 44px;
+    border-color: #D0CCD5;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    color: $brand-dark-purple;
+    width: 180px;
+
+    &:focus {
+        border-color: $brand-gold;
+        box-shadow: 0 0 0 3px rgba($brand-gold, 0.15);
+    }
+}
+
+.search-group-input {
+    border-color: #D0CCD5 !important;
+    overflow: hidden;
+
+    input.form-control {
+        height: 44px;
+        font-size: 0.9rem;
+        color: $brand-dark-purple;
+        box-shadow: none !important;
+    }
+}
+
+// -------------------------------------------------------------
+// Booking Desktop Table styling
+// -------------------------------------------------------------
+.table-card-wrapper {
+    box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+    border-color: rgba($brand-gold, 0.12) !important;
+}
+
+.my-bookings-table {
+    thead {
+        background-color: #FDFCFB;
+        border-bottom: 1px solid rgba($brand-gold, 0.1);
+
+        th {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: $brand-dark-purple;
+            letter-spacing: 0.5px;
+            padding: 1.25rem 1.5rem;
+            border: none;
+        }
+    }
+
+    tbody {
+        tr {
+            border-bottom: 1px solid rgba($brand-gold, 0.05);
+
+            &:last-child {
+                border-bottom: none;
+            }
+        }
+
+        td {
+            padding: 1.5rem;
+            border: none;
+        }
+    }
+}
+
+.row-hotel-img {
+    width: 160px;
+    height: 100px;
+    object-fit: cover;
+    border: 1px solid rgba($brand-gold, 0.15);
+}
+
+.booking-ref-number {
+    font-size: 0.95rem;
+}
+
+.booking-txn-number {
+    font-size: 0.8rem;
+}
+
+.status-upcoming-badge {
+    background-color: rgba($brand-gold, 0.12);
+    color: $brand-gold;
+    border: 1px solid rgba($brand-gold, 0.3);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    display: inline-block;
+
+    &.cancelled {
+        background-color: #FDE8E8;
+        color: #F05252;
+        border-color: rgba(#F05252, 0.3);
+    }
+}
+
+// Vertically stacked actions buttons
+.btn-action-view {
+    background-color: $brand-dark-purple;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 0.8rem;
+    height: 34px;
+    width: 155px;
+    transition: all 0.3s ease;
+
+    &:hover {
+        background-color: $brand-hover;
+        color: #FFFFFF;
+    }
+}
+
+.btn-action-outline-modify {
+    background-color: #FFFFFF;
+    color: $brand-dark-purple;
+    border: 1px solid rgba($brand-dark-purple, 0.25);
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 0.8rem;
+    height: 34px;
+    width: 155px;
+    transition: all 0.3s ease;
+
+    &:hover {
+        border-color: $brand-gold;
+        color: $brand-gold;
+    }
+}
+
+.btn-action-outline-cancel {
+    background-color: #FFFFFF;
+    color: #E02424;
+    border: 1px solid rgba(#E02424, 0.25);
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 0.8rem;
+    height: 34px;
+    width: 155px;
+    transition: all 0.3s ease;
+
+    &:hover {
+        background-color: #FDF2F2;
+        border-color: #E02424;
+    }
+}
+
+// Table footer pagination
+.table-pagination-footer {
+    background-color: #FDFCFB;
+
+    .btn-pagination-arrow {
+        background-color: #FFFFFF;
+        border: 1px solid #D0CCD5;
+        border-radius: 6px;
+        width: 32px;
+        height: 32px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        color: $text-primary;
+
+        &:disabled {
+            background-color: #FAF8F4;
+            color: rgba($text-primary, 0.3);
+            cursor: not-allowed;
+        }
+    }
+
+    .btn-pagination-number {
+        width: 32px;
+        height: 32px;
+        border-radius: 6px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 0.85rem;
+        cursor: pointer;
+
+        &.active {
+            background-color: $brand-dark-purple;
+            color: #FFFFFF;
+        }
+    }
+
+    .select-rows-count {
+        height: 32px;
+        border-color: #D0CCD5;
+        border-radius: 6px;
+        font-size: 0.8rem;
+        width: 65px;
+    }
+}
+
+// -------------------------------------------------------------
+// Bottom Help Banner
+// -------------------------------------------------------------
+.help-desc-card {
+    background-color: rgba($brand-gold, 0.08);
+    border-radius: 16px;
+    border: 1px solid rgba($brand-gold, 0.2);
+
+    .help-badge-circle {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background-color: rgba($brand-gold, 0.12);
+        color: $brand-gold;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.25rem;
+    }
+
+    .help-card-title {
+        font-family: $font-family-serif;
+        font-size: 1.35rem;
+    }
+
+    .btn-contact-support {
+        background-color: #FFFFFF;
+        color: $brand-dark-purple;
+        border: 1px solid rgba($brand-dark-purple, 0.25);
+        border-radius: 10px;
+        font-weight: 700;
+        font-size: 0.85rem;
+        transition: all 0.3s ease;
+
+        &:hover {
+            border-color: $brand-gold;
+            color: $brand-gold;
+        }
+    }
+}
+
+// -------------------------------------------------------------
+// Modal Dialog Styling
+// -------------------------------------------------------------
+.custom-modal-content {
+    background-color: #FFFFFF;
+    border-radius: 16px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+
+    .btn-keep-booking {
+        background-color: $bg-ivory;
+        border: 1px solid rgba($brand-dark-purple, 0.25);
+        border-radius: 8px;
+        font-weight: 700;
+        font-size: 0.85rem;
+        transition: all 0.3s ease;
+
+        &:hover {
+            background-color: rgba($brand-gold, 0.08);
+            border-color: $brand-gold;
+        }
+    }
+
+    .btn-confirm-cancel {
+        background-color: #E02424;
+        border: none;
+        border-radius: 8px;
+        font-weight: 700;
+        font-size: 0.85rem;
+        transition: all 0.3s ease;
+
+        &:hover {
+            background-color: #C81E1E;
+        }
+    }
+}

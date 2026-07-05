@@ -1,0 +1,233 @@
+.invoice-summary-page {
+  background-color: #F8F6F2;
+  font-family: "Outfit", "Inter", system-ui, -apple-system, sans-serif;
+  color: #1A0A2E;
+}
+
+.booking-tag {
+  letter-spacing: 1px;
+}
+
+.invoice-summary-title {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #1A0A2E;
+}
+
+.invoice-summary-sub {
+  font-size: 0.95rem;
+}
+
+.btn-back-to-form {
+  background-color: #FFFFFF;
+  color: #1A0A2E;
+  border: 1px solid rgba(26, 10, 46, 0.2);
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  padding: 0.6rem 1.25rem;
+  transition: all 0.3s ease;
+}
+.btn-back-to-form:hover {
+  border-color: #D4AF37;
+  color: #D4AF37;
+}
+
+.invoice-card {
+  background-color: #FFFFFF;
+  border-radius: 24px;
+  box-shadow: 0 15px 45px rgba(26, 10, 46, 0.04);
+  border: 1px solid rgba(212, 175, 55, 0.1);
+}
+.invoice-card .invoice-card-header {
+  background-color: #1A0A2E;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+}
+.invoice-card .header-icon-badge {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: rgba(212, 175, 55, 0.12);
+  color: #D4AF37;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+}
+.invoice-card .invoice-header-title {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 1.45rem;
+}
+.invoice-card .status-badge {
+  background-color: rgba(212, 175, 55, 0.12);
+  color: #D4AF37;
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  padding: 0.45rem 1.1rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.invoice-hotel-img {
+  width: 100%;
+  height: 110px;
+  object-fit: cover;
+  border: 1px solid rgba(212, 175, 55, 0.15);
+}
+
+.hotel-display-name {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 1.5rem;
+  color: #1A0A2E;
+}
+
+.hotel-display-branch {
+  font-size: 0.9rem;
+}
+
+.booking-id-row {
+  background-color: #F8F6F2;
+  border-radius: 10px;
+  padding: 0.65rem 1.25rem;
+  display: inline-flex;
+  border: 1px solid rgba(212, 175, 55, 0.1);
+}
+.booking-id-row strong {
+  font-size: 10px !important;
+  letter-spacing: 0.5px;
+}
+
+.section-badge-title {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 1.25rem;
+  color: #1A0A2E;
+  font-weight: 600;
+}
+
+.detail-info-block {
+  background-color: #F8F6F2;
+  border-radius: 12px;
+  border: 1px solid rgba(212, 175, 55, 0.08);
+}
+.detail-info-block .block-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background-color: #1A0A2E;
+  color: #D4AF37;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+}
+.detail-info-block strong {
+  display: block;
+  font-size: 10px !important;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.15rem;
+}
+.detail-info-block span {
+  line-height: 1.2;
+}
+
+.total-bill-bar {
+  background-color: #1A0A2E;
+  height: 54px;
+}
+.total-bill-bar span {
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.total-bill-bar .total-bill-value {
+  font-size: 1.45rem;
+}
+
+.terms-icon-circle {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background-color: rgba(212, 175, 55, 0.12);
+  color: #D4AF37;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem;
+}
+
+.btn-proceed-payment {
+  background-color: #1A0A2E;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+}
+.btn-proceed-payment:hover {
+  background-color: #2E1560;
+  color: #FFFFFF;
+}
+
+.info-card-badge {
+  background-color: #FFFFFF;
+  border-radius: 12px;
+  border: 1px solid rgba(212, 175, 55, 0.15);
+}
+.info-card-badge .badge-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background-color: rgba(212, 175, 55, 0.12);
+  color: #D4AF37;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+}
+
+.bottom-cta-banner {
+  background-color: #1A0A2E;
+  border-radius: 16px;
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+.bottom-cta-banner .cta-banner-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  color: #D4AF37;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.35rem;
+}
+.bottom-cta-banner .cta-banner-title {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 1.45rem;
+}
+.bottom-cta-banner .cta-banner-sub {
+  font-size: 0.9rem;
+}
+.bottom-cta-banner .btn-book-now {
+  background-color: #D4AF37;
+  color: #1A0A2E;
+  border: none;
+  border-radius: 12px;
+  padding: 0.9rem 2rem;
+  font-weight: 700;
+  font-size: 0.95rem;
+  box-shadow: 0 4px 20px rgba(212, 175, 55, 0.25);
+  transition: all 0.3s ease;
+}
+.bottom-cta-banner .btn-book-now:hover:not(:disabled) {
+  background-color: #EFD98C;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+  color: #1A0A2E;
+}

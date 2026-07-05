@@ -1,0 +1,201 @@
+@import "../../scss/abstracts/variables";
+
+// Auth brand-specific coloring
+$brand-dark-purple: #1A0A2E;
+$brand-surface: #120820;
+$brand-hover: #2E1560;
+$brand-gold: #D4AF37;
+$brand-soft-gold: #EFD98C;
+$bg-ivory: #F8F6F2;
+
+.guest-details-page {
+  background-color: $bg-ivory;
+  font-family: $font-family-sans-serif;
+  color: $text-primary;
+}
+
+// -------------------------------------------------------------
+// Top Header Spacing
+// -------------------------------------------------------------
+.guest-details-title {
+  font-family: $font-family-serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: $brand-dark-purple;
+}
+
+.guest-details-sub {
+  font-size: 0.95rem;
+}
+
+.btn-back-to-previous {
+  background-color: #FFFFFF;
+  color: $text-primary;
+  border: 1px solid rgba($text-primary, 0.2);
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  padding: 0.6rem 1.25rem;
+  transition: all 0.3s ease;
+
+  &:hover {
+    border-color: $brand-gold;
+    color: $brand-gold;
+  }
+}
+
+// -------------------------------------------------------------
+// Main Stay Card Layout
+// -------------------------------------------------------------
+.guest-details-card {
+  background-color: #FFFFFF;
+  border-radius: 24px;
+  box-shadow: 0 15px 45px rgba(26,10,46,0.04);
+  border: 1px solid rgba($brand-gold, 0.1);
+
+  .card-icon-badge {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background-color: rgba($brand-gold, 0.1);
+    color: $brand-gold;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+  }
+
+  .card-section-title {
+    font-family: $font-family-serif;
+    font-size: 1.45rem;
+    color: $brand-dark-purple;
+  }
+}
+
+// Custom Input Styling overrides
+.custom-input-group {
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid #D0CCD5;
+  transition: all 0.3s ease;
+
+  &:focus-within {
+    border-color: $brand-gold;
+    box-shadow: 0 0 0 3px rgba($brand-gold, 0.15);
+  }
+
+  .form-control {
+    border: none;
+    height: 52px;
+    font-size: 0.95rem;
+    color: $brand-dark-purple;
+    box-shadow: none !important;
+  }
+
+  textarea.form-control {
+    height: auto;
+  }
+
+  .input-group-text {
+    border: none;
+    height: 52px;
+  }
+}
+
+.dates-divider-arrow {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: $bg-ivory;
+  color: $brand-gold;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+}
+
+// -------------------------------------------------------------
+// We're here to make stay perfect Banner
+// -------------------------------------------------------------
+.info-alert-card {
+  background-color: $bg-ivory;
+  border-radius: 16px;
+  border: 1px solid rgba($brand-gold, 0.15);
+
+  .alert-icon-circular {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background-color: rgba($brand-gold, 0.12);
+    color: $brand-gold;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+  }
+
+  .info-banner-img {
+    height: 64px;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid rgba($brand-gold, 0.25);
+  }
+}
+
+// -------------------------------------------------------------
+// Bottom Call-To-Action Banner & Booking Button
+// -------------------------------------------------------------
+.bottom-cta-banner {
+  background-color: $brand-dark-purple;
+  border-radius: 16px;
+  border: 1px solid rgba($brand-gold, 0.2);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+
+  .cta-banner-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 1px solid rgba($brand-gold, 0.3);
+    color: $brand-gold;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.35rem;
+  }
+
+  .cta-banner-title {
+    font-family: $font-family-serif;
+    font-size: 1.45rem;
+  }
+
+  .cta-banner-sub {
+    font-size: 0.9rem;
+  }
+
+  .btn-book-now {
+    background-color: $brand-gold;
+    color: $brand-dark-purple;
+    border: none;
+    border-radius: 12px;
+    padding: 0.9rem 2rem;
+    font-weight: 700;
+    font-size: 0.95rem;
+    box-shadow: $gold-glow;
+    transition: all 0.3s ease;
+
+    &:disabled {
+      background-color: #4A3E56;
+      color: rgba(255,255,255,0.3);
+      cursor: not-allowed;
+      box-shadow: none;
+    }
+
+    &:hover:not(:disabled) {
+      background-color: $brand-soft-gold;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+      color: $brand-dark-purple;
+    }
+  }
+}

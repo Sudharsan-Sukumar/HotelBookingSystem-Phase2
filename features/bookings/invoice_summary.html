@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reservation Invoice Summary | Elegant Enclave</title>
+  <link rel='icon' type='image/png' href='../../assets/images/logo.png'>
+  <meta name="description" content="Review your booking details, stay information, and billing breakdown before proceeding to payment.">
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="../../css/main.css">
+  <link rel="stylesheet" href="invoice_summary.css">
+</head>
+<body class="invoice-summary-page">
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-xl custom-navbar sticky-top">
+    <div class="container-fluid px-xl-5">
+      <!-- Logo Section -->
+      <a class="navbar-brand d-flex align-items-center" href="../../index.html">
+        <img src="../../assets/images/logo.png" alt="Elegant Enclave logo" class="brand-logo-img me-2">
+        Elegant<span>Enclave</span>
+      </a>
+      
+      <!-- Hamburger Menu Toggler (Mobile/Tablet) -->
+      <button class="navbar-toggler border-0 text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon" style="filter: invert(1);"></span>
+      </button>
+
+      <!-- Collapse Container -->
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <!-- Navigation Menu (Centered) -->
+        <ul class="navbar-nav mx-auto mb-2 mb-xl-0 align-items-center gap-1 gap-xxl-3">
+          <li class="nav-item">
+            <a class="nav-link" href="../../index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="../hotels/search_results.html">Hotels</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-nowrap" href="#">My Bookings</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Notifications</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Profile</a>
+          </li>
+        </ul>
+
+        <!-- Right Side Controls (Search, Auth) -->
+        <div class="d-flex align-items-center gap-3 align-middle flex-wrap justify-content-center justify-content-xl-end">
+          <!-- Search Bar with Integrated Action Button -->
+          
+          
+          <!-- Auth States Container -->
+          <div id="authHeaderContainer" class="d-flex align-items-center gap-2">
+            <!-- Logged Out View (Default Hidden in Demo, Toggleable) -->
+            <div class="auth-logged-out d-none align-items-center gap-2">
+              <a href="#" onclick="triggerConfirmLogout(event)" class="btn btn-auth-outline btn-sm text-nowrap d-flex align-items-center justify-content-center">Login</a>
+              <a href="../authentication/register.html" class="btn btn-auth-gold btn-sm text-nowrap d-flex align-items-center justify-content-center">Register</a>
+            </div>
+
+            <!-- Logged In View -->
+            <div class="auth-logged-in d-flex align-items-center gap-3 cursor-pointer" id="headerProfileBadge">
+              <div class="user-info d-none d-md-block text-end"><p class="user-name text-white"></p><p class="user-role"></p><p class="user-email"></p></div>
+              <div class="profile-avatar"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- TOP HEADER SECTION -->
+  <header class="container px-xl-5 py-4 mt-2">
+    <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
+      <div>
+        <span class="booking-tag small text-uppercase text-warning fw-bold mb-1 d-block">&bull; Booking Confirmation</span>
+        <h1 class="invoice-summary-title m-0">Reservation Invoice Summary</h1>
+        <p class="invoice-summary-sub text-muted m-0">Review your booking details before proceeding to payment</p>
+      </div>
+      <a href="guest_details.html" class="btn btn-back-to-form d-flex align-items-center gap-2">
+        <i class="bi bi-arrow-left"></i> Back to Booking Form
+      </a>
+    </div>
+  </header>
+
+  <!-- MAIN INVOICE CARD CONTAINER -->
+  <main class="container px-xl-5 pb-5">
+    <div class="invoice-card overflow-hidden">
+      
+      <!-- Card dark purple Header Bar -->
+      <div class="invoice-card-header p-4 d-flex justify-content-between align-items-center flex-wrap gap-3">
+        <div class="d-flex align-items-center gap-3 text-start">
+          <span class="header-icon-badge"><i class="bi bi-file-earmark-text"></i></span>
+          <div>
+            <strong class="d-block small text-warning text-uppercase letter-spacing-1">Invoice Details</strong>
+            <h2 class="invoice-header-title text-white m-0">Invoice Details Summary</h2>
+          </div>
+        </div>
+        <span class="status-badge"><i class="bi bi-hourglass-split me-1"></i> Awaiting payment</span>
+      </div>
+
+      <!-- Hotel overview information row -->
+      <div class="row g-0 p-4 border-bottom text-start">
+        <div class="col-md-3 col-lg-2">
+          <img src="../../assets/images/hotel_cbe.png" alt="The Elegant Suites Coimbatore resort facade" class="invoice-hotel-img rounded mb-3 mb-md-0">
+        </div>
+        <div class="col-md-9 col-lg-10 ps-md-4 d-flex flex-column justify-content-center">
+          <h3 class="hotel-display-name m-0">The Elegant Suites Coimbatore</h3>
+          <p class="hotel-display-branch text-muted mb-3">Coimbatore Branch - Executive Studio Room</p>
+          <div class="d-flex align-items-center gap-2 booking-id-row">
+            <i class="bi bi-person-badge text-warning fs-5"></i>
+            <div>
+              <strong class="small text-muted text-uppercase d-block mb-0">Booking ID</strong>
+              <span class="fw-bold text-dark fs-6" id="bookingIdText">EE-COB-260625-7852</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTION 2: Stay Details Grid -->
+      <div class="p-4 border-bottom">
+        <h4 class="section-badge-title mb-4"><i class="bi bi-calendar3 me-2 text-warning"></i>Stay Details</h4>
+        <div class="row g-3">
+          <div class="col-md-6 col-lg-3">
+            <div class="detail-info-block p-3 d-flex align-items-center gap-3 text-start">
+              <span class="block-icon"><i class="bi bi-calendar-check"></i></span>
+              <div>
+                <strong class="small text-muted text-uppercase">Check-In</strong>
+                <span class="fw-bold d-block text-dark">25 Jun 2026</span>
+                <span class="small text-muted">Thursday</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <div class="detail-info-block p-3 d-flex align-items-center gap-3 text-start">
+              <span class="block-icon"><i class="bi bi-calendar-x"></i></span>
+              <div>
+                <strong class="small text-muted text-uppercase">Check-Out</strong>
+                <span class="fw-bold d-block text-dark">28 Jun 2026</span>
+                <span class="small text-muted">Sunday</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <div class="detail-info-block p-3 d-flex align-items-center gap-3 text-start">
+              <span class="block-icon"><i class="bi bi-moon"></i></span>
+              <div>
+                <strong class="small text-muted text-uppercase">Stay Duration</strong>
+                <span class="fw-bold d-block text-dark">3 Nights</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <div class="detail-info-block p-3 d-flex align-items-center gap-3 text-start">
+              <span class="block-icon"><i class="bi bi-people"></i></span>
+              <div>
+                <strong class="small text-muted text-uppercase">Guests</strong>
+                <span class="fw-bold d-block text-dark">2 Adults</span>
+                <span class="small text-muted">1 Room</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTION 3: Billing Breakdown -->
+      <div class="p-4 border-bottom text-start">
+        <h4 class="section-badge-title mb-4"><i class="bi bi-receipt me-2 text-warning"></i>Billing Breakdown</h4>
+        <div class="d-flex justify-content-between align-items-center py-2">
+          <span class="text-secondary fw-semibold">Base room charge (3 &times; Rs. 6,500)</span>
+          <span class="fw-bold text-dark">Rs. 19,500.00</span>
+        </div>
+        <div class="d-flex justify-content-between align-items-center py-2">
+          <span class="text-secondary fw-semibold">Taxes & fees (18% GST)</span>
+          <span class="fw-bold text-dark">Rs. 3,510.00</span>
+        </div>
+        
+        <!-- Total amount highlight bar -->
+        <div class="total-bill-bar p-3 mt-3 d-flex justify-content-between align-items-center rounded">
+          <span class="text-white fw-bold uppercase">Total bill amount</span>
+          <span class="total-bill-value text-warning font-serif">Rs. 23,010.00</span>
+        </div>
+      </div>
+
+      <!-- Proceed Button Alert with Terms -->
+      <div class="p-4 bg-light-ivory d-flex justify-content-between align-items-center flex-wrap gap-3">
+        <div class="d-flex align-items-center gap-3 text-start col-md-7">
+          <span class="terms-icon-circle"><i class="bi bi-shield-check"></i></span>
+          <span class="small text-secondary">By proceeding you agree to our <strong class="text-dark">booking terms & cancellation policy</strong></span>
+        </div>
+        <button class="btn btn-proceed-payment py-3 px-5 text-nowrap d-flex align-items-center gap-2" id="btnProceedInvoice1">
+          Proceed to Payment <i class="bi bi-arrow-right"></i>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- BOTTOM INFORMATION INFORMATIONAL ICONS ROW -->
+    <div class="row g-3 justify-content-between mt-5 text-start">
+      <div class="col-md-6 col-lg-3">
+        <div class="info-card-badge p-3 d-flex align-items-center gap-3">
+          <span class="badge-icon"><i class="bi bi-shield-check"></i></span>
+          <div>
+            <strong class="d-block text-dark small uppercase">Secure Booking</strong>
+            <span class="small text-muted">Your data is safe and encrypted</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <div class="info-card-badge p-3 d-flex align-items-center gap-3">
+          <span class="badge-icon"><i class="bi bi-award"></i></span>
+          <div>
+            <strong class="d-block text-dark small uppercase">Best Price Guarantee</strong>
+            <span class="small text-muted">Get the best rates, always</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <div class="info-card-badge p-3 d-flex align-items-center gap-3">
+          <span class="badge-icon"><i class="bi bi-calendar-event"></i></span>
+          <div>
+            <strong class="d-block text-dark small uppercase">Flexible Cancellation</strong>
+            <span class="small text-muted">Plans that adapt to you</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <div class="info-card-badge p-3 d-flex align-items-center gap-3">
+          <span class="badge-icon"><i class="bi bi-telephone-inbound"></i></span>
+          <div>
+            <strong class="d-block text-dark small uppercase">24/7 Guest Support</strong>
+            <span class="small text-muted">We're here for you anytime</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Bootstrap and JS bundle -->
+  <script src="../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../../js/session.js"></script>
+  <script src="../../js/back_nav.js"></script>
+  <script src="invoice_summary.js"></script>
+  <script src="../../js/session.js"></script>
+</body>
+</html>
+

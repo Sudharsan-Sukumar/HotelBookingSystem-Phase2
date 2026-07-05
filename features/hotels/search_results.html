@@ -1,0 +1,278 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Search Results | Elegant Enclave</title>
+  <link rel='icon' type='image/png' href='../../assets/images/logo.png'>
+  <meta name="description" content="Filter and select properties in Salem, Coimbatore, Chennai.">
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="../../css/main.css">
+  <link rel="stylesheet" href="search_results.css">
+</head>
+<body class="search-results-page">
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-xl custom-navbar sticky-top">
+    <div class="container-fluid px-xl-5">
+      <!-- Logo Section -->
+      <a class="navbar-brand d-flex align-items-center" href="../../index.html">
+        <img src="../../assets/images/logo.png" alt="Elegant Enclave logo" class="brand-logo-img me-2">
+        Elegant<span>Enclave</span>
+      </a>
+      
+      <!-- Hamburger Menu Toggler (Mobile/Tablet) -->
+      <button class="navbar-toggler border-0 text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon" style="filter: invert(1);"></span>
+      </button>
+
+      <!-- Collapse Container -->
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <!-- Navigation Menu (Centered) -->
+        <ul class="navbar-nav mx-auto mb-2 mb-xl-0 align-items-center gap-1 gap-xxl-3">
+          <li class="nav-item">
+            <a class="nav-link" href="../../index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="#">Hotels</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-nowrap" href="#">My Bookings</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Notifications</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Profile</a>
+          </li>
+        </ul>
+
+        <!-- Right Side Controls (Search, Auth) -->
+        <div class="d-flex align-items-center gap-3 align-middle flex-wrap justify-content-center justify-content-xl-end">
+          <!-- Search Bar with Integrated Action Button -->
+          
+          
+          <!-- Auth States Container -->
+          <div id="authHeaderContainer" class="d-flex align-items-center gap-2">
+            <!-- Logged Out View (Default Hidden in Demo, Toggleable) -->
+            <div class="auth-logged-out d-none align-items-center gap-2">
+              <a href="#" onclick="triggerConfirmLogout(event)" class="btn btn-auth-outline btn-sm text-nowrap d-flex align-items-center justify-content-center">Login</a>
+              <a href="../authentication/register.html" class="btn btn-auth-gold btn-sm text-nowrap d-flex align-items-center justify-content-center">Register</a>
+            </div>
+
+            <!-- Logged In View -->
+            <div class="auth-logged-in d-flex align-items-center gap-3 cursor-pointer" id="headerProfileBadge">
+              <div class="user-info d-none d-md-block text-end"><p class="user-name text-white"></p><p class="user-role"></p><p class="user-email"></p></div>
+              <div class="profile-avatar"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- SEARCH RESULTS HEADER -->
+  <header class="results-header-section container px-xl-5 py-4 mt-2">
+    <h1 class="results-title">Search Results</h1>
+    <p class="results-subtitle text-muted">Filter and select properties in Salem, Coimbatore, Chennai</p>
+  </header>
+
+  <!-- MAIN RESULTS VIEW CONTAINER -->
+  <main class="container px-xl-5 pb-5">
+    <div class="row g-4">
+      
+      <!-- Left Panel (Search Filters Column) -->
+      <aside class="col-lg-4 col-xl-3">
+        <div class="filter-panel-card p-4">
+          <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="filter-panel-title">Search Filters</h2>
+            <i class="bi bi-funnel text-warning fs-5"></i>
+          </div>
+
+          <form id="filterForm">
+            <!-- Location Branch Dropdown -->
+            <div class="mb-4 text-start">
+              <label for="filterLocation" class="filter-label"><i class="bi bi-geo-alt-fill text-warning me-2"></i>Location Branch</label>
+              <select id="filterLocation" class="form-select filter-select">
+                <option value="All">All Locations</option>
+                <option value="Salem">Salem</option>
+                <option value="Coimbatore">Coimbatore</option>
+                <option value="Chennai">Chennai</option>
+              </select>
+            </div>
+
+            <!-- Check-In / Check-Out Date picker -->
+            <div class="mb-4 text-start">
+              <label class="filter-label"><i class="bi bi-calendar3 text-warning me-2"></i>Check-In / Out</label>
+              <div class="input-group d-flex flex-nowrap align-items-center date-input-group">
+                <input type="date" id="filterCheckIn" class="form-control filter-input text-center" placeholder="YYYY-MM-DD">
+                <span class="px-2 text-muted fw-bold">â†’</span>
+                <input type="date" id="filterCheckOut" class="form-control filter-input text-center" placeholder="YYYY-MM-DD">
+              </div>
+              <div class="text-danger small mt-1 d-none" id="dateErrorMsg">Check-out must be after check-in.</div>
+            </div>
+
+            <!-- Price Limit Max field -->
+            <div class="mb-4 text-start">
+              <label for="filterMaxPrice" class="filter-label"><i class="bi bi-tag-fill text-warning me-2"></i>Price Limit Max</label>
+              <div class="input-container">
+                <input type="text" id="filterMaxPrice" class="form-control filter-input" placeholder="Rs. 15,000">
+              </div>
+            </div>
+
+            <!-- Room Types Checklist Select -->
+            <div class="mb-4 text-start">
+              <label class="filter-label"><i class="bi bi-building text-warning me-2"></i>Room Types Select</label>
+              
+              <div class="form-check mb-2">
+                <input class="form-check-input filter-checkbox" type="checkbox" value="Standard" id="roomTypeStandard">
+                <label class="form-check-label check-label" for="roomTypeStandard">Classic Queen Bed</label>
+              </div>
+              <div class="form-check mb-2">
+                <input class="form-check-input filter-checkbox" type="checkbox" value="Deluxe" id="roomTypeDeluxe">
+                <label class="form-check-label check-label" for="roomTypeDeluxe">Executive Twin Suite</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input filter-checkbox" type="checkbox" value="Suite" id="roomTypeSuite">
+                <label class="form-check-label check-label" for="roomTypeSuite">Penthouse Deluxe</label>
+              </div>
+            </div>
+
+            <!-- Apply Filters CTA button -->
+            <div class="pt-2 d-flex flex-column gap-2">
+              <button type="submit" class="btn btn-apply-filters w-100 py-3">Apply Filters <i class="bi bi-arrow-right ms-1"></i></button>
+              <button type="button" id="btnResetFilters" class="btn w-100 py-2 text-warning font-sans" style="border: 1px dashed rgba(212, 175, 55, 0.4); background: transparent; border-radius: 8px; font-weight: 500; font-size: 0.85rem; transition: all 0.2s;">Clear Filters</button>
+            </div>
+
+            <!-- Muted decorative separator line -->
+            <div class="text-center mt-4 pt-1">
+              <span class="decor-diamond"></span>
+            </div>
+
+          </form>
+        </div>
+      </aside>
+
+      <!-- Right Panel (Hotel Results List Column) -->
+      <section class="col-lg-8 col-xl-9">
+        <div id="hotelListingsContainer" class="d-flex flex-column gap-4">
+          
+          <!-- Hotel Card 1 (Salem) -->
+          <article class="hotel-card" data-location="Salem" data-price="4500" data-types="Standard">
+            <div class="row g-0 h-100">
+              <div class="col-md-5 h-100">
+                <div class="hotel-img-wrapper">
+                  <img src="../../assets/images/hotel_salem.png" alt="The Elegant Enclave Salem resort exterior facade">
+                </div>
+              </div>
+              <div class="col-md-7 d-flex flex-column justify-content-between p-4">
+                <div>
+                  <div class="d-flex align-items-center gap-2 mb-2">
+                    <span class="hotel-icon-badge"><i class="bi bi-building"></i></span>
+                    <h3 class="hotel-title m-0">The Elegant Enclave - Salem</h3>
+                  </div>
+                  <p class="hotel-rooms-sub text-muted">Available: Standard Room, Classic Twin</p>
+                </div>
+                
+                <div class="d-flex justify-content-between align-items-end mt-4">
+                  <div class="price-container">
+                    <span class="price-label">Base rate:</span>
+                    <p class="price-value m-0">Rs. 4,500 <span>/night</span></p>
+                  </div>
+                  
+                  <div class="d-flex align-items-center gap-2">
+                    <button class="btn btn-view-details" type="button">View Details <i class="bi bi-arrow-right ms-1"></i></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Hotel Card 2 (Coimbatore) -->
+          <article class="hotel-card" data-location="Coimbatore" data-price="6500" data-types="Deluxe">
+            <div class="row g-0 h-100">
+              <div class="col-md-5 h-100">
+                <div class="hotel-img-wrapper">
+                  <img src="../../assets/images/hotel_cbe.png" alt="The Elegant Enclave Coimbatore property exterior building facade">
+                </div>
+              </div>
+              <div class="col-md-7 d-flex flex-column justify-content-between p-4">
+                <div>
+                  <div class="d-flex align-items-center gap-2 mb-2">
+                    <span class="hotel-icon-badge"><i class="bi bi-building"></i></span>
+                    <h3 class="hotel-title m-0">The Elegant Enclave - Coimbatore</h3>
+                  </div>
+                  <p class="hotel-rooms-sub text-muted">Available: Executive Suite, Premium Twin</p>
+                </div>
+                
+                <div class="d-flex justify-content-between align-items-end mt-4">
+                  <div class="price-container">
+                    <span class="price-label">Base rate:</span>
+                    <p class="price-value m-0">Rs. 6,500 <span>/night</span></p>
+                  </div>
+                  
+                  <div class="d-flex align-items-center gap-2">
+                    <button class="btn btn-view-details" type="button">View Details <i class="bi bi-arrow-right ms-1"></i></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Hotel Card 3 (Chennai) -->
+          <article class="hotel-card" data-location="Chennai" data-price="8000" data-types="Suite">
+            <div class="row g-0 h-100">
+              <div class="col-md-5 h-100">
+                <div class="hotel-img-wrapper">
+                  <img src="../../assets/images/hotel_chennai.png" alt="The Elegant Enclave Chennai outdoor swimming pool luxury resort">
+                </div>
+              </div>
+              <div class="col-md-7 d-flex flex-column justify-content-between p-4">
+                <div>
+                  <div class="d-flex align-items-center gap-2 mb-2">
+                    <span class="hotel-icon-badge"><i class="bi bi-building"></i></span>
+                    <h3 class="hotel-title m-0">The Elegant Enclave - Chennai</h3>
+                  </div>
+                  <p class="hotel-rooms-sub text-muted">Available: Deluxe Ocean View, Royal Suite</p>
+                </div>
+                
+                <div class="d-flex justify-content-between align-items-end mt-4">
+                  <div class="price-container">
+                    <span class="price-label">Base rate:</span>
+                    <p class="price-value m-0">Rs. 8,000 <span>/night</span></p>
+                  </div>
+                  
+                  <div class="d-flex align-items-center gap-2">
+                    <button class="btn btn-view-details" type="button">View Details <i class="bi bi-arrow-right ms-1"></i></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+        <!-- Empty State Container Block (Hidden by default) -->
+        <div id="noResultsState" class="d-none text-center py-5">
+          <div class="mb-3 fs-1 text-muted"><i class="bi bi-building-exclamation"></i></div>
+          <h3 class="font-serif">No hotels match your search criteria.</h3>
+          <p class="text-muted">Try adjusting your filters or resetting the inputs.</p>
+          <button id="btnResetFilters" class="btn btn-outline-warning mt-2" type="button">Reset Filters</button>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Bootstrap and JS bundle -->
+  <script src="../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../../js/session.js"></script>
+  <script src="search_results.js"></script>
+  <script src="../../js/session.js"></script>
+</body>
+</html>
+

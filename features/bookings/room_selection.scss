@@ -1,0 +1,251 @@
+@import "../../scss/abstracts/variables";
+
+// Auth brand-specific coloring
+$brand-dark-purple: #1A0A2E;
+$brand-surface: #120820;
+$brand-hover: #2E1560;
+$brand-gold: #D4AF37;
+$brand-soft-gold: #EFD98C;
+$bg-ivory: #F8F6F2;
+
+.room-selection-page {
+  background-color: $bg-ivory;
+  font-family: $font-family-sans-serif;
+  color: $text-primary;
+}
+
+// -------------------------------------------------------------
+// Top Header Spacing
+// -------------------------------------------------------------
+.room-selection-title {
+  font-family: $font-family-serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: $brand-dark-purple;
+}
+
+.room-selection-sub {
+  font-size: 0.95rem;
+}
+
+.btn-back-to-hotel {
+  background-color: #FFFFFF;
+  color: $text-primary;
+  border: 1px solid rgba($text-primary, 0.2);
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  padding: 0.6rem 1.25rem;
+  transition: all 0.3s ease;
+
+  &:hover {
+    border-color: $brand-gold;
+    color: $brand-gold;
+  }
+}
+
+// -------------------------------------------------------------
+// Dark Table Headers Category
+// -------------------------------------------------------------
+.table-category-header {
+  background-color: $brand-dark-purple;
+  color: #FFFFFF;
+  border-radius: 12px;
+  height: 52px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+// -------------------------------------------------------------
+// Room Card Listings Grid
+// -------------------------------------------------------------
+.room-card {
+  background-color: #FFFFFF;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(26,10,46,0.03);
+  border: 1px solid rgba($brand-gold, 0.1);
+  transition: all 0.3s ease;
+
+  .room-icon-badge {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background-color: rgba($brand-gold, 0.1);
+    color: $brand-gold;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.15rem;
+  }
+
+  .room-card-title {
+    font-family: $font-family-serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: $brand-dark-purple;
+  }
+
+  .btn-select-room {
+    background-color: $brand-dark-purple;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 8px;
+    height: 44px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background-color: $brand-hover;
+      color: #FFFFFF;
+    }
+
+    &.selected {
+      background-color: $brand-gold;
+      color: $brand-dark-purple;
+      box-shadow: $gold-glow;
+    }
+  }
+
+  &.active-selected {
+    border-color: $brand-gold;
+    box-shadow: 0 0 0 2px $brand-gold, 0 15px 35px rgba(26, 10, 46, 0.08);
+  }
+}
+
+// -------------------------------------------------------------
+// Room Image Gallery Elements
+// -------------------------------------------------------------
+.gallery-img-card {
+  height: 280px;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .gallery-tag {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    background-color: $brand-dark-purple;
+    color: #FFFFFF;
+    padding: 0.4rem 1rem;
+    border-radius: 8px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    border: 1px solid rgba($brand-gold, 0.3);
+  }
+}
+
+// Gallery absolute slides togglers
+.gallery-slide-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: rgba($brand-dark-purple, 0.85);
+  color: #FFFFFF;
+  border: 1px solid rgba($brand-gold, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 5;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: $brand-gold;
+    color: $brand-dark-purple;
+  }
+
+  &.left-slide { left: -18px; }
+  &.right-slide { right: -18px; }
+}
+
+// -------------------------------------------------------------
+// Bottom Info Badges Card
+// -------------------------------------------------------------
+.info-badges-card {
+  background-color: #FFFFFF;
+  border-radius: 16px;
+  border: 1px solid rgba($brand-gold, 0.15);
+
+  .badge-icon-circular {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background-color: rgba($brand-gold, 0.12);
+    color: $brand-gold;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+  }
+}
+
+// -------------------------------------------------------------
+// Bottom Call-To-Action Banner & Booking Button
+// -------------------------------------------------------------
+.bottom-cta-banner {
+  background-color: $brand-dark-purple;
+  border-radius: 16px;
+  border: 1px solid rgba($brand-gold, 0.2);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+
+  .cta-banner-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 1px solid rgba($brand-gold, 0.3);
+    color: $brand-gold;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.35rem;
+  }
+
+  .cta-banner-title {
+    font-family: $font-family-serif;
+    font-size: 1.45rem;
+  }
+
+  .cta-banner-sub {
+    font-size: 0.9rem;
+  }
+
+  .btn-book-now {
+    background-color: $brand-gold;
+    color: $brand-dark-purple;
+    border: none;
+    border-radius: 12px;
+    padding: 0.9rem 2rem;
+    font-weight: 700;
+    font-size: 0.95rem;
+    box-shadow: $gold-glow;
+    transition: all 0.3s ease;
+
+    &:disabled {
+      background-color: #4A3E56;
+      color: rgba(255,255,255,0.3);
+      cursor: not-allowed;
+      box-shadow: none;
+    }
+
+    &:hover:not(:disabled) {
+      background-color: $brand-soft-gold;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+      color: $brand-dark-purple;
+    }
+  }
+}

@@ -1,0 +1,262 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hotel Details | Elegant Enclave</title>
+  <link rel='icon' type='image/png' href='../../assets/images/logo.png'>
+  <meta name="description" content="View comprehensive overview details, amenities, and booking options for the Elegant Suites Coimbatore property.">
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="../../css/main.css">
+  <link rel="stylesheet" href="hotel_details.css">
+</head>
+<body class="hotel-details-page">
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-xl custom-navbar sticky-top">
+    <div class="container-fluid px-xl-5">
+      <!-- Logo Section -->
+      <a class="navbar-brand d-flex align-items-center" href="../../index.html">
+        <img src="../../assets/images/logo.png" alt="Elegant Enclave logo" class="brand-logo-img me-2">
+        Elegant<span>Enclave</span>
+      </a>
+      
+      <!-- Hamburger Menu Toggler (Mobile/Tablet) -->
+      <button class="navbar-toggler border-0 text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon" style="filter: invert(1);"></span>
+      </button>
+
+      <!-- Collapse Container -->
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <!-- Navigation Menu (Centered) -->
+        <ul class="navbar-nav mx-auto mb-2 mb-xl-0 align-items-center gap-1 gap-xxl-3">
+          <li class="nav-item">
+            <a class="nav-link" href="../../index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="search_results.html">Hotels</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-nowrap" href="#">My Bookings</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Notifications</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Profile</a>
+          </li>
+        </ul>
+
+        <!-- Right Side Controls (Search, Auth) -->
+        <div class="d-flex align-items-center gap-3 align-middle flex-wrap justify-content-center justify-content-xl-end">
+          <!-- Search Bar with Integrated Action Button -->
+          
+          
+          <!-- Auth States Container -->
+          <div id="authHeaderContainer" class="d-flex align-items-center gap-2">
+            <!-- Logged Out View (Default Hidden in Demo, Toggleable) -->
+            <div class="auth-logged-out d-none align-items-center gap-2">
+              <a href="#" onclick="triggerConfirmLogout(event)" class="btn btn-auth-outline btn-sm text-nowrap d-flex align-items-center justify-content-center">Login</a>
+              <a href="../authentication/register.html" class="btn btn-auth-gold btn-sm text-nowrap d-flex align-items-center justify-content-center">Register</a>
+            </div>
+
+            <!-- Logged In View -->
+            <div class="auth-logged-in d-flex align-items-center gap-3 cursor-pointer" id="headerProfileBadge">
+              <div class="user-info d-none d-md-block text-end"><p class="user-name text-white"></p><p class="user-role"></p><p class="user-email"></p></div>
+              <div class="profile-avatar"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- TOP HEADER SECTION -->
+  <header class="container px-xl-5 py-4 mt-2">
+    <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
+      <div>
+        <h1 class="hotel-details-title m-0">The Elegant Suites Coimbatore</h1>
+        <p class="hotel-details-sub text-muted m-0">Detailed property specs, location details, and features</p>
+      </div>
+      <a href="search_results.html" class="btn btn-back-to-hotels d-flex align-items-center gap-2">
+        <i class="bi bi-arrow-left"></i> Back to Hotels
+      </a>
+    </div>
+  </header>
+
+  <!-- MAIN PHOTO GALLERY CAROUSEL SECTION -->
+  <section class="container px-xl-5 mb-5">
+    <!-- Main Display Frame -->
+    <div class="position-relative hero-gallery-container mb-3 shadow-sm">
+      <img src="../../assets/images/hotel_cbe.png" id="mainGalleryDisplay" alt="The Elegant Suites Coimbatore primary facade view" class="main-gallery-img">
+      <!-- Overlay controls -->
+      <button class="gallery-arrow-btn left-arrow" id="btnPrevImage" aria-label="Previous gallery image"><i class="bi bi-arrow-left"></i></button>
+      <button class="gallery-arrow-btn right-arrow" id="btnNextImage" aria-label="Next gallery image"><i class="bi bi-arrow-right"></i></button>
+    </div>
+
+    <!-- Thumbnail Previews Aligned Underneath -->
+    <div class="row g-2 px-1 justify-content-between flex-nowrap overflow-auto thumbnail-gallery-row">
+      <div class="col-3 thumbnail-card active" data-src="../../assets/images/hotel_cbe.png">
+        <img src="../../assets/images/hotel_cbe.png" alt="Suites Coimbatore main view">
+      </div>
+      <div class="col-3 thumbnail-card" data-src="../../assets/images/hotel_salem.png">
+        <img src="../../assets/images/hotel_salem.png" alt="Interior lounge details">
+      </div>
+      <div class="col-3 thumbnail-card" data-src="../../assets/images/room_premium.png">
+        <img src="../../assets/images/room_premium.png" alt="Bed room suite view">
+      </div>
+      <div class="col-3 thumbnail-card" data-src="../../assets/images/room_classic.png">
+        <img src="../../assets/images/room_classic.png" alt="Dinning lounge layout details">
+      </div>
+    </div>
+  </section>
+
+  <!-- PROPERTY DETAIL SECTION CARDS GRID -->
+  <section class="container px-xl-5 mb-4">
+    <div class="row g-4">
+      
+      <!-- Left Card: Property Overview -->
+      <div class="col-lg-6">
+        <div class="details-card h-100 p-4">
+          <div class="d-flex align-items-center gap-3 mb-4">
+            <span class="card-icon-badge"><i class="bi bi-building"></i></span>
+            <h2 class="card-section-title m-0">Property Overview</h2>
+          </div>
+          
+          <ul class="overview-list text-start ps-0">
+            <li>
+              <i class="bi bi-geo-alt text-warning"></i>
+              <div>
+                <strong>Address:</strong>
+                <span>124 Avinashi Road, Coimbatore Branch</span>
+              </div>
+            </li>
+            <li>
+              <i class="bi bi-star text-warning"></i>
+              <div>
+                <strong>Star Rating:</strong>
+                <span>5 - Star Class 1</span>
+              </div>
+            </li>
+            <li>
+              <i class="bi bi-envelope text-warning"></i>
+              <div>
+                <strong>Contact:</strong>
+                <span>coimbatore@elegantenclave.com</span>
+              </div>
+            </li>
+            <li>
+              <i class="bi bi-telephone text-warning"></i>
+              <div>
+                <strong>Phone:</strong>
+                <span>+91 422 990 000</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Right Card: Available Amenities -->
+      <div class="col-lg-6">
+        <div class="details-card h-100 p-4">
+          <div class="d-flex align-items-center gap-3 mb-4">
+            <span class="card-icon-badge"><i class="bi bi-award"></i></span>
+            <h2 class="card-section-title m-0">Available Amenities</h2>
+          </div>
+          
+          <div class="row g-3 text-start">
+            <div class="col-md-6 d-flex align-items-center gap-2 py-1">
+              <span class="amenity-mini-icon"><i class="bi bi-water"></i></span>
+              <span class="amenity-text">Swimming Pool Lounge</span>
+            </div>
+            <div class="col-md-6 d-flex align-items-center gap-2 py-1">
+              <span class="amenity-mini-icon"><i class="bi bi-cup-hot"></i></span>
+              <span class="amenity-text">24x7 Cafe Services</span>
+            </div>
+            <div class="col-md-6 d-flex align-items-center gap-2 py-1">
+              <span class="amenity-mini-icon"><i class="bi bi-building"></i></span>
+              <span class="amenity-text">Fully Equipped Executive Lounge</span>
+            </div>
+            <div class="col-md-6 d-flex align-items-center gap-2 py-1">
+              <span class="amenity-mini-icon"><i class="bi bi-heart-pulse"></i></span>
+              <span class="amenity-text">Fitness & Wellness Centre</span>
+            </div>
+            <div class="col-md-6 d-flex align-items-center gap-2 py-1">
+              <span class="amenity-mini-icon"><i class="bi bi-wifi"></i></span>
+              <span class="amenity-text">Free High-Speed WiFi Network</span>
+            </div>
+            <div class="col-md-6 d-flex align-items-center gap-2 py-1">
+              <span class="amenity-mini-icon"><i class="bi bi-car-front"></i></span>
+              <span class="amenity-text">Valet Parking</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- POLICIES SECTION CARD -->
+  <section class="container px-xl-5 mb-5">
+    <div class="details-card policy-card p-4">
+      <div class="d-flex align-items-center gap-3 mb-4">
+        <span class="card-icon-badge"><i class="bi bi-file-text"></i></span>
+        <h2 class="card-section-title m-0">Property Policies</h2>
+      </div>
+
+      <div class="row g-4 text-start">
+        <div class="col-md-6 d-flex align-items-center gap-3">
+          <i class="bi bi-clock text-warning fs-5"></i>
+          <div>
+            <strong class="d-block small text-muted text-uppercase">Check-in</strong>
+            <span class="fw-bold">2:00 PM</span>
+          </div>
+        </div>
+        <div class="col-md-6 d-flex align-items-center gap-3 border-start-md">
+          <i class="bi bi-clock text-warning fs-5"></i>
+          <div>
+            <strong class="d-block small text-muted text-uppercase">Check-out</strong>
+            <span class="fw-bold">12:00 PM</span>
+          </div>
+        </div>
+      </div>
+      <hr class="my-4" style="border-top: 1px dashed rgba(212,175,55,0.25);">
+      <div class="d-flex align-items-start gap-3 text-start">
+        <i class="bi bi-shield-check text-warning fs-5 mt-1"></i>
+        <div>
+          <strong class="d-block small text-muted text-uppercase mb-1">Cancellation Policy</strong>
+          <span>Standard 24 hours agreement before stay check-in date.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOTTOM CALL-TO-ACTION BOOKING BAR -->
+  <section class="container px-xl-5 mb-5">
+    <div class="bottom-cta-banner p-4 d-flex justify-content-between align-items-center flex-wrap gap-3">
+      <div class="d-flex align-items-center gap-3 text-start">
+        <span class="cta-banner-icon"><i class="bi bi-calendar-event"></i></span>
+        <div>
+          <h3 class="cta-banner-title text-white m-0">Ready to book your stay?</h3>
+          <p class="cta-banner-sub text-white-50 m-0">Choose your perfect room and enjoy a luxurious experience.</p>
+        </div>
+      </div>
+      <button class="btn btn-book-now d-flex align-items-center gap-2" id="btnBookNowDetails">
+        Book Now - Proceed to Room Selection <i class="bi bi-arrow-right"></i>
+      </button>
+    </div>
+  </section>
+
+  <!-- Bootstrap and JS bundle -->
+  <script src="../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../../js/session.js"></script>
+  <script src="../../js/policy_modal.js"></script>
+  <script src="hotel_details.js"></script>
+  <script src="../../js/session.js"></script>
+</body>
+</html>
+

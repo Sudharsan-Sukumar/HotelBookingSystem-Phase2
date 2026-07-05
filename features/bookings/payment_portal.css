@@ -1,0 +1,276 @@
+.payment-portal-page {
+  background-color: #F8F6F2;
+  font-family: "Outfit", "Inter", system-ui, -apple-system, sans-serif;
+  color: #1A0A2E;
+}
+
+.payment-title {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #1A0A2E;
+}
+
+.payment-sub {
+  font-size: 0.95rem;
+}
+
+.btn-tab-option {
+  background-color: #FFFFFF;
+  border: 1px solid rgba(212, 175, 55, 0.15);
+  border-radius: 12px;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: #1A0A2E;
+  transition: all 0.3s ease;
+}
+.btn-tab-option i {
+  font-size: 1.5rem;
+  color: #D4AF37;
+}
+.btn-tab-option strong {
+  display: block;
+  font-size: 0.85rem;
+  color: #1A0A2E;
+}
+.btn-tab-option span {
+  display: block;
+  font-size: 0.75rem;
+  color: #6C757D;
+}
+.btn-tab-option.active {
+  background-color: #1A0A2E;
+  border-color: #1A0A2E;
+  color: #FFFFFF;
+}
+.btn-tab-option.active strong {
+  color: #FFFFFF;
+}
+.btn-tab-option.active span {
+  color: rgba(255, 255, 255, 0.6);
+}
+.btn-tab-option:hover:not(.active) {
+  border-color: #D4AF37;
+  box-shadow: 0 4px 12px rgba(26, 10, 46, 0.03);
+}
+
+.payment-form-card {
+  background-color: #FFFFFF;
+  border-radius: 20px;
+  box-shadow: 0 10px 40px rgba(26, 10, 46, 0.03);
+  border: 1px solid rgba(212, 175, 55, 0.1);
+}
+.payment-form-card .panel-badge-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background-color: rgba(212, 175, 55, 0.12);
+  color: #D4AF37;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem;
+}
+.payment-form-card .panel-section-title {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 1.35rem;
+  color: #1A0A2E;
+}
+.payment-form-card .card-logo-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.payment-form-card .card-logo-row .logo-container-card {
+  background-color: #FFFFFF;
+  border: 1px solid #E8E8E8;
+  border-radius: 10px;
+  padding: 8px;
+  width: 72px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+  transition: all 200ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.payment-form-card .card-logo-row .logo-container-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(26, 10, 46, 0.08);
+  border-color: #D4AF37;
+}
+.payment-form-card .card-logo-row .brand-card-logo {
+  max-height: 28px;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+.custom-form-control, .custom-form-select {
+  height: 52px;
+  border: 1px solid #D0CCD5;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  color: #1A0A2E;
+}
+.custom-form-control:focus, .custom-form-select:focus {
+  border-color: #D4AF37;
+  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.15);
+}
+
+.input-group-over {
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid #D0CCD5;
+}
+.input-group-over:focus-within {
+  border-color: #D4AF37;
+  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.15);
+}
+.input-group-over .custom-form-control {
+  border: none;
+  height: 52px;
+  box-shadow: none !important;
+}
+.input-group-over .input-group-text {
+  border: none;
+  height: 52px;
+}
+
+.info-alert-card {
+  background-color: #F8F6F2;
+  border-radius: 12px;
+  border: 1px solid rgba(212, 175, 55, 0.15);
+}
+.info-alert-card .alert-icon-circular {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: rgba(212, 175, 55, 0.12);
+  color: #D4AF37;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+}
+
+.btn-confirm-pay {
+  background-color: #1A0A2E;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+.btn-confirm-pay:disabled {
+  background-color: #4A3E56;
+  color: rgba(255, 255, 255, 0.3);
+  cursor: not-allowed;
+}
+.btn-confirm-pay:hover:not(:disabled) {
+  background-color: #2E1560;
+  color: #FFFFFF;
+}
+
+.summary-card {
+  background-color: #FFFFFF;
+  border-radius: 20px;
+  border: 1px solid rgba(212, 175, 55, 0.1);
+  box-shadow: 0 10px 40px rgba(26, 10, 46, 0.03);
+}
+.summary-card .summary-card-title {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 1.35rem;
+  color: #1A0A2E;
+}
+.summary-card .summary-hotel-img {
+  width: 100%;
+  height: 130px;
+  object-fit: cover;
+  object-position: center;
+  border: 1px solid rgba(212, 175, 55, 0.15);
+}
+.summary-card .summary-hotel-name {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 1.35rem;
+  color: #1A0A2E;
+}
+.summary-card .summary-hotel-branch {
+  font-size: 0.85rem;
+}
+.summary-card .summary-meta-list {
+  list-style: none;
+  font-size: 0.85rem;
+}
+
+.info-card-badge {
+  background-color: #FFFFFF;
+  border-radius: 12px;
+  border: 1px solid rgba(212, 175, 55, 0.15);
+}
+.info-card-badge .badge-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background-color: rgba(212, 175, 55, 0.12);
+  color: #D4AF37;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+}
+
+.member-benefits-banner {
+  background-color: rgba(212, 175, 55, 0.08);
+  border-radius: 16px;
+  border: 1px solid rgba(212, 175, 55, 0.2);
+}
+.member-benefits-banner .benefits-banner-icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background-color: rgba(212, 175, 55, 0.15);
+  color: #D4AF37;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+}
+.member-benefits-banner .benefits-banner-title {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 1.35rem;
+}
+.member-benefits-banner .benefits-banner-sub {
+  font-size: 0.85rem;
+}
+.member-benefits-banner .btn-join-save {
+  background-color: #FFFFFF;
+  color: #1A0A2E;
+  border: 1px solid rgba(26, 10, 46, 0.25);
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  transition: all 0.3s ease;
+}
+.member-benefits-banner .btn-join-save:hover {
+  border-color: #D4AF37;
+  color: #D4AF37;
+}
+
+.payment-loader-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(26, 10, 46, 0.92);
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+}

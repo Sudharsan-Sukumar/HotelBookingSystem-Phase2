@@ -1,0 +1,366 @@
+.my-bookings-page {
+    background-color: #FAF8F4;
+    font-family: "Outfit", "Inter", system-ui, -apple-system, sans-serif;
+    color: #1A0A2E;
+}
+
+.my-bookings-title {
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #1A0A2E;
+}
+
+.my-bookings-sub {
+    font-size: 0.95rem;
+}
+
+.stat-card {
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.01);
+    height: 80px;
+    display: flex;
+    align-items: center;
+}
+
+    .stat-card .stat-icon-circle {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background-color: rgba(212, 175, 55, 0.12);
+        color: #D4AF37;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.25rem;
+    }
+
+        .stat-card .stat-icon-circle.purple {
+            background-color: rgba(26, 10, 46, 0.08);
+            color: #1A0A2E;
+        }
+
+        .stat-card .stat-icon-circle.green {
+            background-color: #E2F6EA;
+            color: #1F8B4C;
+        }
+
+        .stat-card .stat-icon-circle.red {
+            background-color: #FDE8E8;
+            color: #F05252;
+        }
+
+    .stat-card .stat-count {
+        font-size: 0.95rem;
+        font-weight: 700;
+    }
+
+    .stat-card.active-stat-upcoming {
+        background-color: #1A0A2E;
+        border: 1px solid #1A0A2E;
+    }
+
+.filter-row-container {
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.01);
+    border-color: rgba(212, 175, 55, 0.1) !important;
+}
+
+.custom-select-filter {
+    height: 44px;
+    border-color: #D0CCD5;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    color: #1A0A2E;
+    width: 180px;
+}
+
+    .custom-select-filter:focus {
+        border-color: #D4AF37;
+        box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.15);
+    }
+
+.search-group-input {
+    border-color: #D0CCD5 !important;
+    overflow: hidden;
+}
+
+    .search-group-input input.form-control {
+        height: 44px;
+        font-size: 0.9rem;
+        color: #1A0A2E;
+        box-shadow: none !important;
+    }
+
+.grid-table-header {
+    background-color: #FDFCFB;
+    display: grid;
+    grid-template-columns: 340px 260px 170px 170px 170px 170px 230px;
+    gap: 20px;
+    align-items: center;
+    height: 84px;
+    padding: 0 32px !important;
+}
+
+    .grid-table-header div {
+        font-size: 18px;
+        font-weight: 700;
+        color: #1A0A2E;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+    }
+
+.grid-table-body .grid-table-row {
+    display: grid;
+    grid-template-columns: 340px 260px 170px 170px 170px 170px 230px;
+    gap: 20px;
+    align-items: center;
+    height: 190px;
+    padding: 28px 32px !important;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.05);
+}
+
+    .grid-table-body .grid-table-row:last-child {
+        border-bottom: none;
+    }
+
+.ref-texts {
+    margin-left: 12px;
+}
+
+.row-hotel-img {
+    width: 170px;
+    height: 110px;
+    object-fit: cover;
+    border-radius: 12px;
+    border: 1px solid rgba(212, 175, 55, 0.15);
+}
+
+.booking-ref-number {
+    font-size: 0.9rem;
+    line-height: 1.3;
+}
+
+.booking-txn-number {
+    font-size: 0.75rem;
+}
+.status-upcoming-badge {
+    background-color: rgba(212, 175, 55, 0.12);
+    color: #D4AF37;
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 170px;
+    height: 46px;
+    padding: 0;
+}
+
+    .status-upcoming-badge.cancelled {
+        background-color: #FDE8E8;
+        color: #F05252;
+        border-color: rgba(240, 82, 82, 0.3);
+    }
+
+.btn-action-view {
+    background-color: #1A0A2E;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 0.8rem;
+    height: 42px;
+    width: 180px;
+    transition: all 0.3s ease;
+}
+
+    .btn-action-view:hover {
+        background-color: #2E1560;
+        color: #FFFFFF;
+    }
+
+.btn-action-outline-modify {
+    background-color: #FFFFFF;
+    color: #1A0A2E;
+    border: 1px solid rgba(26, 10, 46, 0.25);
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 0.8rem;
+    height: 42px;
+    width: 180px;
+    transition: all 0.3s ease;
+}
+
+    .btn-action-outline-modify:hover {
+        border-color: #D4AF37;
+        color: #D4AF37;
+    }
+
+.btn-action-outline-cancel {
+    background-color: #FFFFFF;
+    color: #E02424;
+    border: 1px solid rgba(224, 36, 36, 0.25);
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 0.8rem;
+    height: 42px;
+    width: 180px;
+    transition: all 0.3s ease;
+}
+
+    .btn-action-outline-cancel:hover {
+        background-color: #FDF2F2;
+        border-color: #E02424;
+    }
+
+.table-card-wrapper {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
+    border-color: rgba(212, 175, 55, 0.12) !important;
+    border-radius: 18px !important;
+}
+
+.table-pagination-footer {
+    background-color: #FDFCFB;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+    .table-pagination-footer .btn-pagination-arrow {
+        background-color: #FFFFFF;
+        border: 1px solid #D0CCD5;
+        border-radius: 6px;
+        width: 32px;
+        height: 32px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        color: #1A0A2E;
+    }
+
+        .table-pagination-footer .btn-pagination-arrow:disabled {
+            background-color: #FAF8F4;
+            color: rgba(26, 10, 46, 0.3);
+            cursor: not-allowed;
+        }
+
+    .table-pagination-footer .btn-pagination-number {
+        width: 32px;
+        height: 32px;
+        border-radius: 6px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 0.85rem;
+        cursor: pointer;
+        margin: 0 4px;
+    }
+
+        .table-pagination-footer .btn-pagination-number.active {
+            background-color: #1A0A2E;
+            color: #FFFFFF;
+        }
+
+    .table-pagination-footer .select-rows-count {
+        height: 32px;
+        border-color: #D0CCD5;
+        border-radius: 6px;
+        font-size: 0.8rem;
+        width: 65px;
+    }
+
+.col-data-bill strong {
+    font-size: 22px !important;
+}
+
+.col-data-bill span {
+    font-size: 18px !important;
+}
+
+.col-data-checkin i, .col-data-checkout i {
+    font-size: 26px !important;
+}
+
+.col-data-checkin strong, .col-data-checkin span.fw-semibold, .col-data-checkout strong, .col-data-checkout span.fw-semibold {
+    font-size: 20px !important;
+}
+
+.col-data-checkin span.small, .col-data-checkout span.small {
+    font-size: 16px !important;
+}
+
+.help-desc-card {
+    background-color: rgba(212, 175, 55, 0.08);
+    border-radius: 16px;
+    border: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+    .help-desc-card .help-badge-circle {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background-color: rgba(212, 175, 55, 0.12);
+        color: #D4AF37;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.25rem;
+    }
+
+    .help-desc-card .help-card-title {
+        font-family: "Playfair Display", Georgia, serif;
+        font-size: 1.35rem;
+    }
+
+    .help-desc-card .btn-contact-support {
+        background-color: #FFFFFF;
+        color: #1A0A2E;
+        border: 1px solid rgba(26, 10, 46, 0.25);
+        border-radius: 10px;
+        font-weight: 700;
+        font-size: 0.85rem;
+        transition: all 0.3s ease;
+    }
+
+        .help-desc-card .btn-contact-support:hover {
+            border-color: #D4AF37;
+            color: #D4AF37;
+        }
+
+.custom-modal-content {
+    background-color: #FFFFFF;
+    border-radius: 16px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+}
+
+    .custom-modal-content .btn-keep-booking {
+        background-color: #FAF8F4;
+        border: 1px solid rgba(26, 10, 46, 0.25);
+        border-radius: 8px;
+        font-weight: 700;
+        font-size: 0.85rem;
+        transition: all 0.3s ease;
+    }
+
+        .custom-modal-content .btn-keep-booking:hover {
+            background-color: rgba(212, 175, 55, 0.08);
+            border-color: #D4AF37;
+        }
+
+    .custom-modal-content .btn-confirm-cancel {
+        background-color: #E02424;
+        border: none;
+        border-radius: 8px;
+        font-weight: 700;
+        font-size: 0.85rem;
+        transition: all 0.3s ease;
+    }
+
+        .custom-modal-content .btn-confirm-cancel:hover {
+            background-color: #C81E1E;
+        }
