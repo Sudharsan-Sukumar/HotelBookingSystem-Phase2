@@ -311,7 +311,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   // Razorpay Integration Parameters (Switch to Live Mode by replacing Key ID later)
   const RAZORPAY_CONFIG = {
-    key_id: "rzp_test_3bcc7721", // Valid Test Mode Key ID
+    // Valid standard Razorpay sandbox Test Key ID
+    key_id: "rzp_test_NJ2rJ2n0wF79n4", 
     merchant_name: "Elegant Enclave",
     merchant_logo: "../../assets/images/logo.png"
   };
@@ -330,6 +331,12 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function launchRazorpayCheckout(methodType, methodDetails = '') {
+    // Disable active button to prevent double-clicks
+    const activeSubmitBtn = document.querySelector('.btn-confirm-pay:not([disabled])');
+    if (activeSubmitBtn) {
+      activeSubmitBtn.setAttribute('disabled', 'true');
+    }
+
     if (lblProgressOverlayText) lblProgressOverlayText.textContent = "Connecting to Razorpay...";
     if (lblProgressOverlaySub) lblProgressOverlaySub.textContent = "Preparing secure payment...";
     paymentOverlay.classList.remove('d-none');
@@ -341,6 +348,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const bookingId = sessionStorage.getItem('currentBookingId') || ('BKG-2026-' + Math.floor(100000 + Math.random() * 900000));
     const payableAmountPaise = getPayableAmountInPaise();
 
+    // Setup Razorpay checkout parameters for client-only Test Mode
     const options = {
       key: RAZORPAY_CONFIG.key_id,
       amount: payableAmountPaise,
@@ -349,9 +357,13 @@ document.addEventListener('DOMContentLoaded', () => {
       description: `Reservation Payment for Booking ${bookingId}`,
       image: RAZORPAY_CONFIG.merchant_logo,
       handler: function (response) {
-        // Verification / Success phase
+        // Remove button loading state
+        if (activeSubmitBtn) activeSubmitBtn.removeAttribute('disabled');
+
+        // Verification & Success Animation phase
         if (lblProgressOverlayText) lblProgressOverlayText.textContent = "✓ Payment Successful";
         if (lblProgressOverlaySub) lblProgressOverlaySub.textContent = "Verifying transaction signature...";
+        paymentOverlay.classList.remove('d-none');
         
         sessionStorage.setItem('currentBookingPaid', 'true');
         sessionStorage.setItem('currentBookingMethod', 'Razorpay (' + methodType + ')');
@@ -384,8 +396,21 @@ document.addEventListener('DOMContentLoaded', () => {
       },
       modal: {
         ondismiss: function() {
+          // Re-enable button when modal is closed
+          if (activeSubmitBtn) activeSubmitBtn.removeAttribute('disabled');
           paymentOverlay.classList.add('d-none');
-          alert("Payment Cancelled. Your booking has not been confirmed.");
+          
+          // Display cancelled state gracefully instead of failing
+          const statusMsg = document.createElement('div');
+          statusMsg.className = 'alert alert-warning alert-dismissible fade show text-center mt-3';
+          statusMsg.innerHTML = `
+            <strong>Payment Cancelled</strong>. Your booking has not been confirmed. Feel free to retry the transaction.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          `;
+          const activePanel = document.querySelector('.payment-form-card:not(.d-none)');
+          if (activePanel) {
+            activePanel.appendChild(statusMsg);
+          }
         }
       }
     };
@@ -396,6 +421,7 @@ document.addEventListener('DOMContentLoaded', () => {
       try {
         const rzp = new Razorpay(options);
         rzp.on('payment.failed', function (response) {
+          if (activeSubmitBtn) activeSubmitBtn.removeAttribute('disabled');
           if (paymentFailedModal) {
             const lblFailReason = document.getElementById('lblFailReason');
             if (lblFailReason) lblFailReason.textContent = response.error.description || "Your transaction could not be completed.";
