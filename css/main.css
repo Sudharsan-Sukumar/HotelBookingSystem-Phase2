@@ -12726,6 +12726,71 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6, .font-serif {
   color: #D4AF37;
 }
 
+/* Elegant Enclave Maps Section */
+.custom-footer .map-container-wrapper {
+  background-color: rgba(255, 255, 255, 0.03);
+  border: 1.5px solid rgba(212, 175, 55, 0.2);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.custom-footer .map-container-wrapper:hover {
+  border-color: #D4AF37;
+  box-shadow: 0 10px 30px rgba(212, 175, 55, 0.15);
+}
+.custom-footer .map-branches-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding-left: 0;
+  list-style: none;
+}
+.custom-footer .map-branch-link {
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  font-size: 0.85rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+.custom-footer .map-branch-link i {
+  color: #D4AF37;
+  font-size: 0.95rem;
+}
+.custom-footer .map-branch-link:hover {
+  color: #D4AF37;
+  transform: translateX(4px);
+}
+.custom-footer .leaflet-popup-content-wrapper {
+  background-color: #1A0A2E !important;
+  color: #FFFFFF !important;
+  border: 1px solid #D4AF37 !important;
+  border-radius: 8px !important;
+  font-family: "Outfit", sans-serif !important;
+}
+.custom-footer .leaflet-popup-tip {
+  background-color: #1A0A2E !important;
+  border: 1px solid #D4AF37 !important;
+}
+.custom-footer .leaflet-popup-content h6 {
+  color: #D4AF37;
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+.custom-footer .leaflet-popup-content p {
+  margin: 0;
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+.custom-footer .leaflet-popup-content span {
+  font-size: 0.7rem;
+  color: #D4AF37;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
 .guests-dropdown-menu {
   width: 280px;
   padding: 1.25rem;

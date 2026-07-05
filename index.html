@@ -12,6 +12,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
   <!-- Custom Compiled Stylesheet -->
   <link rel="stylesheet" href="css/main.css">
+  <!-- Leaflet Map CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
 </head>
 <body>
 
@@ -393,11 +395,9 @@
       </div>
 
       <!-- Links column 2 -->
-      <div class="col-lg-3 col-md-6 col-6">
+      <div class="col-lg-2 col-md-6 col-6">
         <h3 class="footer-heading">Services</h3>
-        <p class="small text-white-50 mb-3">Have questions or need assistance?</p>
-        <p class="small mb-4 text-white-50">Our hospitality team is available 24/7 to help you with reservations, bookings, cancellations, and special requests.</p>
-        <ul class="contact-info-list">
+        <ul class="contact-info-list" style="font-size: 0.85rem;">
           <li id="customerFooterEmail"><i class="bi bi-envelope"></i> support@elegantenclave.com</li>
           <li id="customerFooterPhone"><i class="bi bi-telephone"></i> +91 98765 43210</li>
           <li id="customerFooterBranches"><i class="bi bi-geo-alt"></i> Chennai - Coimbatore - Salem</li>
@@ -405,8 +405,26 @@
         </ul>
       </div>
 
+      <!-- Our Locations column -->
+      <div class="col-lg-2 col-md-6 col-12">
+        <h3 class="footer-heading">Our Locations</h3>
+        <div id="footerMapWrapper" class="map-container-wrapper mb-2" style="cursor: pointer;" title="Click to view all locations on Google Maps">
+          <div id="footerMap" style="width: 100%; height: 180px; z-index: 1;" aria-label="Interactive map showing Elegant Enclave branches"></div>
+        </div>
+        <div class="small mt-2">
+          <span class="text-white-50 d-block mb-1 small fw-semibold text-uppercase">📍 Our Branches</span>
+          <div class="d-flex flex-wrap gap-2">
+            <a href="https://maps.google.com/?q=Elegant+Enclave+Salem" target="_blank" class="map-branch-link small text-decoration-none text-warning"><i class="bi bi-geo-alt-fill me-1"></i>Salem</a>
+            <span class="text-white-50">|</span>
+            <a href="https://maps.google.com/?q=Elegant+Enclave+Coimbatore" target="_blank" class="map-branch-link small text-decoration-none text-warning"><i class="bi bi-geo-alt-fill me-1"></i>Coimbatore</a>
+            <span class="text-white-50">|</span>
+            <a href="https://maps.google.com/?q=Elegant+Enclave+Chennai+Central" target="_blank" class="map-branch-link small text-decoration-none text-warning"><i class="bi bi-geo-alt-fill me-1"></i>Chennai</a>
+          </div>
+        </div>
+      </div>
+
       <!-- Quick Help column -->
-      <div class="col-lg-4 col-md-6">
+      <div class="col-lg-3 col-md-6 col-12">
         <h3 class="footer-heading">Quick Help</h3>
         <div class="help-widget-card">
           <div class="help-img-wrapper">
@@ -776,6 +794,8 @@
 
   <!-- Bootstrap and JS bundle -->
   <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Leaflet Map JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
   <script src="js/session.js"></script>
   <script src="features/landing/landing.js"></script>
   <script>
@@ -813,6 +833,101 @@
 
     // Contact Reception Call and Email simulation handler hooks
     document.addEventListener('DOMContentLoaded', () => {
+      // 1. Lazy-load Map Initialization on intersection
+      const mapContainer = document.getElementById('footerMap');
+      const mapWrapper = document.getElementById('footerMapWrapper');
+      
+      const branchLocations = [
+        {
+          name: 'Elegant Enclave - Chennai',
+          city: 'Chennai',
+          lat: 13.0827,
+          lng: 80.2707,
+          url: 'https://maps.google.com/?q=Elegant+Enclave+Chennai+Central'
+        },
+        {
+          name: 'Elegant Enclave - Coimbatore',
+          city: 'Coimbatore',
+          lat: 11.0168,
+          lng: 76.9558,
+          url: 'https://maps.google.com/?q=Elegant+Enclave+Coimbatore'
+        },
+        {
+          name: 'Elegant Enclave - Salem',
+          city: 'Salem',
+          lat: 11.6643,
+          lng: 78.1460,
+          url: 'https://maps.google.com/?q=Elegant+Enclave+Salem'
+        }
+      ];
+
+      // Handle map wrapper redirect clicks (when not clicking on map controls/popups)
+      if (mapWrapper) {
+        mapWrapper.addEventListener('click', (e) => {
+          // If clicked the zoom buttons or a marker, let leaflet handle it
+          if (e.target.closest('.leaflet-control-zoom') || e.target.closest('.leaflet-marker-icon') || e.target.closest('.leaflet-popup')) {
+            return;
+          }
+          // Redirect to a general map search containing all branches
+          window.open('https://www.google.com/maps/search/Elegant+Enclave+Hotel/', '_blank');
+        });
+      }
+
+      let mapInitialized = false;
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting && !mapInitialized) {
+            mapInitialized = true;
+            initializeFooterMap();
+            observer.unobserve(mapContainer);
+          }
+        });
+      }, { rootMargin: '100px' });
+
+      if (mapContainer) {
+        observer.observe(mapContainer);
+      }
+
+      function initializeFooterMap() {
+        // Enclaves map centering: Salem/Coimbatore/Chennai midpoint focus
+        const map = L.map('footerMap', {
+          center: [11.9, 78.5], 
+          zoom: 6,
+          zoomControl: true,
+          scrollWheelZoom: false
+        });
+
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+          attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+          subdomains: 'abcd',
+          maxZoom: 20
+        }).addTo(map);
+
+        // Elegant custom gold marker icon
+        const customGoldIcon = L.divIcon({
+          className: 'custom-map-marker-div',
+          html: `<div style="background-color: #1A0A2E; border: 2px solid #D4AF37; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,0.3);"><i class="bi bi-award-fill" style="color: #D4AF37; font-size: 12px; line-height: 1;"></i></div>`,
+          iconSize: [24, 24],
+          iconAnchor: [12, 12]
+        });
+
+        branchLocations.forEach(loc => {
+          const marker = L.marker([loc.lat, loc.lng], { icon: customGoldIcon }).addTo(map);
+          const popupContent = `
+            <div style="padding: 2px;">
+              <h6 style="margin: 0; font-size: 0.85rem;">${loc.name}</h6>
+              <p style="margin: 4px 0 6px 0; font-size: 0.75rem;">${loc.city}</p>
+              <span onclick="window.open('${loc.url}', '_blank')">Click to View Directions</span>
+            </div>
+          `;
+          marker.bindPopup(popupContent);
+          
+          marker.on('click', () => {
+            marker.openPopup();
+          });
+        });
+      }
+
       const phoneBtn = document.getElementById('receptionPhoneBtn');
       const emailBtn = document.getElementById('receptionEmailBtn');
       
