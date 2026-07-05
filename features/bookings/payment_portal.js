@@ -312,7 +312,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Razorpay Integration Parameters (Switch to Live Mode by replacing Key ID later)
   const RAZORPAY_CONFIG = {
     // Valid standard Razorpay sandbox Test Key ID
-    key_id: "rzp_test_NJ2rJ2n0wF79n4", 
+    key_id: "rzp_test_T8UtZpyMedZBY8", 
     merchant_name: "Elegant Enclave",
     merchant_logo: "../../assets/images/logo.png"
   };
