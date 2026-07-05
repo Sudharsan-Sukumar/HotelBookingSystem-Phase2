@@ -309,8 +309,105 @@ document.addEventListener('DOMContentLoaded', () => {
 
     return isValid;
   }
+  // Razorpay Integration Parameters (Switch to Live Mode by replacing Key ID later)
+  const RAZORPAY_CONFIG = {
+    key_id: "rzp_test_ElegantEnclaveKeyId", // Test Mode Key ID
+    merchant_name: "Elegant Enclave",
+    merchant_logo: "../../assets/images/logo.png"
+  };
 
-  // 3. Card Form Submit secure simulation gateway trigger
+  // Helper to fetch total billing amount from price breakdown or storage
+  function getPayableAmountInPaise() {
+    let amount = 19500; // Default base amount
+    const totalEl = document.querySelector('.price-breakdown-box strong.text-warning');
+    if (totalEl) {
+      const match = totalEl.textContent.match(/[\d,]+/);
+      if (match) {
+        amount = parseInt(match[0].replace(/,/g, ''), 10);
+      }
+    }
+    return amount * 100; // Convert to paise
+  }
+
+  function launchRazorpayCheckout(methodType, methodDetails = '') {
+    if (lblProgressOverlayText) lblProgressOverlayText.textContent = "Connecting to Razorpay...";
+    if (lblProgressOverlaySub) lblProgressOverlaySub.textContent = "Please wait, opening secure checkout window...";
+    paymentOverlay.classList.remove('d-none');
+
+    // Retrieve active logged in customer details
+    const userName = localStorage.getItem('login_user_name') || "Valued Guest";
+    const userEmail = localStorage.getItem('login_user_email') || "guest@elegantenclave.com";
+    const userPhone = localStorage.getItem('login_user_phone') || "9876543210";
+    const bookingId = sessionStorage.getItem('currentBookingId') || ('BKG-2026-' + Math.floor(100000 + Math.random() * 900000));
+    const payableAmountPaise = getPayableAmountInPaise();
+
+    const options = {
+      key: RAZORPAY_CONFIG.key_id,
+      amount: payableAmountPaise,
+      currency: "INR",
+      name: RAZORPAY_CONFIG.merchant_name,
+      description: `Reservation Payment for Booking ${bookingId}`,
+      image: RAZORPAY_CONFIG.merchant_logo,
+      // Simulated order_id representing backend created order
+      order_id: "order_" + Math.random().toString(36).substring(2, 15),
+      handler: function (response) {
+        // Verification / Success phase
+        if (lblProgressOverlayText) lblProgressOverlayText.textContent = "✓ Payment Successful";
+        if (lblProgressOverlaySub) lblProgressOverlaySub.textContent = "Verifying transaction signature...";
+        
+        sessionStorage.setItem('currentBookingPaid', 'true');
+        sessionStorage.setItem('currentBookingMethod', 'Razorpay (' + methodType + ')');
+        sessionStorage.setItem('currentBookingTxnId', response.razorpay_payment_id);
+        sessionStorage.setItem('razorpay_payment_id', response.razorpay_payment_id);
+        sessionStorage.setItem('razorpay_order_id', response.razorpay_order_id);
+        sessionStorage.setItem('razorpay_signature', response.razorpay_signature);
+        sessionStorage.setItem('payment_status', 'Success');
+        sessionStorage.setItem('payment_time', new Date().toLocaleString());
+        sessionStorage.setItem('currentBookingRef', bookingId);
+
+        // Success animation hold
+        setTimeout(() => {
+          paymentOverlay.classList.add('d-none');
+          window.location.href = 'booking_success.html';
+        }, 2000);
+      },
+      prefill: {
+        name: userName,
+        email: userEmail,
+        contact: userPhone,
+        method: methodType
+      },
+      notes: {
+        booking_id: bookingId,
+        payment_method_channel: methodDetails
+      },
+      theme: {
+        color: "#1A0A2E" // Elegant Purple brand color
+      },
+      modal: {
+        ondismiss: function() {
+          paymentOverlay.classList.add('d-none');
+          alert("Payment Cancelled. Your booking has not been confirmed.");
+        }
+      }
+    };
+
+    // Close loading overlay and open checkout popup
+    setTimeout(() => {
+      paymentOverlay.classList.add('d-none');
+      const rzp = new Razorpay(options);
+      rzp.on('payment.failed', function (response) {
+        if (paymentFailedModal) {
+          const lblFailReason = document.getElementById('lblFailReason');
+          if (lblFailReason) lblFailReason.textContent = response.error.description || "Your transaction could not be completed.";
+          paymentFailedModal.show();
+        }
+      });
+      rzp.open();
+    }, 1500);
+  }
+
+  // 3. Card Form Submit secure integration gateway trigger
   const creditCardForm = document.getElementById('creditCardForm');
   const paymentOverlay = document.getElementById('paymentProgressOverlay');
   const lblProgressOverlayText = document.getElementById('lblProgressOverlayText');
@@ -319,20 +416,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (creditCardForm) {
     creditCardForm.addEventListener('submit', (e) => {
       e.preventDefault();
-      
-      if (lblProgressOverlayText) lblProgressOverlayText.textContent = "Processing Secure Payment...";
-      if (lblProgressOverlaySub) lblProgressOverlaySub.textContent = "Please do not refresh or navigate away from this window.";
-      paymentOverlay.classList.remove('d-none');
-      
-      sessionStorage.setItem('currentBookingPaid', 'true');
-      sessionStorage.setItem('currentBookingMethod', 'Credit Card');
-      sessionStorage.setItem('currentBookingTxnId', 'TXN7894561230');
-      sessionStorage.setItem('currentBookingRef', 'HBS-2026-9901');
-
-      setTimeout(() => {
-        paymentOverlay.classList.add('d-none');
-        window.location.href = 'booking_success.html';
-      }, 2000);
+      launchRazorpayCheckout('card', cardNumberInput.value.substring(0, 4) + 'XXXXXXXX');
     });
   }
 
@@ -402,19 +486,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (upiPaymentForm) {
     upiPaymentForm.addEventListener('submit', (e) => {
       e.preventDefault();
-      
-      if (lblProgressOverlayText) lblProgressOverlayText.textContent = "Redirecting to your UPI application...";
-      if (lblProgressOverlaySub) lblProgressOverlaySub.textContent = "Please accept the payment request within 10 minutes.";
-      paymentOverlay.classList.remove('d-none');
-
-      setTimeout(() => {
-        paymentOverlay.classList.add('d-none');
-        if (upiWaitModal) {
-          upiWaitModal.show();
-          const lblUpiTimer = document.getElementById('lblUpiTimer');
-          startCountdown(600, lblUpiTimer, upiWaitModal);
-        }
-      }, 5000);
+      launchRazorpayCheckout('upi', upiIdInput.value);
     });
   }
 
@@ -422,14 +494,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const btnUpiCompleted = document.getElementById('btnUpiCompleted');
   if (btnUpiCompleted) {
     btnUpiCompleted.addEventListener('click', () => {
-      clearInterval(timerInterval);
       if (upiWaitModal) upiWaitModal.hide();
-      
-      sessionStorage.setItem('currentBookingPaid', 'true');
-      sessionStorage.setItem('currentBookingMethod', 'UPI');
-      sessionStorage.setItem('currentBookingTxnId', 'TXN' + Math.floor(1000000000 + Math.random() * 9000000000));
-      sessionStorage.setItem('currentBookingRef', 'HBS-2026-9901');
-      window.location.href = 'booking_success.html';
     });
   }
 
@@ -437,12 +502,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const btnUpiCancel = document.getElementById('btnUpiCancel');
   if (btnUpiCancel) {
     btnUpiCancel.addEventListener('click', () => {
-      clearInterval(timerInterval);
-      if (paymentFailedModal) {
-        const lblFailReason = document.getElementById('lblFailReason');
-        if (lblFailReason) lblFailReason.textContent = "Payment cancelled by the user.";
-        paymentFailedModal.show();
-      }
+      if (upiWaitModal) upiWaitModal.hide();
     });
   }
 
@@ -464,19 +524,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (bankPaymentForm) {
     bankPaymentForm.addEventListener('submit', (e) => {
       e.preventDefault();
-      
-      if (lblProgressOverlayText) lblProgressOverlayText.textContent = "Redirecting to your bank website...";
-      if (lblProgressOverlaySub) lblProgressOverlaySub.textContent = "Please complete your transaction within 10 minutes.";
-      paymentOverlay.classList.remove('d-none');
-
-      setTimeout(() => {
-        paymentOverlay.classList.add('d-none');
-        if (bankWaitModal) {
-          bankWaitModal.show();
-          const lblBankTimer = document.getElementById('lblBankTimer');
-          startCountdown(600, lblBankTimer, bankWaitModal);
-        }
-      }, 5000);
+      launchRazorpayCheckout('netbanking', selectBank.value);
     });
   }
 
@@ -484,14 +532,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const btnBankCompleted = document.getElementById('btnBankCompleted');
   if (btnBankCompleted) {
     btnBankCompleted.addEventListener('click', () => {
-      clearInterval(timerInterval);
       if (bankWaitModal) bankWaitModal.hide();
-      
-      sessionStorage.setItem('currentBookingPaid', 'true');
-      sessionStorage.setItem('currentBookingMethod', 'Net Banking (' + selectBank.value + ')');
-      sessionStorage.setItem('currentBookingTxnId', 'TXN' + Math.floor(1000000000 + Math.random() * 9000000000));
-      sessionStorage.setItem('currentBookingRef', 'HBS-2026-9901');
-      window.location.href = 'booking_success.html';
     });
   }
 
@@ -499,12 +540,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const btnBankCancel = document.getElementById('btnBankCancel');
   if (btnBankCancel) {
     btnBankCancel.addEventListener('click', () => {
-      clearInterval(timerInterval);
-      if (paymentFailedModal) {
-        const lblFailReason = document.getElementById('lblFailReason');
-        if (lblFailReason) lblFailReason.textContent = "Payment cancelled on the bank portal.";
-        paymentFailedModal.show();
-      }
+      if (bankWaitModal) bankWaitModal.hide();
     });
   }
 
@@ -520,19 +556,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const btnPayWallet = document.getElementById('btnPayWallet');
   if (btnPayWallet) {
     btnPayWallet.addEventListener('click', () => {
-      if (lblProgressOverlayText) lblProgressOverlayText.textContent = "Deducting from Elegant Wallet...";
-      if (lblProgressOverlaySub) lblProgressOverlaySub.textContent = "Processing secure wallet transaction...";
-      paymentOverlay.classList.remove('d-none');
-
-      sessionStorage.setItem('currentBookingPaid', 'true');
-      sessionStorage.setItem('currentBookingMethod', 'Wallet');
-      sessionStorage.setItem('currentBookingTxnId', 'TXN7894561230');
-      sessionStorage.setItem('currentBookingRef', 'HBS-2026-9901');
-
-      setTimeout(() => {
-        paymentOverlay.classList.add('d-none');
-        window.location.href = 'booking_success.html';
-      }, 1500);
+      launchRazorpayCheckout('wallet', 'Elegant Wallet Balance');
     });
   }
 
