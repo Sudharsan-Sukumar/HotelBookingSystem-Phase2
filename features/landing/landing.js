@@ -103,6 +103,14 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
+      // Reservations can be made up to 365 days in advance
+      const oneYearFromToday = new Date(today);
+      oneYearFromToday.setDate(oneYearFromToday.getDate() + 365);
+      if (checkinDate > oneYearFromToday) {
+        alert('Reservations can only be made up to 365 days in advance.');
+        return;
+      }
+
       // Save parameters in sessionStorage for propagation
       sessionStorage.setItem('search_checkin', checkin);
       sessionStorage.setItem('search_checkout', checkout);
