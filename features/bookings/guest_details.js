@@ -43,27 +43,18 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Real-time input keydown, paste, change protections
-  const handleDateInputRestrictions = (e) => {
+  // Input auto-formatter: automatically inject dashes for DD-MM-YYYY
+  const handleInputFormat = (e) => {
     const input = e.target;
+    let val = input.value.replace(/[^0-9]/g, ''); // strip non-digits
     
-    // Prevent typing extra year digits manually
-    if (e.type === 'keypress') {
-      const parts = input.value.split('-'); // yyyy-mm-dd
-      if (parts[0] && parts[0].length >= 4) {
-        // Find selection start to see if user is replacing text
-        if (input.selectionStart !== null && input.selectionStart <= 4) {
-          // If cursor is in the year part and selection doesn't cover characters, block it
-          if (input.selectionEnd - input.selectionStart === 0) {
-            e.preventDefault();
-          }
-        }
-      }
+    if (val.length > 2 && val.length <= 4) {
+      input.value = val.slice(0, 2) + '-' + val.slice(2);
+    } else if (val.length > 4) {
+      input.value = val.slice(0, 2) + '-' + val.slice(2, 4) + '-' + val.slice(4, 8);
     }
+    validateFormState();
   };
-
-  checkinInput.addEventListener('keypress', handleDateInputRestrictions);
-  checkoutInput.addEventListener('keypress', handleDateInputRestrictions);
 
   const checkinErrorEl = document.getElementById('checkinErrorMsg');
   const checkoutErrorEl = document.getElementById('checkoutErrorMsg');
@@ -78,19 +69,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!/^[0-9\-]$/.test(e.key)) {
       e.preventDefault();
     }
-  };
-
-  // Input auto-formatter: automatically inject dashes for DD-MM-YYYY
-  const handleInputFormat = (e) => {
-    const input = e.target;
-    let val = input.value.replace(/[^0-9]/g, ''); // strip non-digits
-    
-    if (val.length > 2 && val.length <= 4) {
-      input.value = val.slice(0, 2) + '-' + val.slice(2);
-    } else if (val.length > 4) {
-      input.value = val.slice(0, 2) + '-' + val.slice(2, 4) + '-' + val.slice(4, 8);
-    }
-    validateFormState();
   };
 
   checkinInput.addEventListener('keydown', handleKeydownSanitization);
@@ -125,6 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
     today.setHours(0, 0, 0, 0);
 
     const parseDateDDMMYYYY = (str) => {
+      if (!str) return null;
       const parts = str.split('-');
       if (parts.length !== 3) return null;
       const day = parseInt(parts[0], 10);
