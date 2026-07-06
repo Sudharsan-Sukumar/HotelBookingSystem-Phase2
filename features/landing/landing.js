@@ -71,10 +71,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const checkin = document.getElementById('checkin').value;
       const checkout = document.getElementById('checkout').value;
+
+      const checkinValError = document.getElementById('checkinValidationError');
+      const checkoutValError = document.getElementById('checkoutValidationError');
+
+      // Clear previous validation states
+      if (checkinValError) {
+        checkinValError.textContent = '';
+        checkinValError.classList.add('d-none');
+      }
+      if (checkoutValError) {
+        checkoutValError.textContent = '';
+        checkoutValError.classList.add('d-none');
+      }
       
       // Business Logic verification
-      if (!checkin || !checkout) {
-        alert('Please select both Check-In and Check-Out dates.');
+      if (!checkin) {
+        if (checkinValError) {
+          checkinValError.textContent = 'Please select a check-in date.';
+          checkinValError.classList.remove('d-none');
+        }
+        return;
+      }
+      if (!checkout) {
+        if (checkoutValError) {
+          checkoutValError.textContent = 'Please select a check-out date.';
+          checkoutValError.classList.remove('d-none');
+        }
         return;
       }
       
@@ -85,7 +108,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // Check-in must be today or in the future
       if (checkinDate < today) {
-        alert('Check-In date must be today or a future date.');
+        if (checkinValError) {
+          checkinValError.textContent = 'Check-in must be today or a future date.';
+          checkinValError.classList.remove('d-none');
+        }
         return;
       }
 
@@ -93,13 +119,19 @@ document.addEventListener('DOMContentLoaded', () => {
       const msDiff = checkoutDate.getTime() - checkinDate.getTime();
       const nightCount = Math.ceil(msDiff / (1000 * 60 * 60 * 24));
       if (nightCount < 1) {
-        alert('Check-Out date must be at least 1 night after the Check-In date.');
+        if (checkoutValError) {
+          checkoutValError.textContent = 'Check-out must be at least 1 night after check-in.';
+          checkoutValError.classList.remove('d-none');
+        }
         return;
       }
 
-      // Max stay limit
+      // Max stay limit (30 consecutive nights)
       if (nightCount > 30) {
-        alert('Maximum stay is limited to 30 consecutive nights.');
+        if (checkoutValError) {
+          checkoutValError.textContent = 'Maximum stay is limited to 30 consecutive nights.';
+          checkoutValError.classList.remove('d-none');
+        }
         return;
       }
 
@@ -107,7 +139,10 @@ document.addEventListener('DOMContentLoaded', () => {
       const oneYearFromToday = new Date(today);
       oneYearFromToday.setDate(oneYearFromToday.getDate() + 365);
       if (checkinDate > oneYearFromToday) {
-        alert('Reservations can only be made up to 365 days in advance.');
+        if (checkinValError) {
+          checkinValError.textContent = 'Reservations can only be made up to 365 days in advance.';
+          checkinValError.classList.remove('d-none');
+        }
         return;
       }
 
