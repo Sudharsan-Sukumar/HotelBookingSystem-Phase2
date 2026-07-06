@@ -78,6 +78,50 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  // Booking Status Distribution Doughnut Chart
+  const ctxStatus = document.getElementById('statusChart').getContext('2d');
+  let statusChart = new Chart(ctxStatus, {
+    type: 'doughnut',
+    data: {
+      labels: ['Confirmed', 'Pending', 'Checked-In', 'Checked-Out', 'Cancelled'],
+      datasets: [{
+        data: [182, 33, 45, 120, 15],
+        backgroundColor: ['#2E8B57', '#F1C40F', '#0D6EFD', '#6C757D', '#dc3545'],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { position: 'bottom' }
+      }
+    }
+  });
+
+  // Branch Occupancy Bar Chart
+  const ctxBranch = document.getElementById('branchRatioChart').getContext('2d');
+  let branchRatioChart = new Chart(ctxBranch, {
+    type: 'bar',
+    data: {
+      labels: ['Chennai Enclave', 'Coimbatore Enclave', 'Salem Enclave'],
+      datasets: [{
+        label: 'Occupancy Rate (%)',
+        data: [82, 75, 68],
+        backgroundColor: ['#1A0A2E', '#D4AF37', '#8A2BE2'],
+        borderRadius: 6
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      indexAxis: 'y',
+      scales: {
+        x: { beginAtZero: true, max: 100 }
+      }
+    }
+  });
+
   window.setChartMode = function(mode) {
     document.querySelectorAll('.btn-group button').forEach(b => b.classList.remove('active', 'btn-purple'));
     document.querySelectorAll('.btn-group button').forEach(b => b.classList.add('btn-outline-purple'));
@@ -85,12 +129,20 @@ document.addEventListener('DOMContentLoaded', () => {
     // Simulate data transitions
     if (mode === 'daily') {
       trendChart.data.datasets[0].data = [100, 120, 130, 160, 120, 170, 150];
+      statusChart.data.datasets[0].data = [182, 33, 45, 120, 15];
+      branchRatioChart.data.datasets[0].data = [82, 75, 68];
     } else if (mode === 'weekly') {
       trendChart.data.datasets[0].data = [400, 520, 480, 600, 550, 710, 680];
+      statusChart.data.datasets[0].data = [720, 110, 180, 490, 65];
+      branchRatioChart.data.datasets[0].data = [88, 79, 72];
     } else {
       trendChart.data.datasets[0].data = [1600, 1800, 2100, 1900, 2300, 2500, 2400];
+      statusChart.data.datasets[0].data = [2900, 450, 780, 1950, 220];
+      branchRatioChart.data.datasets[0].data = [91, 84, 78];
     }
     trendChart.update();
+    statusChart.update();
+    branchRatioChart.update();
   };
 
   window.exportReport = function(format) {
