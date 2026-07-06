@@ -326,11 +326,13 @@ document.addEventListener('DOMContentLoaded', () => {
     window.open(targetRedirectUrl, '_blank', 'noopener,noreferrer');
     closeModal();
   });
+});
 
-  // =============================================================
-  // REUSABLE FLOATING BACK-TO-TOP COMPONENT IMPLEMENTATION
-  // =============================================================
-  
+// =============================================================
+// REUSABLE FLOATING BACK-TO-TOP COMPONENT IMPLEMENTATION
+// =============================================================
+
+document.addEventListener('DOMContentLoaded', () => {
   // 1. Inject Floating Button Styles
   if (!document.getElementById('backToTopStyles')) {
     const styleEl = document.createElement('style');
@@ -349,8 +351,8 @@ document.addEventListener('DOMContentLoaded', () => {
         align-items: center;
         justify-content: center;
         text-decoration: none;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-        z-index: 1050; /* Ensure stays below standard modals (1055+) but above dashboard layers */
+        box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        z-index: 9999 !important; /* Ensure it is always visible above modals and page contents */
         opacity: 0;
         visibility: hidden;
         transform: scale(0.9);
@@ -365,7 +367,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       .floating-back-to-top:hover {
         background-color: #EFD98C !important;
-        box-shadow: 0 6px 20px rgba(212,175,55,0.3);
+        box-shadow: 0 6px 20px rgba(212,175,55,0.4);
         transform: translateY(-3px) scale(1.05);
       }
       .floating-back-to-top:active {
