@@ -404,10 +404,17 @@
       </div>
 
       <!-- Our Locations column (20%) -->
-      <div class="col-xl-2 col-lg-3 col-md-6 col-12 mb-4 mb-lg-0">
+      <div class="col-xl-2 col-lg-3 col-md-6 col-12 mb-4 mb-lg-0 text-start">
         <h3 class="footer-heading">Our Locations</h3>
-        <div id="footerMapWrapper" class="map-container-wrapper mb-3" style="cursor: pointer; width: 100%; max-width: 300px; margin: 0 auto;" title="Click to view all locations on Google Maps">
-          <div id="footerMap" style="width: 100%; height: 180px; z-index: 1;" aria-label="Interactive map showing Elegant Enclave branches"></div>
+        <div id="footerMapWrapper" class="map-container-wrapper mb-3" style="width: 100%; max-width: 300px; min-height: 180px; position: relative;">
+          <!-- Map Preview Toggle Placeholder Icon (First view state) -->
+          <div id="mapTogglePlaceholder" class="d-flex flex-column align-items-center justify-content-center border rounded" style="background-color: rgba(255,255,255,0.05); border-color: rgba(212,175,55,0.3) !important; height: 180px; cursor: pointer; transition: all 0.3s;" title="Click to view interactive map in footer">
+            <span class="fs-1 text-warning mb-2 animate-bounce"><i class="bi bi-map-fill"></i></span>
+            <span class="text-white-50 small fw-semibold text-uppercase" style="letter-spacing: 0.5px; font-size: 0.75rem;">View Interactive Map</span>
+            <span class="text-muted small mt-1" style="font-size: 0.65rem;">Click once to load map</span>
+          </div>
+          <!-- Leaflet Map Container (Second view state - hidden initially) -->
+          <div id="footerMap" class="d-none border rounded" style="width: 100%; height: 180px; z-index: 1; border-color: rgba(212,175,55,0.3) !important;" aria-label="Interactive map showing Elegant Enclave branches" title="Click anywhere on map to open Google Maps directory"></div>
         </div>
         <div class="small mt-2" style="max-width: 300px; margin: 0 auto;">
           <span class="text-white-50 d-block mb-2 small fw-semibold text-uppercase">📍 Our Branches</span>
@@ -857,31 +864,38 @@
         }
       ];
 
+      let mapInitialized = false;
+      const placeholder = document.getElementById('mapTogglePlaceholder');
+
+      if (placeholder) {
+        placeholder.addEventListener('click', (e) => {
+          e.stopPropagation();
+          placeholder.classList.add('d-none');
+          if (mapContainer) mapContainer.classList.remove('d-none');
+          
+          if (!mapInitialized) {
+            mapInitialized = true;
+            // Delay slightly to let bootstrap render the map container height first
+            setTimeout(() => {
+              initializeFooterMap();
+            }, 100);
+          }
+        });
+      }
+
       // Handle map wrapper redirect clicks (when not clicking on map controls/popups)
       if (mapWrapper) {
         mapWrapper.addEventListener('click', (e) => {
+          // If map is not initialized yet (placeholder is still visible), do nothing and let placeholder click trigger it
+          if (!mapInitialized) return;
+          
           // If clicked the zoom buttons or a marker, let leaflet handle it
           if (e.target.closest('.leaflet-control-zoom') || e.target.closest('.leaflet-marker-icon') || e.target.closest('.leaflet-popup')) {
             return;
           }
-          // Redirect to a general map search containing all branches
+          // Redirect to a general map search containing all branches on secondary clicks
           window.open('https://www.google.com/maps/search/Elegant+Enclave+Hotel/', '_blank');
         });
-      }
-
-      let mapInitialized = false;
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting && !mapInitialized) {
-            mapInitialized = true;
-            initializeFooterMap();
-            observer.unobserve(mapContainer);
-          }
-        });
-      }, { rootMargin: '100px' });
-
-      if (mapContainer) {
-        observer.observe(mapContainer);
       }
 
       function initializeFooterMap() {
