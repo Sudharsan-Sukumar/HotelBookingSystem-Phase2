@@ -175,4 +175,128 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   syncCMSContent();
+
+  // =============================================================
+  // LANDING PAGE FLOATING BACK-TO-TOP IMPLEMENTATION
+  // =============================================================
+  
+  // 1. Inject Styles
+  if (!document.getElementById('landingBackToTopStyles')) {
+    const styleEl = document.createElement('style');
+    styleEl.id = 'landingBackToTopStyles';
+    styleEl.innerHTML = `
+      .landing-back-to-top {
+        position: fixed !important;
+        bottom: 24px !important;
+        right: 24px !important;
+        width: 48px !important;
+        height: 48px !important;
+        background-color: #D4AF37 !important;
+        border-radius: 50% !important;
+        display: block !important;
+        text-align: center !important;
+        line-height: 48px !important;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.3) !important;
+        z-index: 99999 !important;
+        opacity: 0 !important;
+        visibility: hidden !important;
+        transform: scale(0.9) !important;
+        transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease, background-color 0.2s ease, box-shadow 0.2s ease !important;
+        cursor: pointer !important;
+        border: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+      }
+      .landing-back-to-top.show {
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: scale(1) !important;
+      }
+      .landing-back-to-top:hover {
+        background-color: #EFD98C !important;
+        box-shadow: 0 6px 20px rgba(212,175,55,0.4) !important;
+        transform: translateY(-3px) scale(1.05) !important;
+      }
+      .landing-back-to-top:active {
+        transform: translateY(-1px) scale(0.98) !important;
+      }
+      .landing-back-to-top i {
+        font-size: 1.4rem !important;
+        color: #1A0A2E !important;
+        display: inline-block !important;
+        vertical-align: middle !important;
+        position: relative !important;
+        top: -1px !important;
+      }
+    `;
+    document.head.appendChild(styleEl);
+  }
+
+  // 2. Inject HTML
+  if (!document.getElementById('backToTopBtn')) {
+    const btnHTML = `
+      <button id="backToTopBtn" class="landing-back-to-top" aria-label="Back to Top" title="Back to Top">
+        <i class="bi bi-arrow-up"></i>
+      </button>
+    `;
+    document.body.insertAdjacentHTML('beforeend', btnHTML);
+  }
+
+  // 3. Setup Scroll Visibility & Trigger Actions
+  const landingBtn = document.getElementById('backToTopBtn');
+  let isLandingScrolling = false;
+
+  if (landingBtn) {
+    const handleLandingScroll = () => {
+      const winScroll = window.pageYOffset || window.scrollY || 0;
+      const docScroll = document.documentElement.scrollTop || 0;
+      const bodyScroll = document.body.scrollTop || 0;
+      
+      const scrollPosition = Math.max(winScroll, docScroll, bodyScroll);
+      
+      if (scrollPosition > 200) {
+        landingBtn.classList.add('show');
+      } else {
+        landingBtn.classList.remove('show');
+      }
+    };
+
+    // Attach listener hooks to window and body to capture any scrolling targets
+    window.addEventListener('scroll', handleLandingScroll, { passive: true });
+    document.addEventListener('scroll', handleLandingScroll, { passive: true });
+    if (document.body) {
+      document.body.addEventListener('scroll', handleLandingScroll, { passive: true });
+    }
+
+    landingBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (isLandingScrolling) return;
+      isLandingScrolling = true;
+
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+      document.documentElement.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+      document.body.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+
+      const checkLandingTop = setInterval(() => {
+        const currentPos = Math.max(
+          window.pageYOffset || window.scrollY || 0,
+          document.documentElement.scrollTop || 0,
+          document.body.scrollTop || 0
+        );
+        if (currentPos === 0) {
+          isLandingScrolling = false;
+          clearInterval(checkLandingTop);
+        }
+      }, 50);
+    });
+  }
 });
