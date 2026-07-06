@@ -182,8 +182,27 @@ document.addEventListener('DOMContentLoaded', () => {
     URL.revokeObjectURL(url);
   };
 
-  filterBranch.addEventListener('change', renderTable);
-  filterStatus.addEventListener('change', renderTable);
+  const btnApplyFilters = document.getElementById('btnApplyFilters');
+  const btnResetFilters = document.getElementById('btnResetFilters');
+
+  if (btnApplyFilters) {
+    btnApplyFilters.addEventListener('click', () => {
+      renderTable();
+      showToast('Filters applied successfully.', true);
+    });
+  }
+
+  if (btnResetFilters) {
+    btnResetFilters.addEventListener('click', () => {
+      if (filterBranch) filterBranch.value = 'all';
+      if (filterStatus) filterStatus.value = 'all';
+      if (document.getElementById('filterDateRange')) {
+        document.getElementById('filterDateRange').value = 'This Month';
+      }
+      renderTable();
+      showToast('Filters reset to default.', true);
+    });
+  }
 
   // Active chart selector toggle logic
   const selectActiveChart = document.getElementById('selectActiveChart');

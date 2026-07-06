@@ -89,7 +89,7 @@
     <!-- FILTER BAR -->
     <div class="card p-3 border mb-4 bg-white shadow-sm" style="border-radius: 12px;">
       <div class="row g-2 align-items-end text-start">
-        <div class="col-md-3">
+        <div class="col-md-2 col-sm-6">
           <label class="form-label small fw-semibold text-purple">Branch</label>
           <select class="form-select form-select-sm" id="filterBranch">
             <option value="all">Branch: All</option>
@@ -98,7 +98,7 @@
             <option value="Chennai">Chennai</option>
           </select>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-2 col-sm-6">
           <label class="form-label small fw-semibold text-purple">Date Range</label>
           <select class="form-select form-select-sm" id="filterDateRange">
             <option value="This Month">Date Range: This Month</option>
@@ -106,7 +106,7 @@
             <option value="Last 7 Days">Last 7 Days</option>
           </select>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-2 col-sm-6">
           <label class="form-label small fw-semibold text-purple">Status</label>
           <select class="form-select form-select-sm" id="filterStatus">
             <option value="all">Status: All</option>
@@ -117,9 +117,13 @@
             <option value="Cancelled">Cancelled</option>
           </select>
         </div>
-        <div class="col-md-3 text-end">
+        <div class="col-md-4 col-sm-6 d-flex gap-2">
+          <button class="btn btn-outline-purple btn-sm w-50" id="btnResetFilters" type="button">Reset</button>
+          <button class="btn btn-purple btn-sm w-50" id="btnApplyFilters" type="button">Apply Filters</button>
+        </div>
+        <div class="col-md-2 col-sm-12 text-end">
           <div class="dropdown d-inline-block w-100">
-            <button class="btn btn-purple btn-sm w-100 dropdown-toggle" type="button" data-bs-toggle="dropdown"><i class="bi bi-download me-1"></i> Export Report</button>
+            <button class="btn btn-outline-purple btn-sm w-100 dropdown-toggle" type="button" data-bs-toggle="dropdown"><i class="bi bi-download me-1"></i> Export Report</button>
             <ul class="dropdown-menu dropdown-menu-end shadow">
               <li><button class="dropdown-item small" onclick="exportReport('PDF')">Export as PDF</button></li>
               <li><button class="dropdown-item small" onclick="exportReport('Excel')">Export as Excel</button></li>
