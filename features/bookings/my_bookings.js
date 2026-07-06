@@ -1,4 +1,26 @@
 document.addEventListener('DOMContentLoaded', () => {
+  const tableCardWrapper = document.querySelector('.table-card-wrapper');
+  const statRow = document.querySelector('.row.g-3.mb-4');
+  const filterRow = document.querySelector('.filter-row-container');
+
+  // Verify auth session credentials. Hide data if unauthenticated.
+  const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+  if (!isLoggedIn) {
+    if (tableCardWrapper) {
+      tableCardWrapper.innerHTML = `
+        <div class="profile-card bg-white p-5 rounded border text-center shadow-sm">
+          <div class="mb-4 text-warning" style="font-size: 3rem;"><i class="bi bi-shield-lock"></i></div>
+          <h3 class="font-serif text-dark mb-3">Login to View Bookings</h3>
+          <p class="text-muted mb-4 small">You must be logged in to view, modify, or cancel your personal reservations.</p>
+          <a href="../authentication/login.html" class="btn btn-confirm-pay px-4 py-2" style="background-color: #1A0A2E; color: white; border-radius: 8px;">Login to Continue</a>
+        </div>
+      `;
+    }
+    if (statRow) statRow.style.display = 'none';
+    if (filterRow) filterRow.style.display = 'none';
+    return;
+  }
+
   const btnCancel = document.getElementById('btnCancel');
   const btnConfirmCancel = document.getElementById('btnConfirmCancel');
   const lblStatusBadge = document.getElementById('lblStatusBadge');
