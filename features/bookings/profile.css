@@ -160,7 +160,7 @@ $bg-ivory: #FAF8F4;
   }
 
   .security-illustration {
-    max-height: 120px;
+    max-height: 80px;
     width: auto;
     object-fit: contain;
     display: block;
