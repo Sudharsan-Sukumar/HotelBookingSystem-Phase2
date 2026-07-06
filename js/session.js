@@ -326,4 +326,101 @@ document.addEventListener('DOMContentLoaded', () => {
     window.open(targetRedirectUrl, '_blank', 'noopener,noreferrer');
     closeModal();
   });
+
+  // =============================================================
+  // REUSABLE FLOATING BACK-TO-TOP COMPONENT IMPLEMENTATION
+  // =============================================================
+  
+  // 1. Inject Floating Button Styles
+  if (!document.getElementById('backToTopStyles')) {
+    const styleEl = document.createElement('style');
+    styleEl.id = 'backToTopStyles';
+    styleEl.innerHTML = `
+      .floating-back-to-top {
+        position: fixed;
+        bottom: 24px;
+        right: 24px;
+        width: 48px;
+        height: 48px;
+        background-color: #D4AF37 !important;
+        color: #1A0A2E !important;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+        z-index: 1050; /* Ensure stays below standard modals (1055+) but above dashboard layers */
+        opacity: 0;
+        visibility: hidden;
+        transform: scale(0.9);
+        transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+        cursor: pointer;
+        border: none;
+      }
+      .floating-back-to-top.show {
+        opacity: 1;
+        visibility: visible;
+        transform: scale(1);
+      }
+      .floating-back-to-top:hover {
+        background-color: #EFD98C !important;
+        box-shadow: 0 6px 20px rgba(212,175,55,0.3);
+        transform: translateY(-3px) scale(1.05);
+      }
+      .floating-back-to-top:active {
+        transform: translateY(-1px) scale(0.98);
+      }
+      .floating-back-to-top i {
+        font-size: 1.4rem;
+        line-height: 1;
+      }
+    `;
+    document.head.appendChild(styleEl);
+  }
+
+  // 2. Inject HTML Component Markup
+  if (!document.getElementById('btnFloatingBackToTop')) {
+    const btnHTML = `
+      <button id="btnFloatingBackToTop" class="floating-back-to-top" aria-label="Back to Top" title="Back to Top">
+        <i class="bi bi-arrow-up"></i>
+      </button>
+    `;
+    document.body.insertAdjacentHTML('beforeend', btnHTML);
+  }
+
+  // 3. Configure Visibility & Smooth Scroll Bindings
+  const backToTopBtn = document.getElementById('btnFloatingBackToTop');
+  let isScrolling = false;
+
+  if (backToTopBtn) {
+    // Window Scroll Listener (Fade in/out at 200px threshold)
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 200) {
+        backToTopBtn.classList.add('show');
+      } else {
+        backToTopBtn.classList.remove('show');
+      }
+    });
+
+    // Smooth Scroll Action on Click
+    backToTopBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (isScrolling) return; // Prevent multiple overlapping clicks
+      isScrolling = true;
+      
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+
+      // Reset scrolling blocker when viewport reaches top
+      const checkTop = setInterval(() => {
+        if (window.scrollY === 0) {
+          isScrolling = false;
+          clearInterval(checkTop);
+        }
+      }, 50);
+    });
+  }
 });
