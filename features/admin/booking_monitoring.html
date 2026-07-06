@@ -176,36 +176,33 @@
 
     <!-- GRAPH SECTION -->
     <div class="card p-3 border mb-4 bg-white shadow-sm" style="border-radius: 12px;">
-      <div class="d-flex justify-content-between align-items-center mb-3">
-        <h5 class="font-serif fw-bold text-purple mb-0">Booking Trends</h5>
-        <div class="btn-group btn-group-sm">
+      <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+        <div class="d-flex align-items-center gap-3">
+          <h5 class="font-serif fw-bold text-purple mb-0">Analytics Visualizations</h5>
+          <select class="form-select form-select-sm w-auto" id="selectActiveChart" style="border-color: rgba(26,10,46,0.15); border-radius: 8px;">
+            <option value="trends">Chart: Booking Trends</option>
+            <option value="status">Chart: Status Distribution</option>
+            <option value="occupancy">Chart: Branch Occupancy Ratio</option>
+          </select>
+        </div>
+        <div class="btn-group btn-group-sm" id="trendChartTimeRange">
           <button class="btn btn-purple active" onclick="setChartMode('daily')">Daily</button>
           <button class="btn btn-outline-purple" onclick="setChartMode('weekly')">Weekly</button>
           <button class="btn btn-outline-purple" onclick="setChartMode('monthly')">Monthly</button>
         </div>
       </div>
-      <div style="height: 250px; position: relative;">
+      
+      <!-- Chart Containers -->
+      <div id="containerTrendChart" style="height: 250px; position: relative;">
         <canvas id="trendChart"></canvas>
       </div>
-    </div>
 
-    <!-- ADDITIONAL CHARTS ROW (Multiple Charts Support) -->
-    <div class="row g-4 mb-4 text-start">
-      <div class="col-lg-6">
-        <div class="card p-3 border bg-white shadow-sm h-100" style="border-radius: 12px;">
-          <h5 class="font-serif fw-bold text-purple mb-3">Booking Status Distribution</h5>
-          <div style="height: 230px; position: relative;">
-            <canvas id="statusChart"></canvas>
-          </div>
-        </div>
+      <div id="containerStatusChart" class="d-none" style="height: 250px; position: relative;">
+        <canvas id="statusChart"></canvas>
       </div>
-      <div class="col-lg-6">
-        <div class="card p-3 border bg-white shadow-sm h-100" style="border-radius: 12px;">
-          <h5 class="font-serif fw-bold text-purple mb-3">Branch Occupancy Ratio</h5>
-          <div style="height: 230px; position: relative;">
-            <canvas id="branchRatioChart"></canvas>
-          </div>
-        </div>
+
+      <div id="containerOccupancyChart" class="d-none" style="height: 250px; position: relative;">
+        <canvas id="branchRatioChart"></canvas>
       </div>
     </div>
 

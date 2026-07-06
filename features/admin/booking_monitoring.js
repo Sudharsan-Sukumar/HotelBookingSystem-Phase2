@@ -185,6 +185,35 @@ document.addEventListener('DOMContentLoaded', () => {
   filterBranch.addEventListener('change', renderTable);
   filterStatus.addEventListener('change', renderTable);
 
+  // Active chart selector toggle logic
+  const selectActiveChart = document.getElementById('selectActiveChart');
+  const containerTrendChart = document.getElementById('containerTrendChart');
+  const containerStatusChart = document.getElementById('containerStatusChart');
+  const containerOccupancyChart = document.getElementById('containerOccupancyChart');
+  const trendChartTimeRange = document.getElementById('trendChartTimeRange');
+
+  if (selectActiveChart) {
+    selectActiveChart.addEventListener('change', () => {
+      const val = selectActiveChart.value;
+      
+      // Hide all chart containers
+      containerTrendChart.classList.add('d-none');
+      containerStatusChart.classList.add('d-none');
+      containerOccupancyChart.classList.add('d-none');
+      
+      if (val === 'trends') {
+        containerTrendChart.classList.remove('d-none');
+        if (trendChartTimeRange) trendChartTimeRange.classList.remove('d-none');
+      } else if (val === 'status') {
+        containerStatusChart.classList.remove('d-none');
+        if (trendChartTimeRange) trendChartTimeRange.classList.add('d-none'); // Disable date range for static distribution doughnut
+      } else if (val === 'occupancy') {
+        containerOccupancyChart.classList.remove('d-none');
+        if (trendChartTimeRange) trendChartTimeRange.classList.add('d-none'); // Disable date range for static branch ratio
+      }
+    });
+  }
+
   // Simulated live update every 30 seconds
   setInterval(() => {
     // Randomize slight KPI values changes
