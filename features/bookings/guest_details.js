@@ -17,6 +17,19 @@ document.addEventListener('DOMContentLoaded', () => {
     input.addEventListener('input', validateFormState);
   });
 
+  // Helper for applying error styles
+  function setFieldError(input, errorEl, message) {
+    if (message) {
+      errorEl.textContent = message;
+      errorEl.classList.remove('d-none');
+      input.style.borderColor = '#dc3545';
+    } else {
+      errorEl.textContent = '';
+      errorEl.classList.add('d-none');
+      input.style.borderColor = '';
+    }
+  }
+
   // 1. Textarea Character Live Counter
   if (specialRequestsTextarea && charCounter) {
     specialRequestsTextarea.addEventListener('input', () => {
@@ -30,15 +43,31 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // Real-time input keydown, paste, change protections
+  const handleDateInputRestrictions = (e) => {
+    const input = e.target;
+    
+    // Prevent typing extra year digits manually
+    if (e.type === 'keypress') {
+      const parts = input.value.split('-'); // yyyy-mm-dd
+      if (parts[0] && parts[0].length >= 4) {
+        // Find selection start to see if user is replacing text
+        if (input.selectionStart !== null && input.selectionStart <= 4) {
+          // If cursor is in the year part and selection doesn't cover characters, block it
+          if (input.selectionEnd - input.selectionStart === 0) {
+            e.preventDefault();
+          }
+        }
+      }
+    }
+  };
+
+  checkinInput.addEventListener('keypress', handleDateInputRestrictions);
+  checkoutInput.addEventListener('keypress', handleDateInputRestrictions);
+
   // Helper Form State Validator
   function validateFormState() {
     let isValid = true;
-
-    // Reset UI errors
-    guestErrorMsg.classList.add('d-none');
-    guestErrorMsg.textContent = '';
-    dateErrorMsg.classList.add('d-none');
-    dateErrorMsg.textContent = '';
 
     // Guest check - minimum count should not be 0 or negative
     const countVal = parseInt(guestCountInput.value);
@@ -46,40 +75,76 @@ document.addEventListener('DOMContentLoaded', () => {
       isValid = false;
       guestErrorMsg.textContent = 'Guest count must be at least 1.';
       guestErrorMsg.classList.remove('d-none');
+      guestCountInput.style.borderColor = '#dc3545';
     } else if (countVal > 4) {
       isValid = false;
       guestErrorMsg.textContent = 'Guest count exceeds maximum room capacity (Max 4 Guests).';
       guestErrorMsg.classList.remove('d-none');
+      guestCountInput.style.borderColor = '#dc3545';
+    } else {
+      guestErrorMsg.classList.add('d-none');
+      guestCountInput.style.borderColor = '';
     }
 
     // Dates check
+    const currentYear = new Date().getFullYear();
+    const minYear = currentYear;
+    const maxYear = currentYear + 5;
+
+    // Reset dates styles
+    setFieldError(checkinInput, dateErrorMsg, '');
+    setFieldError(checkoutInput, dateErrorMsg, '');
+
     if (!checkinInput.value || !checkoutInput.value) {
       isValid = false;
     } else {
-      // Validate Check-in Date from current date/today
-      const today = new Date();
-      today.setHours(0, 0, 0, 0);
-      
-      // Parse dates using date-string representations to avoid timezone offsets
       const checkinParts = checkinInput.value.split('-');
       const checkoutParts = checkoutInput.value.split('-');
       
-      const checkinDate = new Date(parseInt(checkinParts[0]), parseInt(checkinParts[1]) - 1, parseInt(checkinParts[2]));
-      const checkoutDate = new Date(parseInt(checkoutParts[0]), parseInt(checkoutParts[1]) - 1, parseInt(checkoutParts[2]));
+      const checkinYear = parseInt(checkinParts[0]);
+      const checkoutYear = parseInt(checkoutParts[0]);
 
-      if (checkinDate < today) {
+      // Year must be exactly 4 digits validation rule
+      if (checkinParts[0].length !== 4) {
         isValid = false;
-        dateErrorMsg.textContent = 'Stay Check-In Date must be today or a future date.';
-        dateErrorMsg.classList.remove('d-none');
+        setFieldError(checkinInput, dateErrorMsg, 'Please enter a valid 4-digit year.');
+      } else if (checkoutParts[0].length !== 4) {
+        isValid = false;
+        setFieldError(checkoutInput, dateErrorMsg, 'Please enter a valid 4-digit year.');
+      }
+      // Year range validation rule
+      else if (checkinYear < minYear || checkinYear > maxYear) {
+        isValid = false;
+        setFieldError(checkinInput, dateErrorMsg, `Booking year must be between ${minYear} and ${maxYear}.`);
+      } else if (checkoutYear < minYear || checkoutYear > maxYear) {
+        isValid = false;
+        setFieldError(checkoutInput, dateErrorMsg, `Booking year must be between ${minYear} and ${maxYear}.`);
       } else {
-        // Check-out date must be minimum of 1 day from check-in date
-        const timeDiff = checkoutDate.getTime() - checkinDate.getTime();
-        const diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
         
-        if (diffDays < 1) {
+        const checkinDate = new Date(checkinYear, parseInt(checkinParts[1]) - 1, parseInt(checkinParts[2]));
+        const checkoutDate = new Date(checkoutYear, parseInt(checkoutParts[1]) - 1, parseInt(checkoutParts[2]));
+
+        // Check-in in the past check
+        if (checkinDate < today) {
           isValid = false;
-          dateErrorMsg.textContent = 'Stay Check-Out Date must be at least 1 day after the Check-In Date.';
-          dateErrorMsg.classList.remove('d-none');
+          setFieldError(checkinInput, dateErrorMsg, 'Check-In date cannot be earlier than today.');
+        } 
+        // Check-out must be after check-in check
+        else {
+          const timeDiff = checkoutDate.getTime() - checkinDate.getTime();
+          const diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+          
+          if (diffDays < 1) {
+            isValid = false;
+            setFieldError(checkoutInput, dateErrorMsg, 'Check-Out date must be at least one day after Check-In.');
+          } 
+          // Stay limit validation rule (Max 30 nights)
+          else if (diffDays > 30) {
+            isValid = false;
+            setFieldError(checkoutInput, dateErrorMsg, 'Maximum stay allowed is 30 nights.');
+          }
         }
       }
     }
