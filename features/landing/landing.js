@@ -58,8 +58,14 @@ document.addEventListener('DOMContentLoaded', () => {
     searchBtn.addEventListener('click', () => {
       const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
       if (!isLoggedIn) {
-        alert('Please login to continue.');
-        window.location.href = 'features/authentication/login.html';
+        if (window.showApkToast) {
+          window.showApkToast('Please login to continue.', () => {
+            window.location.href = 'features/authentication/login.html';
+          });
+        } else {
+          alert('Please login to continue.');
+          window.location.href = 'features/authentication/login.html';
+        }
         return;
       }
 

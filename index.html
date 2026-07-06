@@ -622,6 +622,19 @@
     </div>
   </div>
 
+  <!-- IN-APP TOAST CONTAINER FOR APK UI LOOK AND FEEL -->
+  <div class="toast-container position-fixed bottom-0 start-50 translate-middle-x p-3" style="z-index: 1080; width: 100%; max-width: 350px;">
+    <div id="apkNotificationToast" class="toast align-items-center text-white bg-dark border-0 shadow" role="alert" aria-live="assertive" aria-atomic="true" style="border-radius: 12px; background-color: #120820 !important; border: 1px solid rgba(212,175,55,0.3) !important;">
+      <div class="d-flex p-2">
+        <div class="toast-body d-flex align-items-center gap-2 small">
+          <span class="text-warning"><i class="bi bi-info-circle-fill"></i></span>
+          <span id="apkToastMessage">Please login to continue.</span>
+        </div>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+    </div>
+  </div>
+
   <!-- ROOM UNAVAILABLE MODAL -->
   <div class="modal fade" id="roomUnavailableModal" tabindex="-1" aria-labelledby="roomUnavailableLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
@@ -812,11 +825,29 @@
   <script src="features/landing/landing.js"></script>
   <script>
     let pendingRoomSelection = null;
+    
+    function showApkToast(message, callback) {
+      const toastEl = document.getElementById('apkNotificationToast');
+      const toastMsg = document.getElementById('apkToastMessage');
+      if (toastEl && toastMsg) {
+        toastMsg.textContent = message;
+        const toast = new bootstrap.Toast(toastEl, { delay: 1500 });
+        toast.show();
+        if (callback) {
+          setTimeout(callback, 1600);
+        }
+      } else {
+        alert(message);
+        if (callback) callback();
+      }
+    }
+
     function triggerRoomBook(roomName) {
       const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
       if (!isLoggedIn) {
-        alert('Please login to continue with room booking.');
-        window.location.href = 'features/authentication/login.html';
+        showApkToast('Please login to continue with room booking.', () => {
+          window.location.href = 'features/authentication/login.html';
+        });
         return;
       }
 
@@ -833,8 +864,9 @@
     function selectBranchRedirect(branchName) {
       const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
       if (!isLoggedIn) {
-        alert('Please login to continue.');
-        window.location.href = 'features/authentication/login.html';
+        showApkToast('Please login to continue.', () => {
+          window.location.href = 'features/authentication/login.html';
+        });
         return;
       }
       sessionStorage.setItem('selected_branch_location', branchName);
