@@ -162,6 +162,62 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  // Global window triggerRoomBook interceptor function
+  window.triggerRoomBook = function(roomId) {
+    if (!isLoggedIn) {
+      if (window.showApkToast) {
+        window.showApkToast('Please login to continue.', () => {
+          window.location.href = `${basePath}features/authentication/login.html`;
+        });
+      } else {
+        alert('Please login to continue.');
+        window.location.href = `${basePath}features/authentication/login.html`;
+      }
+      return;
+    }
+    // Proceed to search results or booking creation
+    window.location.href = `${hotelsPath}search_results.html`;
+  };
+
+  // Intercept navigation links requiring login sessions
+  navLinks.forEach(link => {
+    if (isAdminModule) return;
+    const text = link.textContent.trim().toLowerCase();
+    
+    link.addEventListener('click', (e) => {
+      if (text === 'hotels' || text === 'my bookings' || text === 'notifications' || text === 'profile') {
+        if (!isLoggedIn) {
+          e.preventDefault();
+          if (window.showApkToast) {
+            window.showApkToast('Please login to continue.', () => {
+              window.location.href = `${basePath}features/authentication/login.html`;
+            });
+          } else {
+            alert('Please login to continue.');
+            window.location.href = `${basePath}features/authentication/login.html`;
+          }
+        }
+      }
+    });
+  });
+
+  // Intercept "View all rooms" promo and other direct search result layouts
+  document.querySelectorAll('a[href*="search_results.html"]').forEach(anchor => {
+    anchor.addEventListener('click', (e) => {
+      if (!isLoggedIn) {
+        e.preventDefault();
+        if (window.showApkToast) {
+          window.showApkToast('Please login to continue.', () => {
+            window.location.href = `${basePath}features/authentication/login.html`;
+          });
+        } else {
+          alert('Please login to continue.');
+          window.location.href = `${basePath}features/authentication/login.html`;
+        }
+      }
+    });
+  });
+
   // Global window triggerConfirmLogout function to be consumed by both customer and manager headers
   window.triggerConfirmLogout = function (e) {
     if (e) {
