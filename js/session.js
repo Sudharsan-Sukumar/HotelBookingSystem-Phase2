@@ -387,6 +387,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 2. Inject HTML Component Markup
   if (!document.getElementById('btnFloatingBackToTop')) {
+    console.log("[BACK-TO-TOP DIAGNOSIS] Injecting HTML Button markup...");
     const btnHTML = `
       <button id="btnFloatingBackToTop" class="floating-back-to-top" aria-label="Back to Top" title="Back to Top">
         <i class="bi bi-arrow-up"></i>
@@ -400,19 +401,37 @@ document.addEventListener('DOMContentLoaded', () => {
   let isScrolling = false;
 
   if (backToTopBtn) {
-    // Window Scroll Listener (Fade in/out at 200px threshold)
-    window.addEventListener('scroll', () => {
-      const scrollPosition = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+    console.log("[BACK-TO-TOP DIAGNOSIS] Button found in DOM. Attaching scroll listeners...");
+
+    const handleScroll = () => {
+      // Check multiple scroll targets (window page offset, document container height offsets, body offsets)
+      const winScroll = window.pageYOffset || window.scrollY || 0;
+      const docScroll = document.documentElement.scrollTop || 0;
+      const bodyScroll = document.body.scrollTop || 0;
+      
+      // Select the active scroll coordinate
+      const scrollPosition = Math.max(winScroll, docScroll, bodyScroll);
+      
+      console.log(`[BACK-TO-TOP DIAGNOSIS] Scroll Event Fired - Position: ${scrollPosition}px (window: ${winScroll}px, docElement: ${docScroll}px, body: ${bodyScroll}px)`);
+      
       if (scrollPosition > 200) {
         backToTopBtn.classList.add('show');
       } else {
         backToTopBtn.classList.remove('show');
       }
-    });
+    };
+
+    // Attach to window, document element, and document.body to ensure capture inside nested scrolling views
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    document.addEventListener('scroll', handleScroll, { passive: true });
+    if (document.body) {
+      document.body.addEventListener('scroll', handleScroll, { passive: true });
+    }
 
     // Smooth Scroll Action on Click
     backToTopBtn.addEventListener('click', (e) => {
       e.preventDefault();
+      console.log("[BACK-TO-TOP DIAGNOSIS] Button clicked!");
       if (isScrolling) return; // Prevent multiple overlapping clicks
       isScrolling = true;
       
@@ -420,14 +439,30 @@ document.addEventListener('DOMContentLoaded', () => {
         top: 0,
         behavior: 'smooth'
       });
+      document.documentElement.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+      document.body.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
 
       // Reset scrolling blocker when viewport reaches top
       const checkTop = setInterval(() => {
-        if (window.scrollY === 0) {
+        const currentPos = Math.max(
+          window.pageYOffset || window.scrollY || 0,
+          document.documentElement.scrollTop || 0,
+          document.body.scrollTop || 0
+        );
+        if (currentPos === 0) {
           isScrolling = false;
           clearInterval(checkTop);
+          console.log("[BACK-TO-TOP DIAGNOSIS] Scroll animation finished, reached the top.");
         }
       }, 50);
     });
+  } else {
+    console.error("[BACK-TO-TOP DIAGNOSIS] Button element was NOT successfully created or found!");
   }
 });
