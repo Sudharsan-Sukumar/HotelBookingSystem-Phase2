@@ -374,6 +374,8 @@ document.addEventListener('DOMContentLoaded', () => {
       .floating-back-to-top i {
         font-size: 1.4rem;
         line-height: 1;
+        color: #1A0A2E !important;
+        display: inline-block;
       }
     `;
     document.head.appendChild(styleEl);
