@@ -400,7 +400,8 @@ document.addEventListener('DOMContentLoaded', () => {
   if (backToTopBtn) {
     // Window Scroll Listener (Fade in/out at 200px threshold)
     window.addEventListener('scroll', () => {
-      if (window.scrollY > 200) {
+      const scrollPosition = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+      if (scrollPosition > 200) {
         backToTopBtn.classList.add('show');
       } else {
         backToTopBtn.classList.remove('show');
