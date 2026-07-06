@@ -339,26 +339,26 @@ document.addEventListener('DOMContentLoaded', () => {
     styleEl.id = 'backToTopStyles';
     styleEl.innerHTML = `
       .floating-back-to-top {
-        position: fixed;
-        bottom: 24px;
-        right: 24px;
-        width: 48px;
-        height: 48px;
+        position: fixed !important;
+        bottom: 24px !important;
+        right: 24px !important;
+        width: 48px !important;
+        height: 48px !important;
         background-color: #D4AF37 !important;
-        border-radius: 50%;
+        border-radius: 50% !important;
         display: block !important;
-        text-align: center;
-        line-height: 48px;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-        z-index: 99999 !important; /* Extremely high z-index to overlay iframe modules */
-        opacity: 0;
-        visibility: hidden;
-        transform: scale(0.9);
-        transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease, background-color 0.2s ease, box-shadow 0.2s ease;
-        cursor: pointer;
-        border: none;
-        padding: 0;
-        margin: 0;
+        text-align: center !important;
+        line-height: 48px !important;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.3) !important;
+        z-index: 99999 !important;
+        opacity: 0 !important;
+        visibility: hidden !important;
+        transform: scale(0.9) !important;
+        transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease, background-color 0.2s ease, box-shadow 0.2s ease !important;
+        cursor: pointer !important;
+        border: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
       }
       .floating-back-to-top.show {
         opacity: 1 !important;
@@ -367,11 +367,11 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       .floating-back-to-top:hover {
         background-color: #EFD98C !important;
-        box-shadow: 0 6px 20px rgba(212,175,55,0.4);
-        transform: translateY(-3px) scale(1.05);
+        box-shadow: 0 6px 20px rgba(212,175,55,0.4) !important;
+        transform: translateY(-3px) scale(1.05) !important;
       }
       .floating-back-to-top:active {
-        transform: translateY(-1px) scale(0.98);
+        transform: translateY(-1px) scale(0.98) !important;
       }
       .floating-back-to-top i {
         font-size: 1.4rem;
