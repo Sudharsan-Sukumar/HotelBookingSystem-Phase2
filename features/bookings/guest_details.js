@@ -106,16 +106,16 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!str) return null;
       const parts = str.split('-');
       if (parts.length !== 3) return null;
+      
       const day = parseInt(parts[0], 10);
       const month = parseInt(parts[1], 10);
       const year = parseInt(parts[2], 10);
       
-      // Ensure month/day/year are numeric and valid limits
       if (isNaN(day) || isNaN(month) || isNaN(year)) return null;
       if (month < 1 || month > 12) return null;
       if (day < 1 || day > 31) return null;
       
-      // Confirm actual calendar days in that month
+      // month - 1 for JavaScript 0-indexed month array
       const dt = new Date(year, month - 1, day);
       if (dt.getFullYear() !== year || dt.getMonth() !== month - 1 || dt.getDate() !== day) return null;
       return dt;
@@ -151,10 +151,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const oneYearFromToday = new Date(today);
         oneYearFromToday.setDate(oneYearFromToday.getDate() + 365);
         
-        if (checkinDateObj < today) {
+        // Use getTime() for comparisons to prevent strict object mismatches
+        if (checkinDateObj.getTime() < today.getTime()) {
           isValid = false;
           setFieldError(checkinInput, checkinErrorEl, 'Check-In must be today or a future date.');
-        } else if (checkinDateObj > oneYearFromToday) {
+        } else if (checkinDateObj.getTime() > oneYearFromToday.getTime()) {
           isValid = false;
           setFieldError(checkinInput, checkinErrorEl, 'Reservations can only be made up to 365 days in advance.');
         }
@@ -181,7 +182,7 @@ document.addEventListener('DOMContentLoaded', () => {
       } else if (parts[2].length !== 4) {
         isValid = false;
         setFieldError(checkoutInput, checkoutErrorEl, 'Please enter a valid 4-digit year.');
-      } else if (year < currentYear || year > nextYear + 1) { // checkout can bleed slightly past year
+      } else if (year < currentYear || year > nextYear + 1) {
         isValid = false;
         setFieldError(checkoutInput, checkoutErrorEl, 'Reservations can only be made up to 365 days in advance.');
       } else if (checkinDateObj) {
