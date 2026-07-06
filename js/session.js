@@ -345,25 +345,25 @@ document.addEventListener('DOMContentLoaded', () => {
         width: 48px;
         height: 48px;
         background-color: #D4AF37 !important;
-        color: #1A0A2E !important;
         border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-decoration: none;
+        display: block !important;
+        text-align: center;
+        line-height: 48px;
         box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-        z-index: 9999 !important; /* Ensure it is always visible above modals and page contents */
+        z-index: 99999 !important; /* Extremely high z-index to overlay iframe modules */
         opacity: 0;
         visibility: hidden;
         transform: scale(0.9);
         transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease, background-color 0.2s ease, box-shadow 0.2s ease;
         cursor: pointer;
         border: none;
+        padding: 0;
+        margin: 0;
       }
       .floating-back-to-top.show {
-        opacity: 1;
-        visibility: visible;
-        transform: scale(1);
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: scale(1) !important;
       }
       .floating-back-to-top:hover {
         background-color: #EFD98C !important;
@@ -375,9 +375,11 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       .floating-back-to-top i {
         font-size: 1.4rem;
-        line-height: 1;
         color: #1A0A2E !important;
         display: inline-block;
+        vertical-align: middle;
+        position: relative;
+        top: -1px;
       }
     `;
     document.head.appendChild(styleEl);
